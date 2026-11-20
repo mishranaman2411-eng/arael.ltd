@@ -116,8 +116,31 @@
   .size-pill { transition: all .2s; }
   .size-pill.active { background: var(--ink); color: var(--khadi); }
 
-  .hide-scroll::-webkit-scrollbar { display: none; }
-  .hide-scroll { scrollbar-width: none; }
+  .hide-scroll::-webkit-scrollbar,
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scroll,
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Smooth mobile snap scrolling & center alignment */
+  @media (max-width: 768px) {
+    #heroCardsContainer {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-padding: 0 calc(50vw - 155px);
+    }
+  }
+
+  /* GPU-accelerated idle floating animation for desktop showroom */
+  @keyframes heroCardFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+  }
+  @media (min-width: 768px) {
+    .hero-card-left.idle-floating { animation: heroCardFloat 4.2s ease-in-out infinite; }
+    .hero-card-center.idle-floating { animation: heroCardFloat 4.8s ease-in-out 0.4s infinite; }
+    .hero-card-right.idle-floating { animation: heroCardFloat 4.0s ease-in-out 0.8s infinite; }
+    .hero-card:hover { animation-play-state: paused !important; }
+  }
 
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 4px; }
@@ -144,8 +167,8 @@
 </div>
 
 <!-- ============ HEADER ============ -->
-<header id="header" class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-4">
-  <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+<header id="header" class="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 md:px-8 py-3 md:py-4">
+  <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
     <a href="#" class="display text-2xl md:text-3xl tracking-tight" style="color:var(--ink)">ARAEL</a>
     <div class="hidden md:flex items-center gap-3 text-xs font-semibold tracking-wider uppercase" style="color:var(--slate)">Pan-India Shipping • COD Available</div>
     <nav class="nav-pill pill hidden lg:flex items-center gap-1 px-2 py-1.5 shadow-sm">
@@ -155,11 +178,11 @@
       <a href="#reviews" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Reviews</a>
     </nav>
     <!-- floating top-right pill container with Shop Drop 01 + Bag -->
-    <div class="nav-pill pill flex items-center gap-2 px-2 py-1.5 shadow-sm">
-      <button class="pill flex items-center gap-2 px-4 py-2 text-sm font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Drop 01</button>
-      <button class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-black/5 transition relative cursor-pointer" aria-label="Bag" onclick="openCart()">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span id="bagCount" class="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold transition-transform" style="background:var(--navy);color:var(--khadi)">0</span>
+    <div class="nav-pill pill flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 sm:py-1.5 shadow-sm">
+      <button class="pill flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold transition hover:scale-105 cursor-pointer whitespace-nowrap" style="background:var(--navy);color:var(--khadi)" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Drop 01</button>
+      <button class="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center hover:bg-black/5 transition relative cursor-pointer" aria-label="Bag" onclick="openCart()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="bagCount" class="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold transition-transform" style="background:var(--navy);color:var(--khadi)">0</span>
       </button>
     </div>
   </div>
@@ -195,11 +218,11 @@
       </p>
     </div>
 
-    <!-- Three Hero Lookbook Cards (Pop Out of Nowhere, Positioned Cleanly Below The Word 'ROOTS') -->
-    <div id="heroCardsContainer" class="relative w-full max-w-5xl mx-auto mt-8 md:mt-12 z-20 flex flex-wrap md:flex-nowrap items-center justify-center gap-6 md:gap-8 px-4">
+    <!-- Three Hero Lookbook Cards (Snap-swipe on mobile, fanned on desktop) -->
+    <div id="heroCardsContainer" class="relative w-full max-w-5xl mx-auto mt-6 md:mt-12 z-20 flex overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none no-scrollbar py-4 px-4 sm:px-6 md:px-0 gap-4 sm:gap-6 md:gap-8 justify-start md:justify-center items-center scroll-smooth">
       
       <!-- Card 1: Crimson Carpet Set -->
-      <div class="hero-card hero-card-left group cursor-pointer relative w-64 h-84 sm:w-72 sm:h-96 md:w-80 md:h-[420px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform -rotate-3 md:-rotate-6 hover:rotate-0 hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(0)" data-hero-idx="0" style="background:var(--sandstone)">
+      <div id="heroCard0" class="hero-card hero-card-left group cursor-pointer relative w-[80vw] max-w-[310px] h-[390px] sm:h-[410px] md:w-80 md:h-[420px] shrink-0 snap-center md:shrink rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-0 md:-rotate-6 md:hover:rotate-0 md:hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(0)" data-hero-idx="0" style="background:var(--sandstone)">
         <img src="assets/design-2.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Crimson Carpet Set">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
         
@@ -216,7 +239,7 @@
       </div>
 
       <!-- Card 2: Midnight Warli Cropped Zip Set -->
-      <div class="hero-card hero-card-center group cursor-pointer relative w-68 h-88 sm:w-76 sm:h-[410px] md:w-84 md:h-[445px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(1)" data-hero-idx="1" style="background:var(--navy)">
+      <div id="heroCard1" class="hero-card hero-card-center group cursor-pointer relative w-[80vw] max-w-[310px] h-[390px] sm:h-[410px] md:w-84 md:h-[445px] shrink-0 snap-center md:shrink rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-0 md:scale-104 hover:z-30 select-none" onclick="openHeroModal(1)" data-hero-idx="1" style="background:var(--navy)">
         <img src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Midnight Warli Cropped Zip Set">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
         
@@ -233,7 +256,7 @@
       </div>
 
       <!-- Card 3: Ash Grey Warli Co-ord Set -->
-      <div class="hero-card hero-card-right group cursor-pointer relative w-64 h-84 sm:w-72 sm:h-96 md:w-80 md:h-[420px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-3 md:rotate-6 hover:rotate-0 hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(2)" data-hero-idx="2" style="background:var(--slate)">
+      <div id="heroCard2" class="hero-card hero-card-right group cursor-pointer relative w-[80vw] max-w-[310px] h-[390px] sm:h-[410px] md:w-80 md:h-[420px] shrink-0 snap-center md:shrink rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-0 md:rotate-6 md:hover:rotate-0 md:hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(2)" data-hero-idx="2" style="background:var(--slate)">
         <img src="assets/design-1.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Ash Grey Warli Co-ord Set">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
         
@@ -249,6 +272,14 @@
         </div>
       </div>
     </div>
+
+    <!-- Mobile Indicator Dots & Swipe Hint -->
+    <div id="heroMobileNav" class="flex md:hidden items-center justify-center gap-2 mt-2 select-none">
+      <button onclick="scrollHeroCard(0)" id="heroDot0" class="hero-dot w-7 h-1.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--ink)" aria-label="View look 1"></button>
+      <button onclick="scrollHeroCard(1)" id="heroDot1" class="hero-dot w-2 h-1.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--sandstone)" aria-label="View look 2"></button>
+      <button onclick="scrollHeroCard(2)" id="heroDot2" class="hero-dot w-2 h-1.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--sandstone)" aria-label="View look 3"></button>
+    </div>
+    <p class="text-center md:hidden text-[10px] font-mono tracking-widest uppercase mt-1 mb-2" style="color:var(--slate)">← SWIPE TO EXPLORE DROP 01 →</p>
 
     <!-- Second tier: Interactive Editorial Lookbook -->
     <div class="mt-20 pt-10 border-t" style="border-color:rgba(13,27,42,0.08)">
@@ -658,37 +689,37 @@
       
       <div class="p-6 md:p-8 space-y-0">
         <!-- Top Row: Collection Tag & Close Button -->
-        <div class="flex items-center justify-between pb-4 border-b border-[rgba(244,241,222,0.12)]">
-          <span id="heroModalTag" class="text-[11px] font-mono tracking-[0.25em] uppercase text-[#778D7A] font-semibold">
+        <div class="drawer-stagger-item flex items-center justify-between pb-4 border-b border-[rgba(244,241,222,0.12)]">
+          <span id="heroModalTag" class="text-[10px] sm:text-[11px] font-mono tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[#778D7A] font-semibold truncate max-w-[210px] sm:max-w-none">
             DROP 01 • LIMITED HERITAGE EDITION
           </span>
-          <button id="closeHeroModal" onclick="closeHeroModal()" class="text-xs font-mono tracking-widest uppercase hover:text-[#778D7A] transition-colors p-1 flex items-center gap-1.5 cursor-pointer text-[#F4F1DE]" aria-label="Close drawer">
+          <button id="closeHeroModal" onclick="closeHeroModal()" class="text-xs font-mono tracking-widest uppercase hover:text-[#778D7A] transition-colors p-2 flex items-center gap-1.5 cursor-pointer text-[#F4F1DE]" aria-label="Close drawer">
             <span>CLOSE</span> <span class="text-base leading-none">×</span>
           </button>
         </div>
 
         <!-- Stacked Title -->
-        <div class="py-5 border-b border-[rgba(244,241,222,0.12)]">
+        <div class="drawer-stagger-item py-4 sm:py-5 border-b border-[rgba(244,241,222,0.12)]">
           <h3 id="heroModalTitle" class="display text-3xl md:text-4xl uppercase tracking-tight text-[#F4F1DE] leading-[0.92] font-normal">
             MIDNIGHT WARLI CROPPED ZIP SET
           </h3>
         </div>
 
         <!-- Clean Price -->
-        <div class="py-4 border-b border-[rgba(244,241,222,0.12)] flex items-baseline justify-between">
+        <div class="drawer-stagger-item py-3.5 sm:py-4 border-b border-[rgba(244,241,222,0.12)] flex items-baseline justify-between">
           <span id="heroModalPrice" class="font-mono text-2xl md:text-3xl font-bold text-[#F4F1DE] tracking-tight">₹1,999</span>
           <span class="text-[10px] font-mono tracking-widest uppercase text-[#778D7A]">INCL. TAXES • SHIPS IN 24H</span>
         </div>
 
         <!-- 1-Line Subtitle -->
-        <div class="py-3.5 border-b border-[rgba(244,241,222,0.12)]">
+        <div class="drawer-stagger-item py-3 border-b border-[rgba(244,241,222,0.12)]">
           <p id="heroModalSubtitle" class="text-xs font-mono tracking-wider uppercase text-[#D4C4A8]">
             300 GSM Bio-Washed Fleece • Drop 01
           </p>
         </div>
 
         <!-- Full-Width 5-Column Rectangular Size Selector Grid (Sharp borders, 0px corners) -->
-        <div class="py-5 border-b border-[rgba(244,241,222,0.12)]">
+        <div class="drawer-stagger-item py-4 sm:py-5 border-b border-[rgba(244,241,222,0.12)]">
           <div class="flex items-center justify-between mb-3 text-xs font-mono uppercase tracking-wider text-[#D4C4A8]">
             <span>SELECT SIZE</span>
             <span class="text-[#778D7A] cursor-pointer hover:underline text-[11px]" onclick="toggleHeroAccordion('accordion-fit')">FIT GUIDE ↗</span>
@@ -703,7 +734,7 @@
         </div>
 
         <!-- Single Bold Full-Width ADD TO BAG & Underlined BUY NOW -->
-        <div class="py-5 border-b border-[rgba(244,241,222,0.12)] space-y-3">
+        <div class="drawer-stagger-item py-4 sm:py-5 border-b border-[rgba(244,241,222,0.12)] space-y-3">
           <button id="heroAddBtn" onclick="addHeroToBag()" class="w-full py-4 text-xs md:text-sm font-mono font-bold tracking-[0.2em] uppercase rounded-none transition-all duration-200 hover:brightness-105 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer shadow-lg" style="background:#778D7A;color:#0D1B2A">
             <span id="heroAddBtnText">ADD TO BAG — ₹1,999</span>
           </button>
@@ -715,7 +746,7 @@
         </div>
 
         <!-- Minimal Collapsible Accordions (DETAILS +, SIZE & FIT +, SHIPPING & CARE +) -->
-        <div class="space-y-0 pt-1">
+        <div class="drawer-stagger-item space-y-0 pt-1">
           <!-- Accordion 1: DETAILS + -->
           <div class="border-b border-[rgba(244,241,222,0.12)]">
             <button onclick="toggleHeroAccordion('accordion-details')" class="w-full py-4 flex items-center justify-between text-left font-mono text-xs uppercase tracking-wider text-[#F4F1DE] hover:text-[#778D7A] transition-colors cursor-pointer">
@@ -1051,9 +1082,14 @@
     modal.classList.add('flex');
 
     if (window.gsap) {
+      gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.25 });
       gsap.fromTo('#heroModalCard', 
         { x: '100%' },
-        { x: '0%', duration: 0.38, ease: 'power3.out' }
+        { x: '0%', duration: 0.42, ease: 'power4.out' }
+      );
+      gsap.fromTo('.drawer-stagger-item',
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.35, stagger: 0.035, ease: 'power2.out', delay: 0.1 }
       );
     } else {
       const card = document.getElementById('heroModalCard');
@@ -1064,11 +1100,13 @@
   function closeHeroModal() {
     const modal = document.getElementById('heroQuickBuyModal');
     if (window.gsap) {
+      gsap.to(modal, { opacity: 0, duration: 0.22 });
       gsap.to('#heroModalCard', {
-        x: '100%', duration: 0.28, ease: 'power2.in',
+        x: '100%', duration: 0.26, ease: 'power2.in',
         onComplete: () => {
           modal.classList.add('hidden');
           modal.classList.remove('flex');
+          gsap.set(modal, { opacity: 1 });
         }
       });
     } else {
@@ -1359,40 +1397,95 @@
     }
   });
 
-  // Sequenced Hero Entrance ('Pop Out of Nowhere')
+  // Mobile Hero Swipe Carousel Navigation
+  function scrollHeroCard(idx) {
+    const container = document.getElementById('heroCardsContainer');
+    const card = document.getElementById('heroCard' + idx);
+    if (!container || !card) return;
+    const offset = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
+    container.scrollTo({ left: offset, behavior: 'smooth' });
+    updateHeroDots(idx);
+  }
+
+  function updateHeroDots(activeIdx) {
+    for (let i = 0; i < 3; i++) {
+      const dot = document.getElementById('heroDot' + i);
+      if (!dot) continue;
+      if (i === activeIdx) {
+        dot.style.background = 'var(--ink)';
+        dot.style.width = '28px';
+      } else {
+        dot.style.background = 'var(--sandstone)';
+        dot.style.width = '8px';
+      }
+    }
+  }
+
+  // Horizontal scroll listener for mobile swipe
+  const heroCardsScroll = document.getElementById('heroCardsContainer');
+  if (heroCardsScroll) {
+    let heroDebounceTimer = null;
+    heroCardsScroll.addEventListener('scroll', () => {
+      clearTimeout(heroDebounceTimer);
+      heroDebounceTimer = setTimeout(() => {
+        const center = heroCardsScroll.scrollLeft + heroCardsScroll.clientWidth / 2;
+        let closestIdx = 0;
+        let minDist = Infinity;
+        for (let i = 0; i < 3; i++) {
+          const card = document.getElementById('heroCard' + i);
+          if (!card) continue;
+          const cardCenter = card.offsetLeft + card.clientWidth / 2;
+          const dist = Math.abs(center - cardCenter);
+          if (dist < minDist) {
+            minDist = dist;
+            closestIdx = i;
+          }
+        }
+        updateHeroDots(closestIdx);
+      }, 50);
+    }, { passive: true });
+  }
+
   function triggerHeroEntrance() {
     if (!window.gsap) return;
     
     // Set initial states
-    gsap.set('.hero-line-1, .hero-line-2', { y: 55, opacity: 0 });
-    gsap.set('.hero-card', { scale: 0, opacity: 0, transformOrigin: 'center bottom' });
-    gsap.set('.rotating-badge', { scale: 0, opacity: 0 });
+    gsap.set('.hero-line-1, .hero-line-2', { y: 45, opacity: 0 });
+    gsap.set('.hero-card', { scale: 0.35, y: 25, opacity: 0, transformOrigin: 'center bottom' });
+    gsap.set('.rotating-badge', { scale: 0, opacity: 0, rotation: -90 });
 
-    const entranceTl = gsap.timeline({ delay: 0.1 });
+    const entranceTl = gsap.timeline({
+      delay: 0.05,
+      onComplete: () => {
+        document.querySelectorAll('.hero-card').forEach(c => c.classList.add('idle-floating'));
+      }
+    });
     
-    // 1. Headline lands in first
+    // 1. Headline lands in first with crisp editorial easing
     entranceTl.to('.hero-line-1, .hero-line-2', {
       y: 0,
       opacity: 1,
-      duration: 0.85,
-      stagger: 0.15,
+      duration: 0.65,
+      stagger: 0.12,
       ease: 'power3.out'
     });
     entranceTl.to('.rotating-badge', {
       scale: 1,
       opacity: 1,
-      duration: 0.6,
-      ease: 'back.out(1.7)'
-    }, '-=0.4');
+      rotation: 0,
+      duration: 0.55,
+      ease: 'back.out(1.8)'
+    }, '-=0.35');
 
-    // 2. Immediately after headline lands (with 0.4s delay), the 3 cards spring/pop in out of nowhere
+    // 2. Immediately after headline lands, the 3 cards spring/pop in with snappy elastic back-out
     entranceTl.to('.hero-card', {
       scale: 1,
+      y: 0,
       opacity: 1,
-      duration: 0.8,
-      stagger: 0.12,
+      duration: 0.65,
+      stagger: 0.1,
       ease: 'back.out(1.8)'
-    }, '+=0.4');
+    }, '+=0.12');
   }
 
   // Page Initialization
@@ -1401,14 +1494,28 @@
     cart = [];
     bagCount = 0;
     setActiveCard(0);
-    setTimeout(() => {
-      const p = document.getElementById('preloader');
-      if (p) p.classList.add('hide');
+    const p = document.getElementById('preloader');
+    if (p) {
+      if (window.gsap) {
+        gsap.to(p, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            p.classList.add('hide');
+            triggerHeroEntrance();
+          }
+        });
+      } else {
+        p.classList.add('hide');
+        triggerHeroEntrance();
+      }
+    } else {
       triggerHeroEntrance();
-    }, 400);
+    }
   });
 
-  // GSAP Animations
+  // GSAP Animations & Physics
   if (window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -1418,20 +1525,35 @@
       const heads = sec.querySelectorAll('h2, h3');
       if (heads.length) {
         gsap.from(heads, {
-          y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
-          scrollTrigger: { trigger: sec, start: 'top 80%' }
+          y: 35, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+          scrollTrigger: { trigger: sec, start: 'top 85%' }
         });
       }
     });
 
     gsap.from('.carousel-card', {
-      y: 60, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+      y: 50, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
       scrollTrigger: { trigger: '#shop', start: 'top 75%' }
+    });
+
+    // 3D tilt physics for hero cards on desktop
+    document.querySelectorAll('.hero-card').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 768) return;
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) scale(1.03)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
     });
 
     // 3D tilt physics for carousel cards
     document.querySelectorAll('.carousel-card').forEach((card) => {
       card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 768) return;
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -1448,7 +1570,7 @@
     });
 
     gsap.to('.watermark-faint', {
-      yPercent: 15, ease: 'none',
+      yPercent: 18, ease: 'none',
       scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: true }
     });
   }
