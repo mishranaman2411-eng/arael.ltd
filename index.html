@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ARAEL — Wear Your Vibe, Honor Your Roots</title>
+<meta name="description" content="ARAEL — Indian heritage streetwear. 300 GSM heavyweight hoodies with unapologetic Indian roots. Pan-India shipping, COD available.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --khadi: #F4F1DE;
+    --sandstone: #D4C4A8;
+    --ink: #0D1B2A;
+    --navy: #1B263B;
+    --slate: #415A77;
+    --sage: #778D7A;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--khadi);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .display { font-family: 'Bebas Neue', 'Impact', sans-serif; letter-spacing: -0.01em; }
+  .pill { border-radius: 9999px; }
+
+  .marquee { overflow: hidden; white-space: nowrap; }
+  .marquee-track { display: inline-flex; gap: 2.5rem; animation: marquee 24s linear infinite; will-change: transform; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  .product-card { transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+  .product-card img { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .product-card:hover img { transform: scale(1.05); }
+
+  .arrow-btn { transition: transform .3s, background .3s; }
+  .arrow-btn:hover { transform: scale(1.08); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+
+  .nav-pill { background: rgba(244,241,222,.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(13,27,42,.12); }
+
+  #preloader { position: fixed; inset: 0; background: var(--khadi); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity .6s ease, visibility .6s; }
+  #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  .rotating-badge { animation: spin 10s linear infinite; }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  .watermark-faint { position: absolute; font-family: 'Bebas Neue', sans-serif; line-height: .85; color: rgba(13,27,42,.05); white-space: nowrap; pointer-events: none; user-select: none; }
+
+  /* Hero Lookbook Cards */
+  .hero-card {
+    border: none !important;
+    cursor: pointer;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s;
+  }
+  .hero-card:hover {
+    box-shadow: 0 28px 56px -12px rgba(13,27,42,0.35);
+  }
+
+  /* Carousel cards */
+  .carousel-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(13,27,42,0.08);
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s, background-color .3s, border-color .3s, color .3s;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  .carousel-card:hover {
+    box-shadow: 0 16px 36px -12px rgba(13,27,42,0.18);
+  }
+  .carousel-card .cc-num { color: var(--slate); transition: color .3s; }
+  .carousel-card .cc-name { color: var(--ink); transition: color .3s; }
+  .carousel-card .cc-price { color: var(--navy); transition: color .3s; }
+  .carousel-card .cc-arrow { opacity: 0.85; transition: opacity .3s, transform .3s, background .3s, color .3s; }
+  .carousel-card:hover .cc-arrow { opacity: 1; transform: scale(1.08); }
+
+  .carousel-card.active {
+    background: var(--sage) !important;
+    border-color: transparent !important;
+    color: var(--khadi) !important;
+    transform: scale(1.06);
+    box-shadow: 0 24px 48px -16px rgba(13,27,42,0.38);
+  }
+  .carousel-card.active .cc-num,
+  .carousel-card.active .cc-name,
+  .carousel-card.active .cc-price {
+    color: var(--khadi) !important;
+  }
+  .carousel-card.active .cc-arrow {
+    background: var(--khadi) !important;
+    color: var(--ink) !important;
+    opacity: 1;
+  }
+  .carousel-card.active .quick-view-btn {
+    background: var(--ink) !important;
+    color: var(--khadi) !important;
+  }
+
+  .review-card { transition: transform .4s, background .3s; }
+  .review-card.active { background: var(--sage) !important; color: var(--khadi) !important; transform: scale(1.04); }
+
+  .size-pill { transition: all .2s; }
+  .size-pill.active { background: var(--ink); color: var(--khadi); }
+
+  .hide-scroll::-webkit-scrollbar { display: none; }
+  .hide-scroll { scrollbar-width: none; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 4px; }
+
+  /* Hotspot pins */
+  .hotspot { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: var(--sage); border: 2px solid var(--khadi); cursor: pointer; animation: pulse 2s infinite; z-index: 5; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(119,141,122,.7); } 70% { box-shadow: 0 0 0 10px rgba(119,141,122,0); } 100% { box-shadow: 0 0 0 0 rgba(119,141,122,0); } }
+  .hotspot.active { background: var(--navy); }
+  .spec-badge { position: absolute; background: var(--khadi); border: 2px solid var(--ink); border-radius: 16px; padding: 12px 16px; font-size: 12px; max-width: 220px; box-shadow: 0 12px 30px -10px rgba(13,27,42,.3); z-index: 10; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s; pointer-events: none; }
+  .spec-badge.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+  /* Hero parallax layers */
+  .hero-layer { will-change: transform; }
+</style>
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader">
+  <div class="text-center">
+    <div class="display text-6xl md:text-8xl" style="color:var(--ink)">ARAEL</div>
+    <div class="mt-2 text-xs tracking-[0.35em] uppercase font-semibold" style="color:var(--slate)">Wear Your Vibe, Honor Your Roots</div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-4">
+  <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-4">
+    <a href="#" class="display text-2xl md:text-3xl tracking-tight" style="color:var(--ink)">ARAEL</a>
+    <div class="hidden md:flex items-center gap-3 text-xs font-semibold tracking-wider uppercase" style="color:var(--slate)">Pan-India Shipping • COD Available</div>
+    <nav class="nav-pill pill hidden lg:flex items-center gap-1 px-2 py-1.5 shadow-sm">
+      <a href="#hero" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Home</a>
+      <a href="#shop" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Shop</a>
+      <a href="#details" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Details</a>
+      <a href="#reviews" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Reviews</a>
+    </nav>
+    <!-- floating top-right pill container with Shop Drop 01 + Bag -->
+    <div class="nav-pill pill flex items-center gap-2 px-2 py-1.5 shadow-sm">
+      <button class="pill flex items-center gap-2 px-4 py-2 text-sm font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Drop 01</button>
+      <button class="w-9 h-9 rounded-full flex items-center justify-center hover:bg-black/5 transition relative cursor-pointer" aria-label="Bag" onclick="openCart()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="bagCount" class="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold transition-transform" style="background:var(--navy);color:var(--khadi)">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO (TWO-TIER) ============ -->
+<section id="hero" class="min-h-screen pt-28 pb-16 px-4 md:px-8 relative overflow-hidden" style="background:var(--khadi)">
+  <div class="watermark-faint top-12 left-1/2 -translate-x-1/2 text-[clamp(110px,25vw,340px)]" aria-hidden="true">HERITAGE</div>
+
+  <!-- Top tier -->
+  <div class="max-w-[1440px] mx-auto relative">
+    <div class="relative text-center">
+      <!-- Rotating circular badge -->
+      <div class="absolute top-0 right-4 lg:right-24 hidden md:flex items-center justify-center hero-layer z-10">
+        <div class="rotating-badge relative w-28 h-28 rounded-full flex items-center justify-center shadow-lg" style="background:var(--sage);color:var(--ink)">
+          <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full">
+            <defs><path id="circlePath" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"/></defs>
+            <text font-family="Bebas Neue" font-size="11" fill="var(--ink)" letter-spacing="2">
+              <textPath href="#circlePath">300 GSM HEAVYWEIGHT • DROP 01 • </textPath>
+            </text>
+          </svg>
+          <span class="display text-xl" style="color:var(--ink)">01</span>
+        </div>
+      </div>
+
+      <!-- Display Headline (Animates In First) -->
+      <h1 id="heroHeadline" class="display text-[clamp(48px,11vw,150px)] leading-[0.84] tracking-tight relative z-10 select-none" style="color:var(--ink)">
+        <span class="hero-line-1 block">Wear Your Vibe,</span>
+        <span class="hero-line-2 block">Honor Your Roots</span>
+      </h1>
+      <p class="text-xs md:text-sm tracking-[0.3em] uppercase font-semibold mt-3" style="color:var(--slate)">
+        Drop 01 Signature Pieces • 300 GSM Combed Cotton Fleece
+      </p>
+    </div>
+
+    <!-- Three Hero Lookbook Cards (Pop Out of Nowhere, Positioned Cleanly Below The Word 'ROOTS') -->
+    <div id="heroCardsContainer" class="relative w-full max-w-5xl mx-auto mt-8 md:mt-12 z-20 flex flex-wrap md:flex-nowrap items-center justify-center gap-6 md:gap-8 px-4">
+      
+      <!-- Card 1: Crimson Carpet Set -->
+      <div class="hero-card hero-card-left group cursor-pointer relative w-64 h-84 sm:w-72 sm:h-96 md:w-80 md:h-[420px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform -rotate-3 md:-rotate-6 hover:rotate-0 hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(0)" data-hero-idx="0" style="background:var(--sandstone)">
+        <img src="assets/design-2.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Crimson Carpet Set">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+        
+        <!-- Clean Sharp-Edged Bottom Hover Bar -->
+        <div class="absolute bottom-0 inset-x-0 p-4 transition-all duration-300 ease-out transform translate-y-0 md:translate-y-full md:group-hover:translate-y-0 flex items-center justify-between pointer-events-none" style="background:rgba(13,27,42,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(244,241,222,0.15)">
+          <div class="min-w-0 pr-2">
+            <p class="display text-xl tracking-tight leading-none uppercase truncate" style="color:var(--khadi)">Crimson Carpet Set</p>
+            <p class="text-xs font-mono font-medium mt-1" style="color:var(--sage)">₹2,199</p>
+          </div>
+          <span class="text-xs font-mono font-bold tracking-widest uppercase transition-colors shrink-0 flex items-center gap-1" style="color:var(--khadi)">
+            VIEW +
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 2: Midnight Warli Cropped Zip Set -->
+      <div class="hero-card hero-card-center group cursor-pointer relative w-68 h-88 sm:w-76 sm:h-[410px] md:w-84 md:h-[445px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(1)" data-hero-idx="1" style="background:var(--navy)">
+        <img src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Midnight Warli Cropped Zip Set">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+        
+        <!-- Clean Sharp-Edged Bottom Hover Bar -->
+        <div class="absolute bottom-0 inset-x-0 p-4 transition-all duration-300 ease-out transform translate-y-0 md:translate-y-full md:group-hover:translate-y-0 flex items-center justify-between pointer-events-none" style="background:rgba(13,27,42,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(244,241,222,0.15)">
+          <div class="min-w-0 pr-2">
+            <p class="display text-xl tracking-tight leading-none uppercase truncate" style="color:var(--khadi)">Midnight Warli Set</p>
+            <p class="text-xs font-mono font-medium mt-1" style="color:var(--sage)">₹1,999</p>
+          </div>
+          <span class="text-xs font-mono font-bold tracking-widest uppercase transition-colors shrink-0 flex items-center gap-1" style="color:var(--khadi)">
+            VIEW +
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 3: Ash Grey Warli Co-ord Set -->
+      <div class="hero-card hero-card-right group cursor-pointer relative w-64 h-84 sm:w-72 sm:h-96 md:w-80 md:h-[420px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-3 md:rotate-6 hover:rotate-0 hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(2)" data-hero-idx="2" style="background:var(--slate)">
+        <img src="assets/design-1.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Ash Grey Warli Co-ord Set">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+        
+        <!-- Clean Sharp-Edged Bottom Hover Bar -->
+        <div class="absolute bottom-0 inset-x-0 p-4 transition-all duration-300 ease-out transform translate-y-0 md:translate-y-full md:group-hover:translate-y-0 flex items-center justify-between pointer-events-none" style="background:rgba(13,27,42,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(244,241,222,0.15)">
+          <div class="min-w-0 pr-2">
+            <p class="display text-xl tracking-tight leading-none uppercase truncate" style="color:var(--khadi)">Ash Grey Warli Set</p>
+            <p class="text-xs font-mono font-medium mt-1" style="color:var(--sage)">₹1,899</p>
+          </div>
+          <span class="text-xs font-mono font-bold tracking-widest uppercase transition-colors shrink-0 flex items-center gap-1" style="color:var(--khadi)">
+            VIEW +
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second tier: Interactive Editorial Lookbook -->
+    <div class="mt-20 pt-10 border-t" style="border-color:rgba(13,27,42,0.08)">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <!-- Lookbook Preview Image -->
+        <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl max-w-md mx-auto md:mx-0 group" style="background:var(--sandstone)">
+          <img id="lookbookImg" src="assets/design-0.jpg" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" alt="Lookbook Preview">
+          <div class="absolute top-4 left-4 pill px-3.5 py-1 text-xs font-semibold backdrop-blur-md shadow-sm" style="background:rgba(244,241,222,0.9);color:var(--ink)">
+            Editorial Lookbook
+          </div>
+        </div>
+
+        <!-- Lookbook Content & Interactive Dot Navigation -->
+        <div class="text-center md:text-left">
+          <p class="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style="color:var(--slate)">
+            <span id="lookbookIndex" class="font-bold">01</span> / 03 — Editorial Lookbook
+          </p>
+          <h2 class="display text-[clamp(32px,5.5vw,64px)] leading-[0.92] mb-4" style="color:var(--ink)">
+            Streetwear that <span style="color:rgba(13,27,42,0.38)">honors your roots</span>
+          </h2>
+          <p id="lookbookCaption" class="text-sm md:text-base leading-relaxed mb-6 max-w-lg" style="color:var(--slate)">
+            Warli Cropped Zip Hoodie Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with artisanal Warli sun & lotus screen prints.
+          </p>
+          <!-- 3 Clickable Indicator Dots with smooth slide switching -->
+          <div class="flex items-center justify-center md:justify-start gap-3 mb-8">
+            <button class="lookbook-dot w-8 h-2.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--ink)" onclick="setLookbook(0)" aria-label="Slide 01"></button>
+            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(1)" aria-label="Slide 02"></button>
+            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(2)" aria-label="Slide 03"></button>
+            <div class="flex items-center gap-1.5 ml-3">
+              <button onclick="stepLookbook(-1)" class="w-8 h-8 rounded-full flex items-center justify-center transition hover:bg-black/5 cursor-pointer" style="border:1px solid rgba(13,27,42,0.18);color:var(--ink)" aria-label="Previous lookbook slide">←</button>
+              <button onclick="stepLookbook(1)" class="w-8 h-8 rounded-full flex items-center justify-center transition hover:bg-black/5 cursor-pointer" style="border:1px solid rgba(13,27,42,0.18);color:var(--ink)" aria-label="Next lookbook slide">→</button>
+            </div>
+          </div>
+          <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})" class="pill inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">
+            Explore Drop ↗
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DARK CONTRAST BAND 1 ============ -->
+<section class="py-20 px-4 md:px-8 relative overflow-hidden" style="background:var(--ink);color:var(--khadi)">
+  <div class="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <div class="rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto md:mx-0 shadow-2xl">
+      <img src="assets/design-4.jpg" class="w-full h-full object-cover" alt="Featured Drop Model">
+    </div>
+    <div>
+      <p class="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style="color:var(--sage)">Featured Drop</p>
+      <h2 class="display text-[clamp(36px,6vw,72px)] leading-[0.9] mb-6" style="color:var(--khadi)">
+        Heavyweight 300 GSM <span style="color:rgba(244,241,222,0.42)">comfort meets unapologetic Indian roots.</span>
+      </h2>
+      <p class="text-sm md:text-base leading-relaxed max-w-md" style="color:var(--sandstone)">
+        Crafted from premium bio-washed combed cotton fleece. Designed for late-night college runs, festive nights, and everyday flexing—accessible heritage streetwear without luxury gatekeeping.
+      </p>
+      <button class="mt-8 pill flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+        Explore Drop ↗
+      </button>
+    </div>
+  </div>
+  <!-- Full-bleed marquee without top/bottom border lines -->
+  <div class="marquee mt-14 -mx-4 md:-mx-8 py-4" style="background:var(--ink);border:none">
+    <div class="marquee-track">
+      <span class="display text-3xl md:text-5xl" style="color:var(--sage)">FEATURED DROP ✳ 300 GSM HERITAGE ✳ FEATURED DROP ✳ 300 GSM HERITAGE ✳</span>
+      <span class="display text-3xl md:text-5xl" style="color:var(--sage)">FEATURED DROP ✳ 300 GSM HERITAGE ✳ FEATURED DROP ✳ 300 GSM HERITAGE ✳</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUMBERED TOP-SELLING CAROUSEL (01-04) ============ -->
+<section id="shop" class="py-24 px-4 md:px-8" style="background:var(--khadi)">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Drop 01 Signature Pieces</p>
+        <h2 class="display text-[clamp(40px,6.5vw,76px)] leading-[0.9]" style="color:var(--ink)">
+          Top <span style="color:rgba(13,27,42,0.38)">Selling</span>
+        </h2>
+      </div>
+      <p class="text-sm font-medium" style="color:var(--slate)">Drop 01 • 01–04 • ₹1,899 – ₹2,199</p>
+    </div>
+    <div id="carouselTrack" class="flex gap-6 overflow-x-auto pb-6 hide-scroll snap-x">
+      <!-- Card 01 (Active by default) -->
+      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer active relative group transition-all duration-400" onclick="setActiveCard(0)" data-idx="0">
+        <div class="flex items-center justify-between mb-3">
+          <span class="cc-num display text-3xl font-bold">01</span>
+          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
+        </div>
+        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
+          <img src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Warli Cropped Zip Hoodie Set">
+          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
+        </div>
+        <h3 class="cc-name font-semibold text-base mb-1 truncate">Warli Cropped Zip Hoodie Set</h3>
+        <div class="flex items-center justify-between mt-2">
+          <div class="cc-price display text-2xl font-bold">₹1,999</div>
+          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
+        </div>
+      </div>
+
+      <!-- Card 02 -->
+      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer relative group transition-all duration-400" onclick="setActiveCard(1)" data-idx="1">
+        <div class="flex items-center justify-between mb-3">
+          <span class="cc-num display text-3xl font-bold">02</span>
+          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
+        </div>
+        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
+          <img src="assets/design-1.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Paisley Heritage Wide-Leg Set">
+          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
+        </div>
+        <h3 class="cc-name font-semibold text-base mb-1 truncate">Paisley Heritage Wide-Leg Set</h3>
+        <div class="flex items-center justify-between mt-2">
+          <div class="cc-price display text-2xl font-bold">₹1,899</div>
+          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
+        </div>
+      </div>
+
+      <!-- Card 03 -->
+      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer relative group transition-all duration-400" onclick="setActiveCard(2)" data-idx="2">
+        <div class="flex items-center justify-between mb-3">
+          <span class="cc-num display text-3xl font-bold">03</span>
+          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
+        </div>
+        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
+          <img src="assets/design-2.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Carpet Motif Festive Set">
+          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
+        </div>
+        <h3 class="cc-name font-semibold text-base mb-1 truncate">Carpet Motif Festive Set</h3>
+        <div class="flex items-center justify-between mt-2">
+          <div class="cc-price display text-2xl font-bold">₹2,199</div>
+          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
+        </div>
+      </div>
+
+      <!-- Card 04 -->
+      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer relative group transition-all duration-400" onclick="setActiveCard(3)" data-idx="3">
+        <div class="flex items-center justify-between mb-3">
+          <span class="cc-num display text-3xl font-bold">04</span>
+          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
+        </div>
+        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
+          <img src="assets/design-3.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Medallion Engraved Set">
+          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
+        </div>
+        <h3 class="cc-name font-semibold text-base mb-1 truncate">Medallion Engraved Set</h3>
+        <div class="flex items-center justify-between mt-2">
+          <div class="cc-price display text-2xl font-bold">₹2,099</div>
+          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DARK BAND 2: UPCOMING DROP ============ -->
+<section class="py-24 px-4 md:px-8 relative overflow-hidden" style="background:var(--ink);color:var(--khadi)">
+  <!-- Enlarged faint background watermark behind centered model image -->
+  <div class="watermark-faint top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(90px,18vw,260px)] font-black text-center w-full select-none pointer-events-none tracking-tight leading-[0.82]" style="color:rgba(244,241,222,0.06)" aria-hidden="true">
+    EXPLORE OUR<br>UPCOMING DROP
+  </div>
+
+  <div class="max-w-[1440px] mx-auto relative z-10">
+    <div class="flex items-start md:items-end justify-between flex-col md:flex-row gap-6 mb-8">
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--sage)">Winter 2026 Preview</p>
+        <h2 class="display text-[clamp(38px,6.5vw,80px)] leading-[0.88]" style="color:var(--khadi)">
+          Upcoming <span style="color:rgba(244,241,222,0.42)">Drop 02</span>
+        </h2>
+      </div>
+      <div class="md:text-right max-w-sm">
+        <p class="display text-2xl font-bold" style="color:var(--sage)">Drop 02 • Limited Allocation</p>
+        <p class="text-xs leading-relaxed" style="color:var(--sandstone)">Ancient temple border engravings meet contemporary boxy draping in our next limited batch. Be first in line.</p>
+      </div>
+    </div>
+
+    <!-- Centered model card with overlapping "Notify Me ↗" CTA pill -->
+    <div class="relative max-w-md mx-auto my-10">
+      <div class="relative rounded-3xl overflow-hidden aspect-[3/4] shadow-2xl" style="background:var(--navy)">
+        <img id="upcomingDropImg" src="assets/design-6.jpg" class="w-full h-full object-cover transition-opacity duration-300" alt="Upcoming Drop Preview">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+        <div class="absolute top-4 left-4 pill px-3.5 py-1 text-xs font-semibold backdrop-blur-md" style="background:rgba(13,27,42,0.7);color:var(--khadi);border:1px solid rgba(244,241,222,0.2)">
+          Drop 02 Exclusive
+        </div>
+        <div class="absolute bottom-5 left-5 text-left pointer-events-none">
+          <p id="upcomingTitle" class="display text-2xl" style="color:var(--khadi)">Neel Slate Indigo Set</p>
+          <p id="upcomingMeta" class="text-xs font-medium" style="color:var(--sandstone)">300 GSM Brushed Fleece • Boxy Cut</p>
+        </div>
+      </div>
+
+      <!-- Overlapping "Notify Me ↗" CTA pill on bottom-right edge of model card -->
+      <button class="pill px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 absolute -bottom-5 -right-3 md:-right-6 z-20 shadow-2xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="notifyUpcoming()">
+        <span>Notify Me</span>
+        <span class="text-base font-bold leading-none">↗</span>
+      </button>
+
+      <!-- Bottom-left slide switcher for upcoming drop designs -->
+      <div class="absolute -bottom-5 left-2 md:-left-4 z-20 flex items-center gap-2">
+        <button onclick="changeUpcomingDrop(-1)" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:scale-110 shadow-lg text-sm font-bold cursor-pointer" style="background:var(--sandstone);color:var(--ink)" aria-label="Previous preview">←</button>
+        <button onclick="changeUpcomingDrop(1)" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:scale-110 shadow-lg text-sm font-bold cursor-pointer" style="background:var(--sage);color:var(--ink)" aria-label="Next preview">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT DETAILS CONFIGURATOR ============ -->
+<section id="details" class="py-24 px-4 md:px-8" style="background:var(--khadi)">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="mb-10">
+      <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Craft & Construction</p>
+      <h2 class="display text-[clamp(40px,6vw,72px)] leading-[0.9]" style="color:var(--ink)">
+        Product <span style="color:rgba(13,27,42,0.38)">Details</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden shadow-sm" style="border:1px solid rgba(13,27,42,0.1)">
+      <!-- gallery with hotspots -->
+      <div class="p-6 md:p-8 relative" style="background:var(--sandstone)">
+        <div class="rounded-2xl overflow-hidden aspect-[4/5] relative mb-4 shadow-sm" id="cfgGallery">
+          <img id="cfgImg" src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-500" alt="Product details">
+          <!-- hotspots -->
+          <div class="hotspot" style="top:38%;left:48%" onclick="showHotspot('chest')" onmouseenter="showHotspot('chest')" title="Hoodie Chest"></div>
+          <div class="hotspot" style="top:52%;left:22%" onclick="showHotspot('sleeve')" onmouseenter="showHotspot('sleeve')" title="Sleeve Print"></div>
+          <div class="hotspot" style="top:82%;left:50%" onclick="showHotspot('hem')" onmouseenter="showHotspot('hem')" title="Trouser Hem"></div>
+          <!-- spec badge -->
+          <div id="specBadge" class="spec-badge" style="top:20%;left:50%;transform:translateX(-50%)">
+            <p class="font-semibold mb-1" style="color:var(--ink)" id="specTitle">300 GSM Bio-Washed Fleece</p>
+            <p class="text-xs leading-relaxed" style="color:var(--slate)" id="specDesc">Premium combed cotton fleece, bio-washed for softness.</p>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="setCfgGallery(0)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--ink)"><img src="assets/design-0.jpg" class="w-full h-full object-cover" alt="Thumb 1"></button>
+          <button onclick="setCfgGallery(1)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="assets/design-1.jpg" class="w-full h-full object-cover" alt="Thumb 2"></button>
+          <button onclick="setCfgGallery(2)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="assets/design-2.jpg" class="w-full h-full object-cover" alt="Thumb 3"></button>
+        </div>
+      </div>
+      <!-- info -->
+      <div class="p-8 md:p-12 flex flex-col justify-center">
+        <h3 id="cfgName" class="display text-4xl md:text-5xl mb-2" style="color:var(--ink)">Warli Cropped Zip Hoodie Set</h3>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="pill px-3.5 py-1 text-xs font-bold" style="background:var(--sage);color:var(--ink)">4.9 ★★★★★ (128 Reviews)</span>
+        </div>
+        <p class="text-sm md:text-base leading-relaxed mb-6" style="color:var(--slate)">
+          300 GSM bio-washed combed cotton fleece. Cropped zip hoodie + wide-leg trousers set. Drop-shoulder boxy fit with heritage motif print, tailored for effortless draping and unmatched comfort.
+        </p>
+        <div class="mb-6">
+          <p class="text-xs uppercase tracking-wider font-semibold mb-2" style="color:var(--slate)">Colorway</p>
+          <div class="flex gap-3">
+            <button class="w-8 h-8 rounded-full border-2 transition hover:scale-110 cursor-pointer" style="background:var(--ink);border-color:var(--ink)" onclick="selectSwatch(this, 0)" aria-label="Ink"></button>
+            <button class="w-8 h-8 rounded-full border-2 transition hover:scale-110 cursor-pointer" style="background:var(--sage);border-color:var(--sandstone)" onclick="selectSwatch(this, 1)" aria-label="Sage"></button>
+            <button class="w-8 h-8 rounded-full border-2 transition hover:scale-110 cursor-pointer" style="background:var(--sandstone);border-color:var(--sandstone)" onclick="selectSwatch(this, 2)" aria-label="Sandstone"></button>
+          </div>
+        </div>
+        <div class="mb-6">
+          <p class="text-xs uppercase tracking-wider font-semibold mb-1" style="color:var(--slate)">Price:</p>
+          <p class="display text-5xl" id="cfgPrice" style="color:var(--navy)">₹1,999</p>
+        </div>
+        <div class="flex items-center gap-4 flex-wrap">
+          <div class="flex items-center rounded-full border" style="border-color:var(--ink)">
+            <button onclick="cfgQty(-1)" class="w-10 h-10 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Decrease quantity">-</button>
+            <span id="cfgQty" class="px-4 font-semibold text-base">1</span>
+            <button onclick="cfgQty(1)" class="w-10 h-10 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Increase quantity">+</button>
+          </div>
+          <button onclick="addToBagCfg()" class="pill px-8 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">
+            ADD TO BAG
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS CAROUSEL ============ -->
+<section id="reviews" class="py-24 px-4 md:px-8" style="background:var(--khadi)">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="mb-10">
+      <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Verified Buyers</p>
+      <h2 class="display text-[clamp(40px,6vw,72px)] leading-[0.9]" style="color:var(--ink)">
+        Wearer <span style="color:rgba(13,27,42,0.38)">Reviews</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="review-card rounded-3xl p-7 shadow-sm" style="background:var(--sandstone)">
+        <div class="flex gap-1 mb-3 text-sm" style="color:var(--navy)">★★★★★</div>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--ink)">
+          "Bro the 300 GSM is actually insane, so warm for Delhi winters. Boxy fit hits different. The Indigo and Raw Khadi tones are unmatched."
+        </p>
+        <p class="text-xs font-bold uppercase tracking-wider" style="color:var(--ink)">— Arjun, Delhi University</p>
+      </div>
+      <div class="review-card active rounded-3xl p-7 shadow-xl">
+        <div class="flex gap-1 mb-3 text-sm" style="color:var(--khadi)">★★★★★</div>
+        <p class="text-sm leading-relaxed mb-5">
+          "Finally a brand that doesn't gatekeep streetwear. The set in rich Indigo and Mehendi Sage is gorgeous, fits oversized perfectly. COD available?? Already ordered two more."
+        </p>
+        <p class="text-xs font-bold uppercase tracking-wider">— Priya, Bangalore</p>
+      </div>
+      <div class="review-card rounded-3xl p-7 shadow-sm" style="background:var(--sandstone)">
+        <div class="flex gap-1 mb-3 text-sm" style="color:var(--navy)">★★★★☆</div>
+        <p class="text-sm leading-relaxed mb-5" style="color:var(--ink)">
+          "The folk embroidery set in Raw Khadi Cream and Neel Slate is my new go-to. Washed it twice, color still popping. Drop-shoulder fit is chef's kiss."
+        </p>
+        <p class="text-xs font-bold uppercase tracking-wider" style="color:var(--ink)">— Sneha, Mumbai</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER ============ -->
+<section class="py-20 px-4 md:px-8" style="background:var(--khadi)">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="rounded-3xl p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm" style="background:var(--sandstone)">
+      <div>
+        <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Drop Radar</p>
+        <h2 class="display text-[clamp(32px,5vw,56px)] leading-[0.9]" style="color:var(--ink)">
+          DROP UPDATES <span style="color:rgba(13,27,42,0.38)">TO YOUR INBOX!</span>
+        </h2>
+      </div>
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="pill flex items-center gap-3 px-5 py-3.5 flex-1 md:w-80 shadow-sm" style="background:var(--khadi)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--slate)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <input type="email" id="newsletterEmail" placeholder="Enter Your Email" class="bg-transparent outline-none text-sm w-full font-medium" onkeydown="if(event.key==='Enter')subscribeNewsletter()">
+        </div>
+        <button class="pill px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer whitespace-nowrap" style="background:var(--navy);color:var(--khadi)" onclick="subscribeNewsletter()">
+          Subscribe Now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THIN MARQUEE ============ -->
+<section class="py-4 overflow-hidden" style="background:var(--khadi)">
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="display text-xl md:text-2xl" style="color:var(--ink)">PAN-INDIA SHIPPING • COD AVAILABLE • FLAT 15% OFF FIRST ORDER •</span>
+      <span class="display text-xl md:text-2xl" style="color:var(--ink)">PAN-INDIA SHIPPING • COD AVAILABLE • FLAT 15% OFF FIRST ORDER •</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="pt-16 pb-6 px-4 md:px-8" style="background:var(--navy);color:var(--khadi)">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <h4 class="font-semibold mb-4 text-base" style="color:var(--khadi)">Shop</h4>
+        <ul class="space-y-2 text-sm" style="color:var(--sandstone)">
+          <li><a href="#shop" class="hover:underline">Men's Streetwear</a></li>
+          <li><a href="#shop" class="hover:underline">Women's Streetwear</a></li>
+          <li><a href="#shop" class="hover:underline">Drop 01 Catalog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-base" style="color:var(--khadi)">Our Craft</h4>
+        <ul class="space-y-2 text-sm" style="color:var(--sandstone)">
+          <li><a href="#details" class="hover:underline">300 GSM Fleece</a></li>
+          <li><a href="#details" class="hover:underline">Heritage Motifs</a></li>
+          <li><a href="#details" class="hover:underline">Bio-Washed Cotton</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-base" style="color:var(--khadi)">Support</h4>
+        <ul class="space-y-2 text-sm" style="color:var(--sandstone)">
+          <li><a href="#" class="hover:underline">Order Tracking</a></li>
+          <li><a href="#" class="hover:underline">Size Guide</a></li>
+          <li><a href="#" class="hover:underline">WhatsApp Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4 text-base" style="color:var(--khadi)">Company</h4>
+        <ul class="space-y-2 text-sm" style="color:var(--sandstone)">
+          <li><a href="#" class="hover:underline">About Us</a></li>
+          <li><a href="#" class="hover:underline">Instagram @arael.roots</a></li>
+          <li><a href="#" class="hover:underline">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="overflow-hidden">
+      <h1 class="display text-[clamp(60px,18vw,220px)] leading-[0.8] tracking-tight whitespace-nowrap" style="color:rgba(244,241,222,.15)">ARAEL — HERITAGE</h1>
+    </div>
+    <div class="mt-6 flex flex-col md:flex-row items-center justify-between text-xs" style="color:var(--sandstone)">
+      <p>© 2026 ARAEL. All rights reserved.</p>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <a href="#" class="hover:underline">Privacy Policy</a>
+        <a href="#" class="hover:underline">Terms of Service</a>
+        <a href="#" class="hover:underline">Shipping & Returns</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ HERO QUICK-BUY EDITORIAL DRAWER ============ -->
+<div id="heroQuickBuyModal" class="fixed inset-0 z-[120] hidden justify-end items-stretch" style="background:rgba(13,27,42,0.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)">
+  <!-- Backdrop Click Area -->
+  <div class="flex-1 cursor-pointer" onclick="closeHeroModal()" aria-label="Close drawer backdrop"></div>
+
+  <!-- Full-Height Slide-over Editorial Drawer (Sharp 0px corners, sliding from right) -->
+  <div id="heroModalCard" class="relative z-10 w-full max-w-full md:max-w-2xl lg:max-w-3xl h-full min-h-screen bg-[#0D1B2A] text-[#F4F1DE] shadow-2xl flex flex-col md:flex-row overflow-hidden rounded-none border-l border-[rgba(244,241,222,0.15)]" style="transform:translateX(100%)">
+    
+    <!-- LEFT SIDE: Product Photo Edge-to-Edge with Interactive Hover Zoom (Zero floating UI pills) -->
+    <div class="md:w-1/2 relative bg-[#08111A] overflow-hidden flex items-center justify-center select-none border-b md:border-b-0 md:border-r border-[rgba(244,241,222,0.12)] flex-none h-72 sm:h-84 md:h-full">
+      <div id="heroZoomContainer" class="w-full h-full min-h-full overflow-hidden relative cursor-crosshair flex items-center justify-center">
+        <img id="heroModalImg" src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-200" alt="Garment Inspection">
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: Minimalist High-Fashion Details Panel (Scrollable, hairline dividers) -->
+    <div class="md:w-1/2 flex-1 flex flex-col justify-between overflow-y-auto h-full bg-[#0D1B2A] text-[#F4F1DE]">
+      
+      <div class="p-6 md:p-8 space-y-0">
+        <!-- Top Row: Collection Tag & Close Button -->
+        <div class="flex items-center justify-between pb-4 border-b border-[rgba(244,241,222,0.12)]">
+          <span id="heroModalTag" class="text-[11px] font-mono tracking-[0.25em] uppercase text-[#778D7A] font-semibold">
+            DROP 01 • LIMITED HERITAGE EDITION
+          </span>
+          <button id="closeHeroModal" onclick="closeHeroModal()" class="text-xs font-mono tracking-widest uppercase hover:text-[#778D7A] transition-colors p-1 flex items-center gap-1.5 cursor-pointer text-[#F4F1DE]" aria-label="Close drawer">
+            <span>CLOSE</span> <span class="text-base leading-none">×</span>
+          </button>
+        </div>
+
+        <!-- Stacked Title -->
+        <div class="py-5 border-b border-[rgba(244,241,222,0.12)]">
+          <h3 id="heroModalTitle" class="display text-3xl md:text-4xl uppercase tracking-tight text-[#F4F1DE] leading-[0.92] font-normal">
+            MIDNIGHT WARLI CROPPED ZIP SET
+          </h3>
+        </div>
+
+        <!-- Clean Price -->
+        <div class="py-4 border-b border-[rgba(244,241,222,0.12)] flex items-baseline justify-between">
+          <span id="heroModalPrice" class="font-mono text-2xl md:text-3xl font-bold text-[#F4F1DE] tracking-tight">₹1,999</span>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#778D7A]">INCL. TAXES • SHIPS IN 24H</span>
+        </div>
+
+        <!-- 1-Line Subtitle -->
+        <div class="py-3.5 border-b border-[rgba(244,241,222,0.12)]">
+          <p id="heroModalSubtitle" class="text-xs font-mono tracking-wider uppercase text-[#D4C4A8]">
+            300 GSM Bio-Washed Fleece • Drop 01
+          </p>
+        </div>
+
+        <!-- Full-Width 5-Column Rectangular Size Selector Grid (Sharp borders, 0px corners) -->
+        <div class="py-5 border-b border-[rgba(244,241,222,0.12)]">
+          <div class="flex items-center justify-between mb-3 text-xs font-mono uppercase tracking-wider text-[#D4C4A8]">
+            <span>SELECT SIZE</span>
+            <span class="text-[#778D7A] cursor-pointer hover:underline text-[11px]" onclick="toggleHeroAccordion('accordion-fit')">FIT GUIDE ↗</span>
+          </div>
+          <div class="grid grid-cols-5 border border-[rgba(244,241,222,0.25)] rounded-none" id="heroModalSizes">
+            <button onclick="selectHeroSize(this, 'XS')" class="hero-size-pill py-3 text-xs font-mono font-bold uppercase transition-colors rounded-none border-r border-[rgba(244,241,222,0.25)] hover:bg-[#F4F1DE] hover:text-[#0D1B2A] text-[#F4F1DE] cursor-pointer">XS</button>
+            <button onclick="selectHeroSize(this, 'S')" class="hero-size-pill py-3 text-xs font-mono font-bold uppercase transition-colors rounded-none border-r border-[rgba(244,241,222,0.25)] active cursor-pointer" style="background:var(--sage);color:var(--ink)">S</button>
+            <button onclick="selectHeroSize(this, 'M')" class="hero-size-pill py-3 text-xs font-mono font-bold uppercase transition-colors rounded-none border-r border-[rgba(244,241,222,0.25)] hover:bg-[#F4F1DE] hover:text-[#0D1B2A] text-[#F4F1DE] cursor-pointer">M</button>
+            <button onclick="selectHeroSize(this, 'L')" class="hero-size-pill py-3 text-xs font-mono font-bold uppercase transition-colors rounded-none border-r border-[rgba(244,241,222,0.25)] hover:bg-[#F4F1DE] hover:text-[#0D1B2A] text-[#F4F1DE] cursor-pointer">L</button>
+            <button onclick="selectHeroSize(this, 'XL')" class="hero-size-pill py-3 text-xs font-mono font-bold uppercase transition-colors rounded-none hover:bg-[#F4F1DE] hover:text-[#0D1B2A] text-[#F4F1DE] cursor-pointer">XL</button>
+          </div>
+        </div>
+
+        <!-- Single Bold Full-Width ADD TO BAG & Underlined BUY NOW -->
+        <div class="py-5 border-b border-[rgba(244,241,222,0.12)] space-y-3">
+          <button id="heroAddBtn" onclick="addHeroToBag()" class="w-full py-4 text-xs md:text-sm font-mono font-bold tracking-[0.2em] uppercase rounded-none transition-all duration-200 hover:brightness-105 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer shadow-lg" style="background:#778D7A;color:#0D1B2A">
+            <span id="heroAddBtnText">ADD TO BAG — ₹1,999</span>
+          </button>
+          <div class="text-center pt-1">
+            <button id="heroBuyBtn" onclick="buyHeroNow()" class="text-xs font-mono font-bold tracking-[0.25em] uppercase text-[#F4F1DE] hover:text-[#778D7A] underline underline-offset-4 cursor-pointer transition-colors">
+              BUY NOW
+            </button>
+          </div>
+        </div>
+
+        <!-- Minimal Collapsible Accordions (DETAILS +, SIZE & FIT +, SHIPPING & CARE +) -->
+        <div class="space-y-0 pt-1">
+          <!-- Accordion 1: DETAILS + -->
+          <div class="border-b border-[rgba(244,241,222,0.12)]">
+            <button onclick="toggleHeroAccordion('accordion-details')" class="w-full py-4 flex items-center justify-between text-left font-mono text-xs uppercase tracking-wider text-[#F4F1DE] hover:text-[#778D7A] transition-colors cursor-pointer">
+              <span>DETAILS</span>
+              <span id="accordion-details-icon" class="text-sm font-bold leading-none">+</span>
+            </button>
+            <div id="accordion-details" class="hidden pb-4 text-xs font-mono space-y-2 text-[#D4C4A8] leading-relaxed">
+              <div class="flex items-start gap-2">
+                <span class="text-[#778D7A] min-w-[76px] uppercase font-bold">Material:</span>
+                <span class="text-[#F4F1DE]" id="specMaterial">300 GSM 100% Combed Bio-Washed Cotton Fleece</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="text-[#778D7A] min-w-[76px] uppercase font-bold">Artwork:</span>
+                <span class="text-[#F4F1DE]" id="specArtwork">High-Density Heritage Puff & Screen Border Print</span>
+              </div>
+              <p class="text-[11px] text-[#A0AAB2] pt-1">Artisanal Warli and paisley heritage iconography custom developed for Drop 01.</p>
+            </div>
+          </div>
+
+          <!-- Accordion 2: SIZE & FIT + -->
+          <div class="border-b border-[rgba(244,241,222,0.12)]">
+            <button onclick="toggleHeroAccordion('accordion-fit')" class="w-full py-4 flex items-center justify-between text-left font-mono text-xs uppercase tracking-wider text-[#F4F1DE] hover:text-[#778D7A] transition-colors cursor-pointer">
+              <span>SIZE & FIT</span>
+              <span id="accordion-fit-icon" class="text-sm font-bold leading-none">+</span>
+            </button>
+            <div id="accordion-fit" class="hidden pb-4 text-xs font-mono space-y-2 text-[#D4C4A8] leading-relaxed">
+              <div class="flex items-start gap-2">
+                <span class="text-[#778D7A] min-w-[76px] uppercase font-bold">Fit:</span>
+                <span class="text-[#F4F1DE]" id="specFit">Drop-Shoulder Cropped Zip Hoodie + Relaxed Wide-Leg Track</span>
+              </div>
+              <p class="text-[11px] text-[#A0AAB2] pt-1">Designed for a structured boxy streetwear drape. Take your normal size for standard fit, or size up for an oversized silhouette.</p>
+            </div>
+          </div>
+
+          <!-- Accordion 3: SHIPPING & CARE + -->
+          <div class="border-b border-[rgba(244,241,222,0.12)]">
+            <button onclick="toggleHeroAccordion('accordion-care')" class="w-full py-4 flex items-center justify-between text-left font-mono text-xs uppercase tracking-wider text-[#F4F1DE] hover:text-[#778D7A] transition-colors cursor-pointer">
+              <span>SHIPPING & CARE</span>
+              <span id="accordion-care-icon" class="text-sm font-bold leading-none">+</span>
+            </button>
+            <div id="accordion-care" class="hidden pb-4 text-xs font-mono space-y-2 text-[#D4C4A8] leading-relaxed">
+              <div class="flex items-start gap-2">
+                <span class="text-[#778D7A] min-w-[76px] uppercase font-bold">Wash Care:</span>
+                <span class="text-[#F4F1DE]" id="specWash">Cold Gentle Machine Wash / Dry in Shade</span>
+              </div>
+              <p class="text-[11px] text-[#A0AAB2] pt-1">Wash inside out. Do not iron directly on puff prints. Dispatched in signature ARAEL protective packaging.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ QUICK VIEW MODAL ============ -->
+<div id="quickViewModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4" style="background:rgba(13,27,42,.6);backdrop-filter:blur(6px)">
+  <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-auto grid md:grid-cols-2 gap-0 shadow-2xl relative" style="border:2px solid var(--ink)">
+    <div class="aspect-[3/4] md:aspect-auto overflow-hidden rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none relative" style="background:var(--sandstone)">
+      <img id="qvImg" src="assets/design-0.jpg" class="w-full h-full object-cover" alt="Product Quick View">
+    </div>
+    <div class="p-6 md:p-8 flex flex-col justify-between">
+      <div>
+        <div class="flex items-start justify-between mb-2">
+          <h3 id="qvName" class="font-bold text-2xl" style="color:var(--ink)">Warli Cropped Zip Hoodie Set</h3>
+          <button onclick="closeQuickView()" class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Close">✕</button>
+        </div>
+        <p id="qvTag" class="text-xs mb-3 font-medium" style="color:var(--slate)">Indian Roots • Black • Warli, Sun & Lotus</p>
+        <div class="display text-4xl mb-4 font-bold" id="qvPrice" style="color:var(--navy)">₹1,999</div>
+        <p class="text-sm leading-relaxed mb-6" style="color:var(--ink)">
+          300 GSM bio-washed combed cotton fleece. Cropped zip hoodie + wide-leg trousers set. Drop-shoulder boxy fit with heritage motif print.
+        </p>
+        <div class="mb-6">
+          <p class="text-xs font-semibold uppercase tracking-wider mb-2" style="color:var(--slate)">Select Size</p>
+          <div class="flex flex-wrap gap-2" id="qvSizes">
+            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border active cursor-pointer" style="border-color:var(--ink)">S</button>
+            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">M</button>
+            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">L</button>
+            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">XL</button>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-3 flex-wrap pt-4 border-t" style="border-color:rgba(13,27,42,0.08)">
+        <button id="qvAddBtn" class="pill flex-1 py-3 text-sm font-semibold transition hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">Add to Bag</button>
+        <button onclick="closeQuickView()" class="pill px-6 py-3 text-sm font-semibold border transition hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div id="cartDrawer" class="fixed inset-0 z-[100] hidden" style="background:rgba(13,27,42,.5);backdrop-filter:blur(4px)">
+  <div class="absolute right-0 top-0 h-full w-full max-w-md flex flex-col shadow-2xl" style="background:var(--khadi);border-left:2px solid var(--ink)">
+    <div class="flex items-center justify-between p-5 border-b" style="border-color:var(--sandstone)">
+      <div class="flex items-center gap-2">
+        <h3 class="display text-2xl" style="color:var(--ink)">Your Bag</h3>
+        <span class="text-xs px-2.5 py-0.5 rounded-full font-semibold" style="background:var(--sandstone);color:var(--ink)">Drop 01</span>
+      </div>
+      <button onclick="closeCart()" class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Close">✕</button>
+    </div>
+    <div id="cartItems" class="flex-1 overflow-auto p-5 space-y-3"></div>
+    <div class="p-5 border-t" style="border-color:var(--sandstone)">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs uppercase tracking-wider font-semibold" style="color:var(--slate)">Shipping</span>
+        <span class="text-xs font-bold text-emerald-800">FREE Pan-India</span>
+      </div>
+      <div class="flex items-center justify-between mb-4">
+        <span class="font-semibold text-lg" style="color:var(--ink)">Subtotal</span>
+        <span id="cartSubtotal" class="display text-3xl font-bold" style="color:var(--navy)">₹0</span>
+      </div>
+      <button onclick="checkout()" class="pill block w-full text-center px-5 py-3.5 text-sm font-semibold transition hover:scale-105 shadow-xl cursor-pointer" style="background:var(--navy);color:var(--khadi)">Proceed to Checkout ↗</button>
+      <p class="text-[11px] text-center mt-2 font-medium" style="color:var(--slate)">COD Available • 7-Day Hassle-Free Exchange</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[130] hidden pill px-6 py-3 text-sm font-semibold shadow-2xl flex items-center gap-4 transition-all" style="background:var(--ink);color:var(--khadi)">
+  <span id="toastMsg">Added to bag</span>
+  <button onclick="openCart()" class="underline font-bold transition hover:opacity-80 cursor-pointer" style="color:var(--sage)">View Bag</button>
+</div>
+
+<script>
+  // Hero Products Data
+  const heroProducts = [
+    {
+      id: 'crimson-carpet',
+      name: 'Crimson Carpet Set',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      price: 2199,
+      priceStr: '₹2,199',
+      img: 'assets/design-2.jpg',
+      tag: 'Everyday Roots • Crimson & Antique Gold • Prayer-Arch',
+      material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
+      artwork: 'Crimson Arch & Antique Gold Traditional Screen Print',
+      fit: 'Structured Cropped Zip Hoodie + Relaxed Track',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
+    {
+      id: 'midnight-warli',
+      name: 'Midnight Warli Cropped Zip Set',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      price: 1999,
+      priceStr: '₹1,999',
+      img: 'assets/design-0.jpg',
+      tag: 'Indian Roots • Midnight Indigo • Warli Sun & Lotus',
+      material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
+      artwork: 'High-Density Heritage Puff & Screen Border Print',
+      fit: 'Drop-Shoulder Cropped Zip Hoodie + Relaxed Wide-Leg Track',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
+    {
+      id: 'ash-grey-warli',
+      name: 'Ash Grey Warli Co-ord Set',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      price: 1899,
+      priceStr: '₹1,899',
+      img: 'assets/design-1.jpg',
+      tag: 'Indian Roots • Ash Grey & Neel Slate • Paisley Vines',
+      material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
+      artwork: 'Paisley Vines & Monochromatic Warli Screen Art',
+      fit: 'Drop-Shoulder Relaxed Fit Co-ord with Cuffed Hem',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
+  ];
+  let selectedHeroProduct = heroProducts[1];
+  let selectedHeroSize = 'S';
+
+  // Product Catalog: All 8 assets unified with exact filenames
+  const products = [
+    { name: 'Warli Cropped Zip Hoodie Set', tag: 'Indian Roots • Black • Warli, Sun & Lotus', price: 1999, priceStr: '₹1,999', img: 'assets/design-0.jpg' },
+    { name: 'Paisley Heritage Wide-Leg Set', tag: 'Indian Roots • Grey • Paisley & Floral Vines', price: 1899, priceStr: '₹1,899', img: 'assets/design-1.jpg' },
+    { name: 'Carpet Motif Festive Set', tag: 'Everyday Roots • Crimson/Gold • Prayer-Arch & Rug', price: 2199, priceStr: '₹2,199', img: 'assets/design-2.jpg' },
+    { name: 'Medallion Engraved Set', tag: 'Crafted • Navy/Silver/Bronze • Medallion & Geometric', price: 2099, priceStr: '₹2,099', img: 'assets/design-3.jpg' },
+    { name: 'Charcoal Warli Heritage Set', tag: 'Indian Roots • Charcoal • Warli, Sun & Lotus', price: 1799, priceStr: '₹1,799', img: 'assets/design-4.jpg' },
+    { name: 'Taupe Folk Embroidery Set', tag: 'Everyday Roots • Taupe/Khaki • Folk Embroidery & Sun', price: 1699, priceStr: '₹1,699', img: 'assets/design-5.jpg' },
+    { name: 'Neel Slate Indigo Set', tag: 'Heritage Streetwear • Slate/Indigo • Geometric Temples', price: 2299, priceStr: '₹2,299', img: 'assets/design-6.jpg' },
+    { name: 'Temple Arch Fleece Set', tag: 'Indian Roots • Raw Khadi • Temple Arch Print', price: 2499, priceStr: '₹2,499', img: 'assets/design-7.jpg' },
+  ];
+
+  // Helper to extract clean filename
+  function getFilename(path) {
+    if (!path) return '';
+    return path.split('/').pop().split('\\').pop().split('?')[0];
+  }
+
+  // Unified Product Finder matching by filename
+  function findProduct(btn) {
+    if (!btn) return products[0];
+    if (btn.closest && btn.closest('#quickViewModal')) {
+      const qvImg = document.getElementById('qvImg');
+      const srcName = qvImg ? getFilename(qvImg.getAttribute('src')) : '';
+      const found = products.find(p => getFilename(p.img) === srcName);
+      if (found) return found;
+      const qvName = document.getElementById('qvName').textContent;
+      const foundByName = products.find(p => p.name === qvName);
+      if (foundByName) return foundByName;
+    }
+    const card = btn.closest ? btn.closest('.product-card, .carousel-card') : null;
+    const img = card ? card.querySelector('img') : null;
+    const src = img ? (img.getAttribute('src') || '') : '';
+    const srcName = getFilename(src);
+    return products.find(p => getFilename(p.img) === srcName) || products[0];
+  }
+
+  let cart = [];
+  let bagCount = 0;
+
+  function updateBagBadge() {
+    bagCount = cart.reduce((s, c) => s + c.qty, 0);
+    const badge = document.getElementById('bagCount');
+    if (badge) {
+      badge.textContent = bagCount;
+      badge.style.transform = 'scale(1.4)';
+      setTimeout(() => { badge.style.transform = 'scale(1)'; }, 200);
+    }
+  }
+
+  function addProductToBag(prod, size = 'S') {
+    if (!prod) prod = products[0];
+    const prodFile = getFilename(prod.img);
+    const existing = cart.find(c => getFilename(c.img) === prodFile && (c.size === size || !c.size));
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ ...prod, size, qty: 1 });
+    }
+    updateBagBadge();
+    showToast('Added ' + prod.name + (size ? ' (' + size + ')' : '') + ' to bag');
+  }
+
+  function addToBag(btn) {
+    const prod = findProduct(btn);
+    addProductToBag(prod);
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.remove('hidden');
+    t.classList.add('flex');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => {
+      t.classList.add('hidden');
+      t.classList.remove('flex');
+    }, 3500);
+  }
+
+  function openCart() {
+    renderCart();
+    document.getElementById('cartDrawer').classList.remove('hidden');
+  }
+  function closeCart() {
+    document.getElementById('cartDrawer').classList.add('hidden');
+  }
+
+  function renderCart() {
+    const container = document.getElementById('cartItems');
+    if (cart.length === 0) {
+      container.innerHTML = '<div class="py-12 text-center"><p class="text-sm font-medium" style="color:var(--slate)">Your bag is currently empty.</p><button onclick="closeCart();document.getElementById(\'shop\').scrollIntoView({behavior:\'smooth\'})" class="mt-4 pill px-5 py-2 text-xs font-semibold cursor-pointer" style="background:var(--navy);color:var(--khadi)">Shop Drop 01</button></div>';
+      document.getElementById('cartSubtotal').textContent = '₹0';
+      return;
+    }
+    let html = '';
+    let subtotal = 0;
+    cart.forEach((c, i) => {
+      subtotal += c.price * c.qty;
+      const sizeTag = c.size ? ' • Size ' + c.size : '';
+      html += '<div class="flex gap-4 items-center p-3.5 rounded-2xl bg-white shadow-sm" style="border:1px solid rgba(13,27,42,0.08)">' +
+        '<img src="' + c.img + '" class="w-16 h-20 object-cover rounded-xl flex-none" alt="' + c.name + '">' +
+        '<div class="flex-1 min-w-0">' +
+          '<p class="text-sm font-semibold truncate" style="color:var(--ink)">' + c.name + '</p>' +
+          '<p class="text-xs" style="color:var(--slate)">' + c.priceStr + sizeTag + ' × ' + c.qty + '</p>' +
+        '</div>' +
+        '<div class="flex items-center gap-1.5 flex-none">' +
+          '<button onclick="changeQty(' + i + ',-1)" class="w-7 h-7 rounded-full flex items-center justify-center border font-bold hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)" aria-label="Decrease quantity">−</button>' +
+          '<span class="w-6 text-center text-sm font-semibold">' + c.qty + '</span>' +
+          '<button onclick="changeQty(' + i + ',1)" class="w-7 h-7 rounded-full flex items-center justify-center border font-bold hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)" aria-label="Increase quantity">+</button>' +
+        '</div>' +
+      '</div>';
+    });
+    container.innerHTML = html;
+    document.getElementById('cartSubtotal').textContent = '₹' + subtotal.toLocaleString('en-IN');
+  }
+
+  function changeQty(i, delta) {
+    cart[i].qty += delta;
+    if (cart[i].qty <= 0) cart.splice(i, 1);
+    updateBagBadge();
+    renderCart();
+  }
+
+  function checkout() {
+    if (cart.length === 0) {
+      showToast('Your bag is empty.');
+      return;
+    }
+    showToast('Redirecting to secure checkout...');
+  }
+
+  // Hero Quick-Buy Drawer Functionality
+  function openHeroModal(idx) {
+    selectedHeroProduct = heroProducts[idx];
+    document.getElementById('heroModalImg').src = selectedHeroProduct.img;
+    document.getElementById('heroModalTitle').textContent = selectedHeroProduct.name;
+    document.getElementById('heroModalTag').textContent = selectedHeroProduct.tag;
+    document.getElementById('heroModalPrice').textContent = selectedHeroProduct.priceStr;
+    const subEl = document.getElementById('heroModalSubtitle');
+    if (subEl) subEl.textContent = selectedHeroProduct.subtitle || '300 GSM Bio-Washed Fleece • Drop 01';
+    const btnText = document.getElementById('heroAddBtnText');
+    if (btnText) btnText.textContent = 'ADD TO BAG — ' + selectedHeroProduct.priceStr;
+
+    // Populate accordion specs
+    const sm = document.getElementById('specMaterial');
+    if (sm && selectedHeroProduct.material) sm.textContent = selectedHeroProduct.material;
+    const sa = document.getElementById('specArtwork');
+    if (sa && selectedHeroProduct.artwork) sa.textContent = selectedHeroProduct.artwork;
+    const sf = document.getElementById('specFit');
+    if (sf && selectedHeroProduct.fit) sf.textContent = selectedHeroProduct.fit;
+    const sw = document.getElementById('specWash');
+    if (sw && selectedHeroProduct.wash) sw.textContent = selectedHeroProduct.wash;
+    
+    // Reset zoom
+    const zoomImg = document.getElementById('heroModalImg');
+    if (zoomImg) {
+      zoomImg.style.transform = 'scale(1)';
+      zoomImg.style.transformOrigin = 'center center';
+    }
+
+    const modal = document.getElementById('heroQuickBuyModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    if (window.gsap) {
+      gsap.fromTo('#heroModalCard', 
+        { x: '100%' },
+        { x: '0%', duration: 0.38, ease: 'power3.out' }
+      );
+    } else {
+      const card = document.getElementById('heroModalCard');
+      if (card) card.style.transform = 'translateX(0%)';
+    }
+  }
+
+  function closeHeroModal() {
+    const modal = document.getElementById('heroQuickBuyModal');
+    if (window.gsap) {
+      gsap.to('#heroModalCard', {
+        x: '100%', duration: 0.28, ease: 'power2.in',
+        onComplete: () => {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      });
+    } else {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  }
+
+  function selectHeroSize(btn, size) {
+    selectedHeroSize = size;
+    document.querySelectorAll('.hero-size-pill').forEach(b => {
+      b.style.background = 'transparent';
+      b.style.color = 'var(--khadi)';
+      b.classList.remove('active');
+    });
+    btn.style.background = 'var(--sage)';
+    btn.style.color = 'var(--ink)';
+    btn.classList.add('active');
+  }
+
+  function toggleHeroAccordion(id) {
+    const el = document.getElementById(id);
+    const icon = document.getElementById(id + '-icon');
+    if (!el) return;
+    const isHidden = el.classList.contains('hidden');
+    if (isHidden) {
+      el.classList.remove('hidden');
+      if (icon) icon.textContent = '−';
+    } else {
+      el.classList.add('hidden');
+      if (icon) icon.textContent = '+';
+    }
+  }
+
+  function addHeroToBag() {
+    const item = {
+      name: selectedHeroProduct.name,
+      tag: selectedHeroProduct.tag,
+      price: selectedHeroProduct.price,
+      priceStr: selectedHeroProduct.priceStr,
+      img: selectedHeroProduct.img,
+      size: selectedHeroSize
+    };
+    const prodFile = getFilename(item.img);
+    const existing = cart.find(c => getFilename(c.img) === prodFile && c.size === item.size);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ ...item, qty: 1 });
+    }
+    updateBagBadge();
+    showToast('Added ' + item.name + ' (' + item.size + ') to bag');
+    closeHeroModal();
+  }
+
+  function buyHeroNow() {
+    addHeroToBag();
+    openCart();
+  }
+
+  // Interactive Hover Zoom on Hero Modal Image
+  const heroZoomContainer = document.getElementById('heroZoomContainer');
+  const heroModalImg = document.getElementById('heroModalImg');
+  if (heroZoomContainer && heroModalImg) {
+    heroZoomContainer.addEventListener('mousemove', (e) => {
+      const rect = heroZoomContainer.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      heroModalImg.style.transformOrigin = `${x}% ${y}%`;
+      heroModalImg.style.transform = 'scale(2.2)';
+    });
+    heroZoomContainer.addEventListener('mouseleave', () => {
+      heroModalImg.style.transformOrigin = 'center center';
+      heroModalImg.style.transform = 'scale(1)';
+    });
+  }
+
+  // Quick View Modal
+  let currentQvProduct = null;
+  function openQuickView(btn) {
+    const prod = findProduct(btn);
+    currentQvProduct = prod;
+    document.getElementById('qvImg').src = prod.img;
+    document.getElementById('qvName').textContent = prod.name;
+    document.getElementById('qvTag').textContent = prod.tag;
+    document.getElementById('qvPrice').textContent = prod.priceStr;
+    const addBtn = document.getElementById('qvAddBtn');
+    addBtn.onclick = function(e) {
+      e.stopPropagation();
+      addProductToBag(currentQvProduct);
+      closeQuickView();
+    };
+    const modal = document.getElementById('quickViewModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+  function closeQuickView() {
+    const modal = document.getElementById('quickViewModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  // Hero Tier 2: Interactive Editorial Lookbook
+  const lookbookSlides = [
+    {
+      img: 'assets/design-0.jpg',
+      caption: 'Warli Cropped Zip Hoodie Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with artisanal Warli sun & lotus screen prints.',
+    },
+    {
+      img: 'assets/design-2.jpg',
+      caption: 'Carpet Motif Festive Set — Everyday Roots collection. Crimson & antique gold prayer-arch patterns on brushed fleece for cool evenings.',
+    },
+    {
+      img: 'assets/design-4.jpg',
+      caption: 'Charcoal Warli Heritage Set — Indian Roots collection. Oversized drop-shoulder silhouette with charcoal monochrome high-density puff motifs.',
+    },
+  ];
+  let lookbookIdx = 0;
+  function setLookbook(i) {
+    lookbookIdx = i;
+    const img = document.getElementById('lookbookImg');
+    if (!img) return;
+    img.style.opacity = '0';
+    img.style.transform = 'scale(0.97)';
+    setTimeout(() => {
+      img.src = lookbookSlides[i].img;
+      const idxEl = document.getElementById('lookbookIndex');
+      if (idxEl) idxEl.textContent = String(i + 1).padStart(2, '0');
+      const capEl = document.getElementById('lookbookCaption');
+      if (capEl) capEl.textContent = lookbookSlides[i].caption;
+      img.style.opacity = '1';
+      img.style.transform = 'scale(1)';
+    }, 200);
+    document.querySelectorAll('.lookbook-dot').forEach((d, idx) => {
+      if (idx === i) {
+        d.style.background = 'var(--ink)';
+        d.classList.remove('w-2.5');
+        d.classList.add('w-8');
+      } else {
+        d.style.background = 'var(--sandstone)';
+        d.classList.remove('w-8');
+        d.classList.add('w-2.5');
+      }
+    });
+  }
+  function stepLookbook(delta) {
+    let next = (lookbookIdx + delta + lookbookSlides.length) % lookbookSlides.length;
+    setLookbook(next);
+  }
+
+  // Top-Selling Carousel Card Active State
+  function setActiveCard(i) {
+    document.querySelectorAll('.carousel-card').forEach((c, idx) => {
+      const isActive = (idx === i);
+      c.classList.toggle('active', isActive);
+      if (isActive) {
+        c.style.backgroundColor = 'var(--sage)';
+        c.style.borderColor = 'transparent';
+        c.style.color = 'var(--khadi)';
+      } else {
+        c.style.backgroundColor = '#FFFFFF';
+        c.style.borderColor = 'rgba(13,27,42,0.08)';
+        c.style.color = '';
+      }
+    });
+  }
+
+  // Dark Band 2: Upcoming Drop Slider & Waitlist
+  const upcomingDrops = [
+    { img: 'assets/design-6.jpg', title: 'Neel Slate Indigo Set', meta: '300 GSM Brushed Fleece • Boxy Cut' },
+    { img: 'assets/design-7.jpg', title: 'Temple Arch Fleece Set', meta: 'Raw Khadi Combed Cotton • Temple Print' },
+    { img: 'assets/design-4.jpg', title: 'Charcoal Warli Heritage Set', meta: 'Monochrome High-Density Puff Print' },
+  ];
+  let upcomingIdx = 0;
+  function changeUpcomingDrop(delta) {
+    upcomingIdx = (upcomingIdx + delta + upcomingDrops.length) % upcomingDrops.length;
+    const cur = upcomingDrops[upcomingIdx];
+    const img = document.getElementById('upcomingDropImg');
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = cur.img;
+      document.getElementById('upcomingTitle').textContent = cur.title;
+      document.getElementById('upcomingMeta').textContent = cur.meta;
+      img.style.opacity = '1';
+    }, 200);
+  }
+  function notifyUpcoming() {
+    showToast('You are on the Drop 02 waitlist!');
+  }
+
+  // Product Details Configurator
+  let cfgQtyVal = 1;
+  function cfgQty(delta) {
+    cfgQtyVal = Math.max(1, cfgQtyVal + delta);
+    document.getElementById('cfgQty').textContent = cfgQtyVal;
+  }
+  function setCfgGallery(idx) {
+    const p = products[idx % products.length];
+    document.getElementById('cfgImg').src = p.img;
+    document.getElementById('cfgName').textContent = p.name;
+    document.getElementById('cfgPrice').textContent = p.priceStr;
+  }
+  function addToBagCfg() {
+    const curSrc = getFilename(document.getElementById('cfgImg').getAttribute('src'));
+    const p = products.find(item => getFilename(item.img) === curSrc) || products[0];
+    const existing = cart.find(c => getFilename(c.img) === getFilename(p.img));
+    if (existing) {
+      existing.qty += cfgQtyVal;
+    } else {
+      cart.push({ ...p, qty: cfgQtyVal });
+    }
+    updateBagBadge();
+    showToast('Added ' + p.name + ' (' + cfgQtyVal + ') to bag');
+  }
+  function selectSwatch(btn, idx) {
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => b.style.borderColor = 'var(--sandstone)');
+    btn.style.borderColor = 'var(--ink)';
+    setCfgGallery(idx);
+  }
+
+  // Hotspots
+  const hotspotSpecs = {
+    chest: { title: '300 GSM Bio-Washed Fleece', desc: 'Premium combed cotton fleece, bio-washed for softness and shape retention.' },
+    sleeve: { title: 'Warli/Paisley High-Density Puff Print', desc: 'Raised puff print with high-density screen printing for tactile heritage motifs.' },
+    hem: { title: 'Drop-Shoulder Relaxed Cut', desc: 'Relaxed boxy silhouette with drop-shoulder tailoring and temple-border hem trim.' },
+  };
+  function showHotspot(key) {
+    const badge = document.getElementById('specBadge');
+    const spec = hotspotSpecs[key];
+    document.getElementById('specTitle').textContent = spec.title;
+    document.getElementById('specDesc').textContent = spec.desc;
+    badge.classList.add('show');
+    const img = document.getElementById('cfgImg');
+    if (key === 'chest') img.style.transform = 'scale(1.12) translateY(-4%)';
+    else if (key === 'sleeve') img.style.transform = 'scale(1.15) translateX(6%)';
+    else if (key === 'hem') img.style.transform = 'scale(1.15) translateY(6%)';
+    clearTimeout(window._hotspotTimer);
+    window._hotspotTimer = setTimeout(() => { hideHotspot(); }, 3500);
+  }
+  function hideHotspot() {
+    document.getElementById('specBadge').classList.remove('show');
+    const img = document.getElementById('cfgImg');
+    img.style.transform = 'scale(1)';
+  }
+
+  // Newsletter Subscription
+  function subscribeNewsletter() {
+    const input = document.getElementById('newsletterEmail');
+    const email = (input ? input.value : '').trim();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!valid) {
+      showToast('Please enter a valid email address');
+      return;
+    }
+    showToast('Subscribed! You will receive Drop 02 updates.');
+    if (input) input.value = '';
+  }
+
+  // Modal / Keyboard Shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeHeroModal();
+      closeQuickView();
+      closeCart();
+    }
+  });
+  document.getElementById('heroQuickBuyModal').addEventListener('click', (e) => {
+    if (e.target.id === 'heroQuickBuyModal') closeHeroModal();
+  });
+  document.getElementById('quickViewModal').addEventListener('click', (e) => {
+    if (e.target.id === 'quickViewModal') closeQuickView();
+  });
+  document.getElementById('cartDrawer').addEventListener('click', (e) => {
+    if (e.target.id === 'cartDrawer') closeCart();
+  });
+  document.addEventListener('click', (e) => {
+    if (e.target.classList && e.target.classList.contains('size-pill')) {
+      const parent = e.target.parentElement;
+      parent.querySelectorAll('.size-pill').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = '';
+        b.style.color = 'var(--ink)';
+      });
+      e.target.classList.add('active');
+      e.target.style.background = 'var(--ink)';
+      e.target.style.color = 'var(--khadi)';
+    }
+  });
+
+  // Sequenced Hero Entrance ('Pop Out of Nowhere')
+  function triggerHeroEntrance() {
+    if (!window.gsap) return;
+    
+    // Set initial states
+    gsap.set('.hero-line-1, .hero-line-2', { y: 55, opacity: 0 });
+    gsap.set('.hero-card', { scale: 0, opacity: 0, transformOrigin: 'center bottom' });
+    gsap.set('.rotating-badge', { scale: 0, opacity: 0 });
+
+    const entranceTl = gsap.timeline({ delay: 0.1 });
+    
+    // 1. Headline lands in first
+    entranceTl.to('.hero-line-1, .hero-line-2', {
+      y: 0,
+      opacity: 1,
+      duration: 0.85,
+      stagger: 0.15,
+      ease: 'power3.out'
+    });
+    entranceTl.to('.rotating-badge', {
+      scale: 1,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'back.out(1.7)'
+    }, '-=0.4');
+
+    // 2. Immediately after headline lands (with 0.4s delay), the 3 cards spring/pop in out of nowhere
+    entranceTl.to('.hero-card', {
+      scale: 1,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'back.out(1.8)'
+    }, '+=0.4');
+  }
+
+  // Page Initialization
+  window.addEventListener('load', () => {
+    document.getElementById('bagCount').textContent = '0';
+    cart = [];
+    bagCount = 0;
+    setActiveCard(0);
+    setTimeout(() => {
+      const p = document.getElementById('preloader');
+      if (p) p.classList.add('hide');
+      triggerHeroEntrance();
+    }, 400);
+  });
+
+  // GSAP Animations
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('#hero h2', { y: 40, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
+
+    document.querySelectorAll('section').forEach((sec) => {
+      const heads = sec.querySelectorAll('h2, h3');
+      if (heads.length) {
+        gsap.from(heads, {
+          y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+          scrollTrigger: { trigger: sec, start: 'top 80%' }
+        });
+      }
+    });
+
+    gsap.from('.carousel-card', {
+      y: 60, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '#shop', start: 'top 75%' }
+    });
+
+    // 3D tilt physics for carousel cards
+    document.querySelectorAll('.carousel-card').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = 'perspective(1000px) rotateY(' + (x * 12) + 'deg) rotateX(' + (-y * 12) + 'deg) scale(1.02)';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    gsap.from('.review-card', {
+      y: 40, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '#reviews', start: 'top 75%' }
+    });
+
+    gsap.to('.watermark-faint', {
+      yPercent: 15, ease: 'none',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: true }
+    });
+  }
+</script>
+</body>
+</html>
