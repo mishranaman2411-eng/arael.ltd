@@ -284,7 +284,7 @@
     </div>
   </div>
 
-  <!-- Minimal Floating HUD: Left Side Vertical Progress Indicator (01 - 08, Clickable) -->
+  <!-- Minimal Floating HUD: Left Side Vertical Progress Indicator (01 - 07, Clickable) -->
   <div id="morphLeftHud" class="absolute left-3 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2 font-mono text-xs select-none pointer-events-auto" style="transform: translateZ(50px);">
     <div class="text-[9px] tracking-[0.25em] uppercase font-bold mb-1 opacity-40 hidden sm:block" style="color:var(--slate)">LOOKS</div>
     
@@ -316,10 +316,6 @@
       <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
       <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">07</span>
     </button>
-    <button onclick="jumpToOutfit(7)" id="morphDot7" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 08">
-      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
-      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">08</span>
-    </button>
   </div>
 
   <!-- Center Stage: 3D Stacked Outfit Layers with Seamless Canvas Blending & Ground Shadow -->
@@ -343,28 +339,23 @@
       <img src="designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Ash Grey Warli Co-ord Set">
     </div>
 
-    <!-- Outfit 04: Forest Green Paisley Set -->
+    <!-- Outfit 04: Raw Khaki Heritage Floral Set -->
     <div id="morphLayer3" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-13 opacity-0" data-idx="3">
-      <img src="designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Forest Green Paisley Set">
-    </div>
-
-    <!-- Outfit 05: Raw Khaki Heritage Floral Set -->
-    <div id="morphLayer4" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-14 opacity-0" data-idx="4">
       <img src="designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Raw Khaki Heritage Floral Set">
     </div>
 
-    <!-- Outfit 06: Sandstone Taupe Geometric Set -->
-    <div id="morphLayer5" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-15 opacity-0" data-idx="5">
+    <!-- Outfit 05: Sandstone Taupe Geometric Set -->
+    <div id="morphLayer4" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-14 opacity-0" data-idx="4">
       <img src="designs/taupe/Taupe Embroidered Tracksuit Portrait.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Sandstone Taupe Geometric Set">
     </div>
 
-    <!-- Outfit 07: Noir Lotus Embroidered Set -->
-    <div id="morphLayer6" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-16 opacity-0" data-idx="6">
+    <!-- Outfit 06: Noir Lotus Embroidered Set -->
+    <div id="morphLayer5" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-15 opacity-0" data-idx="5">
       <img src="designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Noir Black Lotus Embroidered Set">
     </div>
 
-    <!-- Outfit 08: Onyx & Slate Two-Tone Cargo Set -->
-    <div id="morphLayer7" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-17 opacity-0" data-idx="7">
+    <!-- Outfit 07: Onyx & Slate Two-Tone Cargo Set -->
+    <div id="morphLayer6" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-16 opacity-0" data-idx="6">
       <img src="designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Onyx & Slate Two-Tone Cargo Set">
     </div>
   </div>
@@ -425,7 +416,7 @@
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <!-- Lookbook Preview Image -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl max-w-md mx-auto md:mx-0 group" style="background:var(--sandstone)">
-          <img id="lookbookImg" src="designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" alt="Lookbook Preview">
+          <img id="lookbookImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" alt="Lookbook Preview">
           <div class="absolute top-4 left-4 pill px-3.5 py-1 text-xs font-semibold backdrop-blur-md shadow-sm" style="background:rgba(244,241,222,0.9);color:var(--ink)">
             Editorial Lookbook
           </div>
@@ -440,7 +431,7 @@
             Streetwear that <span style="color:rgba(13,27,42,0.38)">honors your roots</span>
           </h2>
           <p id="lookbookCaption" class="text-sm md:text-base leading-relaxed mb-6 max-w-lg" style="color:var(--slate)">
-            Forest Green Paisley Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with intricate golden royal paisley chest embroidery.
+            Crimson Carpet Festive Set — Everyday Roots collection. Crimson & antique gold prayer-arch patterns on brushed fleece for cold urban evenings.
           </p>
           <!-- 5 Clickable Indicator Dots with smooth slide switching -->
           <div class="flex items-center justify-center md:justify-start gap-2.5 mb-8">
@@ -568,7 +559,7 @@
         </div>
         <div class="flex gap-3">
           <button onclick="setCfgGallery(0)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--ink)"><img src="designs/midnight-navy/Cropped_zip_hoodie_and_trousers_fae99eee-clean.png" class="w-full h-full object-cover" alt="Thumb 1"></button>
-          <button onclick="setCfgGallery(1)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="designs/forest-green/Hoodie_and_trousers_on_mannequin_93a04223-clean.png" class="w-full h-full object-cover" alt="Thumb 2"></button>
+          <button onclick="setCfgGallery(1)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="designs/ash-grey/Hoodie_and_trousers_on_mannequin_81ea9fe2-clean.png" class="w-full h-full object-cover" alt="Thumb 2"></button>
           <button onclick="setCfgGallery(2)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="designs/raw-khadi/Zip_hoodie_and_trousers_display_995885be-clean.png" class="w-full h-full object-cover" alt="Thumb 3"></button>
         </div>
       </div>
@@ -971,19 +962,6 @@
       wash: 'Cold Gentle Machine Wash / Dry in Shade',
     },
     {
-      id: 'forest-green-paisley',
-      name: 'Forest Green Paisley Set',
-      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
-      price: 2399,
-      priceStr: '₹2,399',
-      img: 'designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png',
-      tag: 'Indian Roots • Emerald Forest Green • Golden Royal Paisley',
-      material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
-      artwork: 'Intricate Golden Zari & Royal Paisley Chest Embroidery',
-      fit: 'Cropped Zip Hoodie + Wide-Leg Trousers with Side Paisley',
-      wash: 'Cold Gentle Machine Wash / Dry in Shade',
-    },
-    {
       id: 'raw-khadi-heritage',
       name: 'Raw Khaki Heritage Floral Set',
       subtitle: '300 GSM Unbleached Combed Fleece • Drop 01',
@@ -1040,7 +1018,7 @@
   let selectedHeroProduct = heroProducts[0];
   let selectedHeroSize = 'S';
 
-  // Morph Stage Data (8 Synchronized Looks)
+  // Morph Stage Data (07 Synchronized Looks)
   const morphOutfits = [
     {
       idx: 0,
@@ -1068,47 +1046,39 @@
     },
     {
       idx: 3,
-      name: 'Forest Green Paisley Set',
-      price: '₹2,399',
+      name: 'Raw Khaki Heritage Floral Set',
+      price: '₹2,199',
       tag: 'DROP 01 • SIGNATURE 04',
-      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
-      watermark: '04 FOREST GREEN',
+      subtitle: '300 GSM Unbleached Combed Fleece • Drop 01',
+      watermark: '04 RAW KHAKI',
     },
     {
       idx: 4,
-      name: 'Raw Khaki Heritage Floral Set',
-      price: '₹2,199',
+      name: 'Sandstone Taupe Geometric Set',
+      price: '₹2,149',
       tag: 'DROP 01 • SIGNATURE 05',
-      subtitle: '300 GSM Unbleached Combed Fleece • Drop 01',
-      watermark: '05 RAW KHAKI',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      watermark: '05 SANDSTONE',
     },
     {
       idx: 5,
-      name: 'Sandstone Taupe Geometric Set',
-      price: '₹2,149',
+      name: 'Noir Black Lotus Embroidered Set',
+      price: '₹2,299',
       tag: 'DROP 01 • SIGNATURE 06',
       subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
-      watermark: '06 SANDSTONE',
+      watermark: '06 NOIR LOTUS',
     },
     {
       idx: 6,
-      name: 'Noir Black Lotus Embroidered Set',
-      price: '₹2,299',
-      tag: 'DROP 01 • SIGNATURE 07',
-      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
-      watermark: '07 NOIR LOTUS',
-    },
-    {
-      idx: 7,
       name: 'Onyx & Slate Two-Tone Cargo Set',
       price: '₹2,499',
-      tag: 'DROP 01 • SIGNATURE 08',
+      tag: 'DROP 01 • SIGNATURE 07',
       subtitle: '300 GSM Bio-Washed Fleece & Twill • Drop 01',
-      watermark: '08 ONYX & SLATE',
+      watermark: '07 ONYX & SLATE',
     },
   ];
 
-  let activeMorphIdx = 0;
+    let activeMorphIdx = 0;
 
   function updateMorphHud(idx) {
     if (idx < 0 || idx >= morphOutfits.length) return;
@@ -1182,7 +1152,6 @@
     { name: 'Crimson Carpet Festive Set', tag: 'Everyday Roots • Crimson & Gold • Prayer-Arch', price: 2199, priceStr: '₹2,199', img: 'designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png' },
     { name: 'Midnight Warli Cropped Zip Set', tag: 'Indian Roots • Midnight Indigo • Warli Sun & Lotus', price: 2299, priceStr: '₹2,299', img: 'designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png' },
     { name: 'Ash Grey Warli Co-ord Set', tag: 'Indian Roots • Ash Grey • Tribal Warli Figures', price: 2099, priceStr: '₹2,099', img: 'designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png' },
-    { name: 'Forest Green Paisley Set', tag: 'Indian Roots • Forest Green • Golden Royal Paisley', price: 2399, priceStr: '₹2,399', img: 'designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png' },
     { name: 'Raw Khaki Heritage Floral Set', tag: 'Everyday Roots • Raw Khadi • Crimson Floral Vine', price: 2199, priceStr: '₹2,199', img: 'designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png' },
     { name: 'Sandstone Taupe Geometric Set', tag: 'Everyday Roots • Sandstone Taupe • Diamond Weave', price: 2149, priceStr: '₹2,149', img: 'designs/taupe/Taupe Embroidered Tracksuit Portrait.png' },
     { name: 'Noir Black Lotus Embroidered Set', tag: 'Indian Roots • Jet Black • Sacred Lotus', price: 2299, priceStr: '₹2,299', img: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png' },
@@ -1469,15 +1438,15 @@
   // Lookbook Data (5 Editorial Looks)
   const lookbookSlides = [
     {
-      img: 'designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png',
-      caption: 'Forest Green Paisley Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with intricate golden royal paisley chest embroidery.',
-      title: 'Forest Green Paisley Set',
-      index: '01',
-    },
-    {
       img: 'designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png',
       caption: 'Crimson Carpet Festive Set — Everyday Roots collection. Crimson & antique gold prayer-arch patterns on brushed fleece for cold urban evenings.',
       title: 'Crimson Carpet Festive Set',
+      index: '01',
+    },
+    {
+      img: 'designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png',
+      caption: 'Midnight Warli Cropped Zip Set — Indian Roots collection. Warli celestial artwork & sun-lotus high-density screen printing on midnight indigo fleece.',
+      title: 'Midnight Warli Cropped Zip Set',
       index: '02',
     },
     {
@@ -1668,12 +1637,12 @@
     const stage = document.getElementById('morphStageSection');
     if (!stage) return;
 
-    // 1. Initial State: Outfit 01 is primed, others hidden
+    // 1. Initial State: Outfit 01 primed, others hidden
     gsap.set('#morphLayer0', { scale: 0.35, opacity: 0, rotateX: 14, z: -120, transformOrigin: 'center bottom' });
     gsap.set('#morphWatermarkText', { opacity: 0, y: 50, scale: 0.9 });
     gsap.set('#morphLeftHud, #morphRightHud, #morphMobileHud', { opacity: 0, y: 20 });
 
-    for (let i = 1; i < 8; i++) {
+    for (let i = 1; i < 7; i++) {
       gsap.set('#morphLayer' + i, {
         opacity: 0,
         scale: 1.04,
@@ -1683,7 +1652,7 @@
       });
     }
 
-    // 2. Pre-Pin Pop-In Entrance (Animates in as user scrolls down into section)
+    // 2. Pre-Pin Pop-In Entrance
     let entranceDone = false;
     function playEntrance() {
       if (entranceDone) return;
@@ -1710,27 +1679,26 @@
     });
 
     // 3. Pinned Scroll Scrub Timeline (pin: true, scrub: 0.8)
-    // 7 Transitions between 8 Outfits.
-    // Each segment has: Resting Plateau (stable 100% view) -> Snappy 3D Morph.
+    // 6 Transitions between 7 Outfits.
     const morphTl = gsap.timeline({
       scrollTrigger: {
         id: 'morphScrollTrigger',
         trigger: '#morphStageSection',
         start: 'top top',
-        end: '+=3600',
+        end: '+=3200',
         pin: true,
         scrub: 0.8,
         anticipatePin: 1,
         onUpdate: (self) => {
           const p = self.progress;
-          const idx = Math.min(7, Math.floor(p * 8));
+          const idx = Math.min(6, Math.floor(p * 7));
           updateMorphHud(idx);
         }
       }
     });
 
-    // 7 Transitions (normalized duration: 2.0 units per outfit slice)
-    for (let i = 0; i < 7; i++) {
+    // 6 Transitions (normalized duration: 2.0 units per slice)
+    for (let i = 0; i < 6; i++) {
       const curLayer = '#morphLayer' + i;
       const nextLayer = '#morphLayer' + (i + 1);
       const segStart = i * 2.0;
@@ -1809,6 +1777,70 @@
       mouseX = 0;
       mouseY = 0;
     });
+  }
+
+  // Update Left Indicator and jump target for 7 looks
+  function updateMorphHud(idx) {
+    if (idx < 0 || idx >= morphOutfits.length) return;
+    activeMorphIdx = idx;
+    const o = morphOutfits[idx];
+    
+    // Update Desktop Right HUD
+    const nameEl = document.getElementById('hudOutfitName');
+    const priceEl = document.getElementById('hudOutfitPrice');
+    const tagEl = document.getElementById('hudDropTag');
+    const subEl = document.getElementById('hudOutfitSubtitle');
+    if (nameEl) nameEl.textContent = o.name;
+    if (priceEl) priceEl.textContent = o.price;
+    if (tagEl) tagEl.textContent = o.tag;
+    if (subEl) subEl.textContent = o.subtitle;
+
+    // Update Mobile Bottom HUD
+    const mName = document.getElementById('hudMobileOutfitName');
+    const mPrice = document.getElementById('hudMobileOutfitPrice');
+    const mTag = document.getElementById('hudMobileDropTag');
+    if (mName) mName.textContent = o.name;
+    if (mPrice) mPrice.textContent = o.price;
+    if (mTag) mTag.textContent = o.tag;
+
+    // Left Indicator (0 to 6)
+    for (let i = 0; i < 7; i++) {
+      const item = document.getElementById('morphDot' + i);
+      if (!item) continue;
+      const bar = item.querySelector('.morph-bar');
+      const num = item.querySelector('.morph-num');
+      if (i === idx) {
+        if (bar) { bar.style.width = '24px'; bar.style.background = 'var(--ink)'; }
+        if (num) { num.style.color = 'var(--ink)'; num.style.fontWeight = 'bold'; }
+        item.classList.add('active');
+      } else {
+        if (bar) { bar.style.width = '8px'; bar.style.background = 'rgba(13,27,42,0.25)'; }
+        if (num) { num.style.color = 'rgba(13,27,42,0.4)'; num.style.fontWeight = 'normal'; }
+        item.classList.remove('active');
+      }
+    }
+
+    // Watermark text
+    const wm = document.getElementById('morphWatermarkText');
+    if (wm && wm.textContent.trim() !== o.watermark) {
+      wm.textContent = o.watermark;
+    }
+  }
+
+  function jumpToOutfit(idx) {
+    if (!window.ScrollTrigger) {
+      updateMorphHud(idx);
+      return;
+    }
+    const st = ScrollTrigger.getById('morphScrollTrigger');
+    if (!st) {
+      updateMorphHud(idx);
+      return;
+    }
+    // Target center of that outfit's resting plateau across 7 looks
+    const progress = (idx === 0) ? 0.03 : (idx / 6) * 0.94 + 0.03;
+    const targetY = st.start + progress * (st.end - st.start);
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
   }
 
   // Page Initialization
