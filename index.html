@@ -169,8 +169,7 @@
     object-fit: contain !important;
     object-position: center bottom !important;
     mix-blend-mode: multiply;
-    -webkit-mask-image: radial-gradient(ellipse 52% 86% at 50% 46%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 80%);
-    mask-image: radial-gradient(ellipse 52% 86% at 50% 46%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 80%);
+    filter: brightness(1.06) contrast(1.04);
     user-select: none;
     -webkit-user-drag: none;
     pointer-events: none;
@@ -184,7 +183,8 @@
     align-items: center !important;
     justify-content: center !important;
     transform-style: preserve-3d;
-    will-change: transform, opacity, clip-path;
+    transform-origin: center bottom !important;
+    will-change: transform, opacity;
     pointer-events: none;
   }
   .morph-nav-item:hover .morph-bar {
@@ -319,7 +319,7 @@
   </div>
 
   <!-- Center Stage: 3D Stacked Outfit Layers with Seamless Canvas Blending & Ground Shadow -->
-  <div id="morphStageCenter" class="relative z-10 w-full max-w-sm sm:max-w-md md:max-w-lg h-[64vh] sm:h-[70vh] md:h-[78vh] max-h-[760px] flex items-center justify-center cursor-pointer select-none" onclick="openActiveOutfitDrawer()" style="transform-style: preserve-3d; transform: translateZ(30px);" title="Click to inspect & buy">
+  <div id="morphStageCenter" class="relative z-10 w-full max-w-sm sm:max-w-md md:max-w-lg h-[60vh] sm:h-[66vh] md:h-[72vh] max-h-[720px] pt-4 sm:pt-6 pb-2 flex items-center justify-center cursor-pointer select-none overflow-visible" onclick="openActiveOutfitDrawer()" style="transform-style: preserve-3d; transform: translateZ(30px);" title="Click to inspect & buy">
     
     <!-- Soft Elliptical Ground Shadow beneath sneakers -->
     <div class="morph-ground-shadow"></div>
@@ -1629,7 +1629,7 @@
     }, '-=0.35');
   }
 
-  // Pinned 3D Outfit Morph Stage Initialization
+  // Pinned 3D Outfit Morph Stage Initialization (60 FPS, Velocity-Aware Snap, Locked Sync)
   function init3DMorphStage() {
     if (!window.gsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
@@ -1637,18 +1637,22 @@
     const stage = document.getElementById('morphStageSection');
     if (!stage) return;
 
-    // 1. Initial State: Outfit 01 primed, others hidden
-    gsap.set('#morphLayer0', { scale: 0.35, opacity: 0, rotateX: 14, z: -120, transformOrigin: 'center bottom' });
-    gsap.set('#morphWatermarkText', { opacity: 0, y: 50, scale: 0.9 });
-    gsap.set('#morphLeftHud, #morphRightHud, #morphMobileHud', { opacity: 0, y: 20 });
+    const numOutfits = morphOutfits.length; // Dynamic length (7 outfits)
+    const numTransitions = numOutfits - 1;   // 6 transitions
 
-    for (let i = 1; i < 7; i++) {
+    // 1. Initial State: Outfit 01 primed, others hidden with visibility: hidden
+    gsap.set('#morphLayer0', { scale: 0.45, opacity: 0, rotateX: 12, z: -80, transformOrigin: 'center bottom', visibility: 'visible' });
+    gsap.set('#morphWatermarkText', { opacity: 0, y: 40, scale: 0.92 });
+    gsap.set('#morphLeftHud, #morphRightHud, #morphMobileHud', { opacity: 0, y: 15 });
+
+    for (let i = 1; i < numOutfits; i++) {
       gsap.set('#morphLayer' + i, {
         opacity: 0,
-        scale: 1.04,
+        scale: 1.0,
         rotateY: -8,
-        clipPath: 'polygon(0% 100%, 100% 85%, 100% 100%, 0% 100%)',
-        transformOrigin: 'center bottom'
+        z: 30,
+        transformOrigin: 'center bottom',
+        visibility: (i === 1) ? 'visible' : 'hidden'
       });
     }
 
@@ -1659,15 +1663,15 @@
       entranceDone = true;
       gsap.to('#morphLayer0', {
         scale: 1, opacity: 1, rotateX: 0, z: 0,
-        duration: 0.75, ease: 'back.out(1.5)'
+        duration: 0.65, ease: 'back.out(1.4)'
       });
       gsap.to('#morphWatermarkText', {
         opacity: 1, y: 0, scale: 1,
-        duration: 0.65, ease: 'power2.out', delay: 0.08
+        duration: 0.55, ease: 'power2.out', delay: 0.05
       });
       gsap.to('#morphLeftHud, #morphRightHud, #morphMobileHud', {
         opacity: 1, y: 0,
-        duration: 0.55, ease: 'power2.out', delay: 0.15
+        duration: 0.5, ease: 'power2.out', delay: 0.1
       });
     }
 
@@ -1678,63 +1682,94 @@
       onEnterBack: playEntrance
     });
 
-    // 3. Pinned Scroll Scrub Timeline (pin: true, scrub: 0.8)
-    // 6 Transitions between 7 Outfits.
+    // 3. Pinned Scroll Scrub Timeline with Dynamic Velocity-Aware Snapping (scrub: 0.35)
+    let isScrolling = false;
+    let scrollTimeout = null;
+
     const morphTl = gsap.timeline({
       scrollTrigger: {
         id: 'morphScrollTrigger',
         trigger: '#morphStageSection',
         start: 'top top',
-        end: '+=3200',
+        end: '+=2800',
         pin: true,
-        scrub: 0.8,
+        scrub: 0.35,
         anticipatePin: 1,
+        snap: {
+          snapTo: 1 / numTransitions,
+          directional: true,
+          duration: { min: 0.25, max: 0.55 },
+          delay: 0.05,
+          ease: 'power2.out'
+        },
         onUpdate: (self) => {
+          // Lock isScrolling flag to disable mouse-tilt during active scroll
+          isScrolling = true;
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            isScrolling = false;
+          }, 90);
+
+          // Dynamic locked sync: precisely index to current progress
           const p = self.progress;
-          const idx = Math.min(6, Math.floor(p * 7));
-          updateMorphHud(idx);
+          const activeIdx = Math.min(numOutfits - 1, Math.max(0, Math.round(p * numTransitions)));
+          updateMorphHud(activeIdx);
+
+          // 60 FPS GPU Optimization: only keep active and adjacent layers visible
+          for (let i = 0; i < numOutfits; i++) {
+            const layer = document.getElementById('morphLayer' + i);
+            if (!layer) continue;
+            const isNear = Math.abs(i - activeIdx) <= 1;
+            layer.style.visibility = isNear ? 'visible' : 'hidden';
+          }
         }
       }
     });
 
-    // 6 Transitions (normalized duration: 2.0 units per slice)
-    for (let i = 0; i < 6; i++) {
+    // 4. Lightweight Transform & Opacity Tweens (Zero clip-path repaints)
+    // Timeline normalized to numTransitions units (0 to 6)
+    // Exactly at time t = i, Outfit i is 100% visible and settled.
+    for (let i = 0; i < numTransitions; i++) {
       const curLayer = '#morphLayer' + i;
       const nextLayer = '#morphLayer' + (i + 1);
-      const segStart = i * 2.0;
-      const transStart = segStart + 1.2; // 1.2 units resting plateau
-      const transDur = 0.8;             // 0.8 units snappy morph transition
+      const tStart = i + 0.25; // brief resting window
+      const tDur = 0.5;        // snappy crossfade + 3D transform
 
-      // Outgoing outfit: 3D twist (0 -> 8deg), micro scale down, fade out
+      // Outgoing outfit: 3D rotateY (0 -> 8deg), subtle scale (1.0 -> 0.97), opacity fade out
       morphTl.to(curLayer, {
-        rotateY: 8,
-        scale: 0.98,
         opacity: 0,
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 15%, 0% 0%)',
-        duration: transDur,
+        rotateY: 8,
+        scale: 0.97,
+        z: -30,
+        duration: tDur,
         ease: 'power1.inOut'
-      }, transStart);
+      }, tStart);
 
-      // Incoming outfit: 3D twist (-8deg -> 0), scale pulse (1.04 -> 1.0), diagonal clip reveal
-      morphTl.to(nextLayer, {
+      // Incoming outfit: 3D rotateY (-8deg -> 0), scale settle (1.02 -> 1.0), opacity fade in
+      morphTl.fromTo(nextLayer, {
+        opacity: 0,
+        rotateY: -8,
+        scale: 1.02,
+        z: 30
+      }, {
         opacity: 1,
-        scale: 1.0,
         rotateY: 0,
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        duration: transDur,
+        scale: 1.0,
+        z: 0,
+        duration: tDur,
         ease: 'power1.inOut'
-      }, transStart);
+      }, tStart);
 
-      // Watermark vertical parallax & swap
+      // Watermark vertical parallax & dynamic swap
       morphTl.to('#morphWatermarkText', {
-        y: -30, opacity: 0.15, duration: transDur * 0.5, ease: 'power1.in'
-      }, transStart);
+        y: -25, opacity: 0.2, duration: tDur * 0.5, ease: 'power1.in'
+      }, tStart);
       morphTl.to('#morphWatermarkText', {
-        y: 0, opacity: 1, duration: transDur * 0.5, ease: 'power1.out'
-      }, transStart + transDur * 0.5);
+        y: 0, opacity: 1, duration: tDur * 0.5, ease: 'power1.out'
+      }, tStart + tDur * 0.5);
     }
 
-    // Interactive Mouse 3D Tilt (perspective: 1200px)
+    // 5. Interactive Mouse 3D Tilt (Disabled during active scrolling for 60 FPS)
     const morphSection = document.getElementById('morphStageSection');
     const centerStage = document.getElementById('morphStageCenter');
     const watermark = document.getElementById('morphWatermarkLayer');
@@ -1746,27 +1781,33 @@
     let rafId = null;
 
     function renderMouseTilt() {
+      // Skip updates during active scroll to lock 60 FPS
+      if (isScrolling) {
+        rafId = requestAnimationFrame(renderMouseTilt);
+        return;
+      }
+
       currentX += (mouseX - currentX) * 0.08;
       currentY += (mouseY - currentY) * 0.08;
 
       if (centerStage) {
-        centerStage.style.transform = `perspective(1200px) rotateY(${currentX * 10}deg) rotateX(${-currentY * 8}deg) translateZ(30px)`;
+        centerStage.style.transform = `perspective(1200px) rotateY(${currentX * 8}deg) rotateX(${-currentY * 6}deg) translateZ(30px)`;
       }
       if (watermark) {
-        watermark.style.transform = `perspective(1200px) translate3d(${-currentX * 24}px, ${-currentY * 16}px, -60px)`;
+        watermark.style.transform = `perspective(1200px) translate3d(${-currentX * 20}px, ${-currentY * 14}px, -60px)`;
       }
       if (leftHud) {
-        leftHud.style.transform = `perspective(1200px) translate3d(${currentX * 12}px, calc(-50% + ${currentY * 8}px), 50px)`;
+        leftHud.style.transform = `perspective(1200px) translate3d(${currentX * 10}px, calc(-50% + ${currentY * 6}px), 50px)`;
       }
       if (rightHud) {
-        rightHud.style.transform = `perspective(1200px) translate3d(${currentX * 12}px, calc(-50% + ${currentY * 8}px), 50px)`;
+        rightHud.style.transform = `perspective(1200px) translate3d(${currentX * 10}px, calc(-50% + ${currentY * 6}px), 50px)`;
       }
 
       rafId = requestAnimationFrame(renderMouseTilt);
     }
 
     morphSection.addEventListener('mousemove', (e) => {
-      if (window.innerWidth < 768) return;
+      if (window.innerWidth < 768 || isScrolling) return;
       const rect = morphSection.getBoundingClientRect();
       mouseX = ((e.clientX - rect.left) / rect.width) - 0.5;
       mouseY = ((e.clientY - rect.top) / rect.height) - 0.5;
@@ -1779,7 +1820,7 @@
     });
   }
 
-  // Update Left Indicator and jump target for 7 looks
+  // Update Left Indicator and jump target for dynamic outfit array length
   function updateMorphHud(idx) {
     if (idx < 0 || idx >= morphOutfits.length) return;
     activeMorphIdx = idx;
@@ -1803,8 +1844,8 @@
     if (mPrice) mPrice.textContent = o.price;
     if (mTag) mTag.textContent = o.tag;
 
-    // Left Indicator (0 to 6)
-    for (let i = 0; i < 7; i++) {
+    // Left Indicator (0 to morphOutfits.length - 1)
+    for (let i = 0; i < morphOutfits.length; i++) {
       const item = document.getElementById('morphDot' + i);
       if (!item) continue;
       const bar = item.querySelector('.morph-bar');
@@ -1837,9 +1878,9 @@
       updateMorphHud(idx);
       return;
     }
-    // Target center of that outfit's resting plateau across 7 looks
-    const progress = (idx === 0) ? 0.03 : (idx / 6) * 0.94 + 0.03;
-    const targetY = st.start + progress * (st.end - st.start);
+    // Target exact snap point for that outfit
+    const targetProgress = idx / (morphOutfits.length - 1);
+    const targetY = st.start + targetProgress * (st.end - st.start);
     window.scrollTo({ top: targetY, behavior: 'smooth' });
   }
 
