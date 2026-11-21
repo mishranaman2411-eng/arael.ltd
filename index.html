@@ -238,7 +238,7 @@
 
 <!-- ============ HERO (TWO-TIER) ============ -->
 <!-- ============ HERO HEADER ============ -->
-<section id="hero" class="pt-28 pb-10 px-4 md:px-8 relative overflow-hidden" style="background:var(--khadi)">
+<section id="hero" class="pt-20 md:pt-24 pb-2 md:pb-4 px-4 md:px-8 relative overflow-hidden" style="background:var(--khadi)">
   <div class="watermark-faint top-12 left-1/2 -translate-x-1/2 text-[clamp(110px,25vw,340px)]" aria-hidden="true">HERITAGE</div>
 
   <div class="max-w-[1440px] mx-auto relative">
@@ -266,9 +266,9 @@
       </p>
 
       <!-- Scroll to Morph Cue -->
-      <div class="mt-8 flex flex-col items-center gap-1.5 select-none opacity-60">
-        <span class="text-[10px] font-mono tracking-[0.3em] uppercase" style="color:var(--slate)">SCROLL DOWN TO ENTER 3D OUTFIT MORPH STAGE</span>
-        <span class="text-xs animate-bounce" style="color:var(--ink)">↓</span>
+      <div class="mt-3 flex items-center justify-center gap-2 select-none opacity-60">
+        <span class="text-[9px] font-mono tracking-[0.25em] uppercase" style="color:var(--slate)">SCROLL TO MORPH LOOKS</span>
+        <span class="text-[10px] animate-bounce" style="color:var(--ink)">↓</span>
       </div>
     </div>
   </div>
@@ -325,7 +325,7 @@
     <div class="morph-ground-shadow"></div>
 
     <!-- Outfit 01: Crimson Carpet Set -->
-    <div id="morphLayer0" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-10" data-idx="0">
+    <div id="morphLayer0" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-10 opacity-100" style="visibility: visible; opacity: 1;" data-idx="0">
       <img src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Crimson Carpet Festive Set">
     </div>
 
@@ -1640,10 +1640,10 @@
     const numOutfits = morphOutfits.length; // Dynamic length (7 outfits)
     const numTransitions = numOutfits - 1;   // 6 transitions
 
-    // 1. Initial State: Outfit 01 primed, others hidden with visibility: hidden
-    gsap.set('#morphLayer0', { scale: 0.45, opacity: 0, rotateX: 12, z: -80, transformOrigin: 'center bottom', visibility: 'visible' });
-    gsap.set('#morphWatermarkText', { opacity: 0, y: 40, scale: 0.92 });
-    gsap.set('#morphLeftHud, #morphRightHud, #morphMobileHud', { opacity: 0, y: 15 });
+    // 1. Initial State: Outfit 01 is 100% VISIBLE by default (NEVER empty or opacity 0)
+    gsap.set('#morphLayer0', { scale: 1.0, opacity: 1, rotateX: 0, z: 0, transformOrigin: 'center bottom', visibility: 'visible' });
+    gsap.set('#morphWatermarkText', { opacity: 1, y: 0, scale: 1 });
+    gsap.set('#morphLeftHud, #morphRightHud, #morphMobileHud', { opacity: 1, y: 0 });
 
     for (let i = 1; i < numOutfits; i++) {
       gsap.set('#morphLayer' + i, {
