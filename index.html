@@ -154,6 +154,54 @@
 
   /* Hero parallax layers */
   .hero-layer { will-change: transform; }
+
+  /* 3D Outfit Morph Stage Styles */
+  #morphStageSection {
+    background-color: var(--khadi);
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+  .morph-model-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 52% 86% at 50% 46%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 80%);
+    mask-image: radial-gradient(ellipse 52% 86% at 50% 46%, rgba(0,0,0,1) 48%, rgba(0,0,0,0) 80%);
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+  }
+  .morph-layer {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform-style: preserve-3d;
+    will-change: transform, opacity, clip-path;
+    pointer-events: none;
+  }
+  .morph-nav-item:hover .morph-bar {
+    background-color: var(--ink) !important;
+    width: 16px !important;
+  }
+  .morph-nav-item:hover .morph-num {
+    color: var(--ink) !important;
+  }
+  .morph-nav-item.active .morph-bar {
+    background-color: var(--ink) !important;
+    width: 24px !important;
+  }
+  .morph-nav-item.active .morph-num {
+    color: var(--ink) !important;
+    font-weight: bold !important;
+  }
 </style>
 </head>
 <body>
@@ -173,13 +221,13 @@
     <div class="hidden md:flex items-center gap-3 text-xs font-semibold tracking-wider uppercase" style="color:var(--slate)">Pan-India Shipping • COD Available</div>
     <nav class="nav-pill pill hidden lg:flex items-center gap-1 px-2 py-1.5 shadow-sm">
       <a href="#hero" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Home</a>
-      <a href="#shop" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Shop</a>
+      <a href="#morphStageSection" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Shop</a>
       <a href="#details" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Details</a>
       <a href="#reviews" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Reviews</a>
     </nav>
     <!-- floating top-right pill container with Shop Drop 01 + Bag -->
     <div class="nav-pill pill flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 sm:py-1.5 shadow-sm">
-      <button class="pill flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold transition hover:scale-105 cursor-pointer whitespace-nowrap" style="background:var(--navy);color:var(--khadi)" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Drop 01</button>
+      <button class="pill flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold transition hover:scale-105 cursor-pointer whitespace-nowrap" style="background:var(--navy);color:var(--khadi)" onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})">Shop Drop 01</button>
       <button class="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center hover:bg-black/5 transition relative cursor-pointer" aria-label="Bag" onclick="openCart()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span id="bagCount" class="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold transition-transform" style="background:var(--navy);color:var(--khadi)">0</span>
@@ -189,10 +237,10 @@
 </header>
 
 <!-- ============ HERO (TWO-TIER) ============ -->
-<section id="hero" class="min-h-screen pt-28 pb-16 px-4 md:px-8 relative overflow-hidden" style="background:var(--khadi)">
+<!-- ============ HERO HEADER ============ -->
+<section id="hero" class="pt-28 pb-10 px-4 md:px-8 relative overflow-hidden" style="background:var(--khadi)">
   <div class="watermark-faint top-12 left-1/2 -translate-x-1/2 text-[clamp(110px,25vw,340px)]" aria-hidden="true">HERITAGE</div>
 
-  <!-- Top tier -->
   <div class="max-w-[1440px] mx-auto relative">
     <div class="relative text-center">
       <!-- Rotating circular badge -->
@@ -216,77 +264,168 @@
       <p class="text-xs md:text-sm tracking-[0.3em] uppercase font-semibold mt-3" style="color:var(--slate)">
         Drop 01 Signature Pieces • 300 GSM Combed Cotton Fleece
       </p>
-    </div>
 
-    <!-- Three Hero Lookbook Cards (Snap-swipe on mobile, fanned on desktop) -->
-    <div id="heroCardsContainer" class="relative w-full max-w-5xl mx-auto mt-6 md:mt-12 z-20 flex overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none no-scrollbar py-4 px-4 sm:px-6 md:px-0 gap-4 sm:gap-6 md:gap-8 justify-start md:justify-center items-center scroll-smooth">
-      
-      <!-- Card 1: Crimson Carpet Set -->
-      <div id="heroCard0" class="hero-card hero-card-left group cursor-pointer relative w-[80vw] max-w-[310px] h-[390px] sm:h-[410px] md:w-80 md:h-[420px] shrink-0 snap-center md:shrink rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-0 md:-rotate-6 md:hover:rotate-0 md:hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(0)" data-hero-idx="0" style="background:var(--sandstone)">
-        <img src="assets/design-2.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Crimson Carpet Set">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-        
-        <!-- Clean Sharp-Edged Bottom Hover Bar -->
-        <div class="absolute bottom-0 inset-x-0 p-4 transition-all duration-300 ease-out transform translate-y-0 md:translate-y-full md:group-hover:translate-y-0 flex items-center justify-between pointer-events-none" style="background:rgba(13,27,42,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(244,241,222,0.15)">
-          <div class="min-w-0 pr-2">
-            <p class="display text-xl tracking-tight leading-none uppercase truncate" style="color:var(--khadi)">Crimson Carpet Set</p>
-            <p class="text-xs font-mono font-medium mt-1" style="color:var(--sage)">₹2,199</p>
-          </div>
-          <span class="text-xs font-mono font-bold tracking-widest uppercase transition-colors shrink-0 flex items-center gap-1" style="color:var(--khadi)">
-            VIEW +
-          </span>
-        </div>
-      </div>
-
-      <!-- Card 2: Midnight Warli Cropped Zip Set -->
-      <div id="heroCard1" class="hero-card hero-card-center group cursor-pointer relative w-[80vw] max-w-[310px] h-[390px] sm:h-[410px] md:w-84 md:h-[445px] shrink-0 snap-center md:shrink rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-0 md:scale-104 hover:z-30 select-none" onclick="openHeroModal(1)" data-hero-idx="1" style="background:var(--navy)">
-        <img src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Midnight Warli Cropped Zip Set">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-        
-        <!-- Clean Sharp-Edged Bottom Hover Bar -->
-        <div class="absolute bottom-0 inset-x-0 p-4 transition-all duration-300 ease-out transform translate-y-0 md:translate-y-full md:group-hover:translate-y-0 flex items-center justify-between pointer-events-none" style="background:rgba(13,27,42,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(244,241,222,0.15)">
-          <div class="min-w-0 pr-2">
-            <p class="display text-xl tracking-tight leading-none uppercase truncate" style="color:var(--khadi)">Midnight Warli Set</p>
-            <p class="text-xs font-mono font-medium mt-1" style="color:var(--sage)">₹1,999</p>
-          </div>
-          <span class="text-xs font-mono font-bold tracking-widest uppercase transition-colors shrink-0 flex items-center gap-1" style="color:var(--khadi)">
-            VIEW +
-          </span>
-        </div>
-      </div>
-
-      <!-- Card 3: Ash Grey Warli Co-ord Set -->
-      <div id="heroCard2" class="hero-card hero-card-right group cursor-pointer relative w-[80vw] max-w-[310px] h-[390px] sm:h-[410px] md:w-80 md:h-[420px] shrink-0 snap-center md:shrink rounded-3xl overflow-hidden shadow-2xl transition-all duration-400 transform rotate-0 md:rotate-6 md:hover:rotate-0 md:hover:scale-104 hover:z-30 select-none" onclick="openHeroModal(2)" data-hero-idx="2" style="background:var(--slate)">
-        <img src="assets/design-1.jpg" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-103" alt="Ash Grey Warli Co-ord Set">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-        
-        <!-- Clean Sharp-Edged Bottom Hover Bar -->
-        <div class="absolute bottom-0 inset-x-0 p-4 transition-all duration-300 ease-out transform translate-y-0 md:translate-y-full md:group-hover:translate-y-0 flex items-center justify-between pointer-events-none" style="background:rgba(13,27,42,0.92);backdrop-filter:blur(8px);border-top:1px solid rgba(244,241,222,0.15)">
-          <div class="min-w-0 pr-2">
-            <p class="display text-xl tracking-tight leading-none uppercase truncate" style="color:var(--khadi)">Ash Grey Warli Set</p>
-            <p class="text-xs font-mono font-medium mt-1" style="color:var(--sage)">₹1,899</p>
-          </div>
-          <span class="text-xs font-mono font-bold tracking-widest uppercase transition-colors shrink-0 flex items-center gap-1" style="color:var(--khadi)">
-            VIEW +
-          </span>
-        </div>
+      <!-- Scroll to Morph Cue -->
+      <div class="mt-8 flex flex-col items-center gap-1.5 select-none opacity-60">
+        <span class="text-[10px] font-mono tracking-[0.3em] uppercase" style="color:var(--slate)">SCROLL DOWN TO ENTER 3D OUTFIT MORPH STAGE</span>
+        <span class="text-xs animate-bounce" style="color:var(--ink)">↓</span>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Mobile Indicator Dots & Swipe Hint -->
-    <div id="heroMobileNav" class="flex md:hidden items-center justify-center gap-2 mt-2 select-none">
-      <button onclick="scrollHeroCard(0)" id="heroDot0" class="hero-dot w-7 h-1.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--ink)" aria-label="View look 1"></button>
-      <button onclick="scrollHeroCard(1)" id="heroDot1" class="hero-dot w-2 h-1.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--sandstone)" aria-label="View look 2"></button>
-      <button onclick="scrollHeroCard(2)" id="heroDot2" class="hero-dot w-2 h-1.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--sandstone)" aria-label="View look 3"></button>
+<!-- ============ PINNED 3D OUTFIT MORPH STAGE (GSAP ScrollTrigger pin: true, scrub: 1) ============ -->
+<section id="morphStageSection" class="relative w-full h-screen min-h-[660px] max-h-[1080px] flex items-center justify-center overflow-hidden select-none" style="background:var(--khadi); perspective: 1200px;">
+  
+  <!-- 3D Parallax Background Layer: Massive Ultra-Condensed Watermark Typography -->
+  <div id="morphWatermarkLayer" class="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0" style="transform: translateZ(-60px);">
+    <div id="morphWatermarkText" class="display text-[clamp(80px,18vw,260px)] font-black uppercase tracking-tight leading-none text-center whitespace-nowrap" style="color:rgba(13,27,42,0.065);">
+      01 CRIMSON
     </div>
-    <p class="text-center md:hidden text-[10px] font-mono tracking-widest uppercase mt-1 mb-2" style="color:var(--slate)">← SWIPE TO EXPLORE DROP 01 →</p>
+  </div>
 
-    <!-- Second tier: Interactive Editorial Lookbook -->
-    <div class="mt-20 pt-10 border-t" style="border-color:rgba(13,27,42,0.08)">
+  <!-- Minimal Floating HUD: Left Side Vertical Progress Indicator (01 - 08, Clickable) -->
+  <div id="morphLeftHud" class="absolute left-3 sm:left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-2 font-mono text-xs select-none pointer-events-auto" style="transform: translateZ(50px);">
+    <div class="text-[9px] tracking-[0.25em] uppercase font-bold mb-1 opacity-40 hidden sm:block" style="color:var(--slate)">LOOKS</div>
+    
+    <button onclick="jumpToOutfit(0)" id="morphDot0" class="morph-nav-item flex items-center gap-2 cursor-pointer active text-left py-0.5" aria-label="Jump to Outfit 01">
+      <span class="morph-bar w-6 h-[2px] transition-all duration-300" style="background:var(--ink)"></span>
+      <span class="morph-num font-bold text-xs transition-colors" style="color:var(--ink)">01</span>
+    </button>
+    <button onclick="jumpToOutfit(1)" id="morphDot1" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 02">
+      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
+      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">02</span>
+    </button>
+    <button onclick="jumpToOutfit(2)" id="morphDot2" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 03">
+      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
+      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">03</span>
+    </button>
+    <button onclick="jumpToOutfit(3)" id="morphDot3" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 04">
+      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
+      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">04</span>
+    </button>
+    <button onclick="jumpToOutfit(4)" id="morphDot4" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 05">
+      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
+      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">05</span>
+    </button>
+    <button onclick="jumpToOutfit(5)" id="morphDot5" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 06">
+      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
+      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">06</span>
+    </button>
+    <button onclick="jumpToOutfit(6)" id="morphDot6" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 07">
+      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
+      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">07</span>
+    </button>
+    <button onclick="jumpToOutfit(7)" id="morphDot7" class="morph-nav-item flex items-center gap-2 cursor-pointer text-left py-0.5" aria-label="Jump to Outfit 08">
+      <span class="morph-bar w-2 h-[2px] transition-all duration-300" style="background:rgba(13,27,42,0.25)"></span>
+      <span class="morph-num font-normal text-xs transition-colors" style="color:rgba(13,27,42,0.4)">08</span>
+    </button>
+  </div>
+
+  <!-- Center Stage: 3D Stacked Outfit Layers with Seamless Canvas Blending & Ground Shadow -->
+  <div id="morphStageCenter" class="relative z-10 w-full max-w-sm sm:max-w-md md:max-w-lg h-[64vh] sm:h-[70vh] md:h-[78vh] max-h-[760px] flex items-center justify-center cursor-pointer select-none" onclick="openActiveOutfitDrawer()" style="transform-style: preserve-3d; transform: translateZ(30px);" title="Click to inspect & buy">
+    
+    <!-- Soft Elliptical Ground Shadow beneath sneakers -->
+    <div class="morph-ground-shadow"></div>
+
+    <!-- Outfit 01: Crimson Carpet Set -->
+    <div id="morphLayer0" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-10" data-idx="0">
+      <img src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Crimson Carpet Festive Set">
+    </div>
+
+    <!-- Outfit 02: Midnight Indigo Warli Set -->
+    <div id="morphLayer1" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-11 opacity-0" data-idx="1">
+      <img src="designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Midnight Warli Cropped Zip Set">
+    </div>
+
+    <!-- Outfit 03: Ash Grey Warli Co-ord Set -->
+    <div id="morphLayer2" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-12 opacity-0" data-idx="2">
+      <img src="designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Ash Grey Warli Co-ord Set">
+    </div>
+
+    <!-- Outfit 04: Forest Green Paisley Set -->
+    <div id="morphLayer3" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-13 opacity-0" data-idx="3">
+      <img src="designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Forest Green Paisley Set">
+    </div>
+
+    <!-- Outfit 05: Raw Khaki Heritage Floral Set -->
+    <div id="morphLayer4" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-14 opacity-0" data-idx="4">
+      <img src="designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Raw Khaki Heritage Floral Set">
+    </div>
+
+    <!-- Outfit 06: Sandstone Taupe Geometric Set -->
+    <div id="morphLayer5" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-15 opacity-0" data-idx="5">
+      <img src="designs/taupe/Taupe Embroidered Tracksuit Portrait.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Sandstone Taupe Geometric Set">
+    </div>
+
+    <!-- Outfit 07: Noir Lotus Embroidered Set -->
+    <div id="morphLayer6" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-16 opacity-0" data-idx="6">
+      <img src="designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Noir Black Lotus Embroidered Set">
+    </div>
+
+    <!-- Outfit 08: Onyx & Slate Two-Tone Cargo Set -->
+    <div id="morphLayer7" class="morph-layer absolute inset-0 w-full h-full flex items-center justify-center z-17 opacity-0" data-idx="7">
+      <img src="designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png" class="morph-model-img w-full h-full object-contain object-bottom pointer-events-none" alt="Onyx & Slate Two-Tone Cargo Set">
+    </div>
+  </div>
+
+  <!-- Minimal Floating HUD: Desktop Right Side (md:block) -->
+  <div id="morphRightHud" class="hidden md:block absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-30 max-w-xs text-right select-none pointer-events-auto" style="transform: translateZ(50px);">
+    <p id="hudDropTag" class="text-xs font-mono tracking-[0.25em] uppercase font-semibold mb-1" style="color:var(--sage)">
+      DROP 01 • SIGNATURE 01
+    </p>
+    <h3 id="hudOutfitName" class="display text-3xl md:text-4xl text-[var(--ink)] leading-[0.92] uppercase">
+      Crimson Carpet Festive Set
+    </h3>
+    <p id="hudOutfitPrice" class="font-mono text-2xl md:text-3xl font-bold mt-2" style="color:var(--navy)">
+      ₹2,199
+    </p>
+    <p id="hudOutfitSubtitle" class="text-[11px] font-mono tracking-wider uppercase mt-1" style="color:var(--slate)">
+      300 GSM Bio-Washed Fleece • Drop 01
+    </p>
+    <div class="mt-4 flex items-center justify-end gap-3">
+      <button id="hudViewDetailsBtn" onclick="openActiveOutfitDrawer()" class="inline-flex items-center gap-1.5 text-xs font-mono tracking-widest uppercase font-bold text-[var(--ink)] hover:text-[#778D7A] border-b-2 border-[var(--ink)] hover:border-[#778D7A] pb-1 transition-all cursor-pointer">
+        VIEW DETAILS +
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom HUD (Clean layout along bottom without obscuring the outfit) -->
+  <div id="morphMobileHud" class="md:hidden absolute bottom-8 left-4 right-4 z-30 flex items-end justify-between select-none pointer-events-auto">
+    <div class="max-w-[62%]">
+      <p id="hudMobileDropTag" class="text-[9px] font-mono tracking-[0.2em] uppercase font-semibold text-[var(--sage)]">
+        DROP 01 • SIGNATURE 01
+      </p>
+      <h3 id="hudMobileOutfitName" class="display text-2xl text-[var(--ink)] leading-none uppercase truncate">
+        Crimson Carpet Set
+      </h3>
+      <p id="hudMobileOutfitPrice" class="font-mono text-lg font-bold text-[var(--navy)] mt-0.5">
+        ₹2,199
+      </p>
+    </div>
+    <div>
+      <button id="hudMobileViewBtn" onclick="openActiveOutfitDrawer()" class="px-3.5 py-2 text-[11px] font-mono tracking-widest uppercase font-bold bg-[var(--ink)] text-[var(--khadi)] rounded-none shadow-md cursor-pointer hover:bg-[var(--navy)] transition-colors">
+        VIEW DETAILS +
+      </button>
+    </div>
+  </div>
+
+  <!-- Subtle Scroll Hint at bottom center of Stage -->
+  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 select-none pointer-events-none opacity-40">
+    <span class="text-[9px] font-mono tracking-[0.25em] uppercase" style="color:var(--slate)">SCROLL TO MORPH</span>
+    <span class="text-[10px]" style="color:var(--ink)">↓</span>
+  </div>
+</section>
+
+<!-- ============ EDITORIAL LOOKBOOK SECTION ============ -->
+<section id="lookbook" class="py-24 px-4 md:px-8 relative overflow-hidden" style="background:var(--khadi)">
+  <div class="max-w-[1440px] mx-auto">
+<!-- Second tier: Interactive Editorial Lookbook -->
+    <div>
       <div class="grid md:grid-cols-2 gap-10 items-center">
         <!-- Lookbook Preview Image -->
         <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl max-w-md mx-auto md:mx-0 group" style="background:var(--sandstone)">
-          <img id="lookbookImg" src="assets/design-0.jpg" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" alt="Lookbook Preview">
+          <img id="lookbookImg" src="designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" alt="Lookbook Preview">
           <div class="absolute top-4 left-4 pill px-3.5 py-1 text-xs font-semibold backdrop-blur-md shadow-sm" style="background:rgba(244,241,222,0.9);color:var(--ink)">
             Editorial Lookbook
           </div>
@@ -295,38 +434,41 @@
         <!-- Lookbook Content & Interactive Dot Navigation -->
         <div class="text-center md:text-left">
           <p class="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style="color:var(--slate)">
-            <span id="lookbookIndex" class="font-bold">01</span> / 03 — Editorial Lookbook
+            <span id="lookbookIndex" class="font-bold">01</span> / 05 — Editorial Lookbook
           </p>
           <h2 class="display text-[clamp(32px,5.5vw,64px)] leading-[0.92] mb-4" style="color:var(--ink)">
             Streetwear that <span style="color:rgba(13,27,42,0.38)">honors your roots</span>
           </h2>
           <p id="lookbookCaption" class="text-sm md:text-base leading-relaxed mb-6 max-w-lg" style="color:var(--slate)">
-            Warli Cropped Zip Hoodie Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with artisanal Warli sun & lotus screen prints.
+            Forest Green Paisley Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with intricate golden royal paisley chest embroidery.
           </p>
-          <!-- 3 Clickable Indicator Dots with smooth slide switching -->
-          <div class="flex items-center justify-center md:justify-start gap-3 mb-8">
+          <!-- 5 Clickable Indicator Dots with smooth slide switching -->
+          <div class="flex items-center justify-center md:justify-start gap-2.5 mb-8">
             <button class="lookbook-dot w-8 h-2.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--ink)" onclick="setLookbook(0)" aria-label="Slide 01"></button>
             <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(1)" aria-label="Slide 02"></button>
             <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(2)" aria-label="Slide 03"></button>
+            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(3)" aria-label="Slide 04"></button>
+            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(4)" aria-label="Slide 05"></button>
             <div class="flex items-center gap-1.5 ml-3">
               <button onclick="stepLookbook(-1)" class="w-8 h-8 rounded-full flex items-center justify-center transition hover:bg-black/5 cursor-pointer" style="border:1px solid rgba(13,27,42,0.18);color:var(--ink)" aria-label="Previous lookbook slide">←</button>
               <button onclick="stepLookbook(1)" class="w-8 h-8 rounded-full flex items-center justify-center transition hover:bg-black/5 cursor-pointer" style="border:1px solid rgba(13,27,42,0.18);color:var(--ink)" aria-label="Next lookbook slide">→</button>
             </div>
           </div>
-          <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})" class="pill inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">
-            Explore Drop ↗
+          <button onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})" class="pill inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">
+            Explore Collection ↗
           </button>
         </div>
       </div>
     </div>
   </div>
 </section>
-
+  </div>
+</section>
 <!-- ============ DARK CONTRAST BAND 1 ============ -->
 <section class="py-20 px-4 md:px-8 relative overflow-hidden" style="background:var(--ink);color:var(--khadi)">
   <div class="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-10 items-center">
     <div class="rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto md:mx-0 shadow-2xl">
-      <img src="assets/design-4.jpg" class="w-full h-full object-cover" alt="Featured Drop Model">
+      <img src="designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png" class="w-full h-full object-cover" alt="Featured Drop Model">
     </div>
     <div>
       <p class="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style="color:var(--sage)">Featured Drop</p>
@@ -336,7 +478,7 @@
       <p class="text-sm md:text-base leading-relaxed max-w-md" style="color:var(--sandstone)">
         Crafted from premium bio-washed combed cotton fleece. Designed for late-night college runs, festive nights, and everyday flexing—accessible heritage streetwear without luxury gatekeeping.
       </p>
-      <button class="mt-8 pill flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+      <button class="mt-8 pill flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})">
         Explore Drop ↗
       </button>
     </div>
@@ -346,90 +488,6 @@
     <div class="marquee-track">
       <span class="display text-3xl md:text-5xl" style="color:var(--sage)">FEATURED DROP ✳ 300 GSM HERITAGE ✳ FEATURED DROP ✳ 300 GSM HERITAGE ✳</span>
       <span class="display text-3xl md:text-5xl" style="color:var(--sage)">FEATURED DROP ✳ 300 GSM HERITAGE ✳ FEATURED DROP ✳ 300 GSM HERITAGE ✳</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ NUMBERED TOP-SELLING CAROUSEL (01-04) ============ -->
-<section id="shop" class="py-24 px-4 md:px-8" style="background:var(--khadi)">
-  <div class="max-w-[1440px] mx-auto">
-    <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
-      <div>
-        <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Drop 01 Signature Pieces</p>
-        <h2 class="display text-[clamp(40px,6.5vw,76px)] leading-[0.9]" style="color:var(--ink)">
-          Top <span style="color:rgba(13,27,42,0.38)">Selling</span>
-        </h2>
-      </div>
-      <p class="text-sm font-medium" style="color:var(--slate)">Drop 01 • 01–04 • ₹1,899 – ₹2,199</p>
-    </div>
-    <div id="carouselTrack" class="flex gap-6 overflow-x-auto pb-6 hide-scroll snap-x">
-      <!-- Card 01 (Active by default) -->
-      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer active relative group transition-all duration-400" onclick="setActiveCard(0)" data-idx="0">
-        <div class="flex items-center justify-between mb-3">
-          <span class="cc-num display text-3xl font-bold">01</span>
-          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
-        </div>
-        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
-          <img src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Warli Cropped Zip Hoodie Set">
-          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
-        </div>
-        <h3 class="cc-name font-semibold text-base mb-1 truncate">Warli Cropped Zip Hoodie Set</h3>
-        <div class="flex items-center justify-between mt-2">
-          <div class="cc-price display text-2xl font-bold">₹1,999</div>
-          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
-        </div>
-      </div>
-
-      <!-- Card 02 -->
-      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer relative group transition-all duration-400" onclick="setActiveCard(1)" data-idx="1">
-        <div class="flex items-center justify-between mb-3">
-          <span class="cc-num display text-3xl font-bold">02</span>
-          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
-        </div>
-        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
-          <img src="assets/design-1.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Paisley Heritage Wide-Leg Set">
-          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
-        </div>
-        <h3 class="cc-name font-semibold text-base mb-1 truncate">Paisley Heritage Wide-Leg Set</h3>
-        <div class="flex items-center justify-between mt-2">
-          <div class="cc-price display text-2xl font-bold">₹1,899</div>
-          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
-        </div>
-      </div>
-
-      <!-- Card 03 -->
-      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer relative group transition-all duration-400" onclick="setActiveCard(2)" data-idx="2">
-        <div class="flex items-center justify-between mb-3">
-          <span class="cc-num display text-3xl font-bold">03</span>
-          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
-        </div>
-        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
-          <img src="assets/design-2.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Carpet Motif Festive Set">
-          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
-        </div>
-        <h3 class="cc-name font-semibold text-base mb-1 truncate">Carpet Motif Festive Set</h3>
-        <div class="flex items-center justify-between mt-2">
-          <div class="cc-price display text-2xl font-bold">₹2,199</div>
-          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
-        </div>
-      </div>
-
-      <!-- Card 04 -->
-      <div class="carousel-card rounded-3xl snap-start flex-none w-[270px] sm:w-[310px] p-5 cursor-pointer relative group transition-all duration-400" onclick="setActiveCard(3)" data-idx="3">
-        <div class="flex items-center justify-between mb-3">
-          <span class="cc-num display text-3xl font-bold">04</span>
-          <button class="cc-arrow w-9 h-9 rounded-full flex items-center justify-center font-bold transition hover:scale-110 shadow-sm cursor-pointer" style="background:var(--khadi);color:var(--ink)" onclick="event.stopPropagation(); openQuickView(this)" aria-label="Quick View">↗</button>
-        </div>
-        <div class="rounded-2xl overflow-hidden aspect-[3/4] mb-4 relative" style="background:var(--sandstone)">
-          <img src="assets/design-3.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Medallion Engraved Set">
-          <button class="quick-view-btn pill px-4 py-2 text-xs font-semibold absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg hover:scale-105 whitespace-nowrap cursor-pointer" style="background:var(--ink);color:var(--khadi)" onclick="event.stopPropagation(); openQuickView(this)">Quick View</button>
-        </div>
-        <h3 class="cc-name font-semibold text-base mb-1 truncate">Medallion Engraved Set</h3>
-        <div class="flex items-center justify-between mt-2">
-          <div class="cc-price display text-2xl font-bold">₹2,099</div>
-          <button class="pill px-3.5 py-1.5 text-xs font-semibold transition hover:scale-105 cursor-pointer" style="background:var(--navy);color:var(--khadi)" onclick="event.stopPropagation(); addToBag(this)">Add +</button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -458,7 +516,7 @@
     <!-- Centered model card with overlapping "Notify Me ↗" CTA pill -->
     <div class="relative max-w-md mx-auto my-10">
       <div class="relative rounded-3xl overflow-hidden aspect-[3/4] shadow-2xl" style="background:var(--navy)">
-        <img id="upcomingDropImg" src="assets/design-6.jpg" class="w-full h-full object-cover transition-opacity duration-300" alt="Upcoming Drop Preview">
+        <img id="upcomingDropImg" src="designs/taupe/Taupe Embroidered Tracksuit Portrait.png" class="w-full h-full object-cover transition-opacity duration-300" alt="Upcoming Drop Preview">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
         <div class="absolute top-4 left-4 pill px-3.5 py-1 text-xs font-semibold backdrop-blur-md" style="background:rgba(13,27,42,0.7);color:var(--khadi);border:1px solid rgba(244,241,222,0.2)">
           Drop 02 Exclusive
@@ -497,7 +555,7 @@
       <!-- gallery with hotspots -->
       <div class="p-6 md:p-8 relative" style="background:var(--sandstone)">
         <div class="rounded-2xl overflow-hidden aspect-[4/5] relative mb-4 shadow-sm" id="cfgGallery">
-          <img id="cfgImg" src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-500" alt="Product details">
+          <img id="cfgImg" src="designs/midnight-navy/Cropped_zip_hoodie_and_trousers_fae99eee-clean.png" class="w-full h-full object-cover transition-transform duration-500" alt="Product details">
           <!-- hotspots -->
           <div class="hotspot" style="top:38%;left:48%" onclick="showHotspot('chest')" onmouseenter="showHotspot('chest')" title="Hoodie Chest"></div>
           <div class="hotspot" style="top:52%;left:22%" onclick="showHotspot('sleeve')" onmouseenter="showHotspot('sleeve')" title="Sleeve Print"></div>
@@ -509,9 +567,9 @@
           </div>
         </div>
         <div class="flex gap-3">
-          <button onclick="setCfgGallery(0)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--ink)"><img src="assets/design-0.jpg" class="w-full h-full object-cover" alt="Thumb 1"></button>
-          <button onclick="setCfgGallery(1)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="assets/design-1.jpg" class="w-full h-full object-cover" alt="Thumb 2"></button>
-          <button onclick="setCfgGallery(2)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="assets/design-2.jpg" class="w-full h-full object-cover" alt="Thumb 3"></button>
+          <button onclick="setCfgGallery(0)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--ink)"><img src="designs/midnight-navy/Cropped_zip_hoodie_and_trousers_fae99eee-clean.png" class="w-full h-full object-cover" alt="Thumb 1"></button>
+          <button onclick="setCfgGallery(1)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="designs/forest-green/Hoodie_and_trousers_on_mannequin_93a04223-clean.png" class="w-full h-full object-cover" alt="Thumb 2"></button>
+          <button onclick="setCfgGallery(2)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="designs/raw-khadi/Zip_hoodie_and_trousers_display_995885be-clean.png" class="w-full h-full object-cover" alt="Thumb 3"></button>
         </div>
       </div>
       <!-- info -->
@@ -625,9 +683,9 @@
       <div>
         <h4 class="font-semibold mb-4 text-base" style="color:var(--khadi)">Shop</h4>
         <ul class="space-y-2 text-sm" style="color:var(--sandstone)">
-          <li><a href="#shop" class="hover:underline">Men's Streetwear</a></li>
-          <li><a href="#shop" class="hover:underline">Women's Streetwear</a></li>
-          <li><a href="#shop" class="hover:underline">Drop 01 Catalog</a></li>
+          <li><a href="#morphStageSection" class="hover:underline">Men's Streetwear</a></li>
+          <li><a href="#morphStageSection" class="hover:underline">Women's Streetwear</a></li>
+          <li><a href="#morphStageSection" class="hover:underline">Drop 01 Catalog</a></li>
         </ul>
       </div>
       <div>
@@ -680,7 +738,7 @@
     <!-- LEFT SIDE: Product Photo Edge-to-Edge with Interactive Hover Zoom (Zero floating UI pills) -->
     <div class="md:w-1/2 relative bg-[#08111A] overflow-hidden flex items-center justify-center select-none border-b md:border-b-0 md:border-r border-[rgba(244,241,222,0.12)] flex-none h-72 sm:h-84 md:h-full">
       <div id="heroZoomContainer" class="w-full h-full min-h-full overflow-hidden relative cursor-crosshair flex items-center justify-center">
-        <img id="heroModalImg" src="assets/design-0.jpg" class="w-full h-full object-cover transition-transform duration-200" alt="Garment Inspection">
+        <img id="heroModalImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover transition-transform duration-200" alt="Garment Inspection">
       </div>
     </div>
 
@@ -807,7 +865,7 @@
 <div id="quickViewModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4" style="background:rgba(13,27,42,.6);backdrop-filter:blur(6px)">
   <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-auto grid md:grid-cols-2 gap-0 shadow-2xl relative" style="border:2px solid var(--ink)">
     <div class="aspect-[3/4] md:aspect-auto overflow-hidden rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none relative" style="background:var(--sandstone)">
-      <img id="qvImg" src="assets/design-0.jpg" class="w-full h-full object-cover" alt="Product Quick View">
+      <img id="qvImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover" alt="Product Quick View">
     </div>
     <div class="p-6 md:p-8 flex flex-col justify-between">
       <div>
@@ -871,15 +929,15 @@
 </div>
 
 <script>
-  // Hero Products Data
+  // Complete Hero Products Data (8 Signature Drop 01 Sets)
   const heroProducts = [
     {
       id: 'crimson-carpet',
-      name: 'Crimson Carpet Set',
+      name: 'Crimson Carpet Festive Set',
       subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
       price: 2199,
       priceStr: '₹2,199',
-      img: 'assets/design-2.jpg',
+      img: 'designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png',
       tag: 'Everyday Roots • Crimson & Antique Gold • Prayer-Arch',
       material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
       artwork: 'Crimson Arch & Antique Gold Traditional Screen Print',
@@ -890,9 +948,9 @@
       id: 'midnight-warli',
       name: 'Midnight Warli Cropped Zip Set',
       subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
-      price: 1999,
-      priceStr: '₹1,999',
-      img: 'assets/design-0.jpg',
+      price: 2299,
+      priceStr: '₹2,299',
+      img: 'designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png',
       tag: 'Indian Roots • Midnight Indigo • Warli Sun & Lotus',
       material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
       artwork: 'High-Density Heritage Puff & Screen Border Print',
@@ -903,38 +961,241 @@
       id: 'ash-grey-warli',
       name: 'Ash Grey Warli Co-ord Set',
       subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
-      price: 1899,
-      priceStr: '₹1,899',
-      img: 'assets/design-1.jpg',
-      tag: 'Indian Roots • Ash Grey & Neel Slate • Paisley Vines',
+      price: 2099,
+      priceStr: '₹2,099',
+      img: 'designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png',
+      tag: 'Indian Roots • Ash Grey & Neel Slate • Tribal Warli Figures',
       material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
-      artwork: 'Paisley Vines & Monochromatic Warli Screen Art',
+      artwork: 'Tribal Warli Folk Art & High-Density Puff Motifs',
       fit: 'Drop-Shoulder Relaxed Fit Co-ord with Cuffed Hem',
       wash: 'Cold Gentle Machine Wash / Dry in Shade',
     },
+    {
+      id: 'forest-green-paisley',
+      name: 'Forest Green Paisley Set',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      price: 2399,
+      priceStr: '₹2,399',
+      img: 'designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png',
+      tag: 'Indian Roots • Emerald Forest Green • Golden Royal Paisley',
+      material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
+      artwork: 'Intricate Golden Zari & Royal Paisley Chest Embroidery',
+      fit: 'Cropped Zip Hoodie + Wide-Leg Trousers with Side Paisley',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
+    {
+      id: 'raw-khadi-heritage',
+      name: 'Raw Khaki Heritage Floral Set',
+      subtitle: '300 GSM Unbleached Combed Fleece • Drop 01',
+      price: 2199,
+      priceStr: '₹2,199',
+      img: 'designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png',
+      tag: 'Everyday Roots • Natural Khaki Cream • Crimson Floral Vine',
+      material: '300 GSM 100% Organic Unbleached Cotton Fleece',
+      artwork: 'Crimson Floral Border Embroidery & Sun Iconography',
+      fit: 'Boxy Drop-Shoulder Zip Hoodie + Relaxed Wide-Leg Track',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
+    {
+      id: 'taupe-sandstone',
+      name: 'Sandstone Taupe Geometric Set',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      price: 2149,
+      priceStr: '₹2,149',
+      img: 'designs/taupe/Taupe Embroidered Tracksuit Portrait.png',
+      tag: 'Everyday Roots • Sandstone Taupe • Geometric Diamond Weave',
+      material: '300 GSM 100% Combed Bio-Washed Cotton Fleece',
+      artwork: 'Geometric Tribal & Indian Diamond Border Needlework',
+      fit: 'Cropped Zip Hoodie + Slouchy Wide-Leg Track Pants',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
+    {
+      id: 'black-lotus',
+      name: 'Noir Black Lotus Embroidered Set',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      price: 2299,
+      priceStr: '₹2,299',
+      img: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png',
+      tag: 'Indian Roots • Jet Black • Sacred Lotus & Sun Needlework',
+      material: '300 GSM 100% Combed Heavyweight Cotton Fleece',
+      artwork: 'Sacred Lotus Flower Back & Chest High-Definition Embroidery',
+      fit: 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
+    {
+      id: 'two-tone-cargo',
+      name: 'Onyx & Slate Two-Tone Cargo Set',
+      subtitle: '300 GSM Bio-Washed Fleece & Twill • Drop 01',
+      price: 2499,
+      priceStr: '₹2,499',
+      img: 'designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png',
+      tag: 'Heritage Streetwear • Noir Hoodie & Slate Cargo • Hybrid Co-ord',
+      material: '300 GSM Bio-Washed Fleece Top + Heavy Heather Cargo Pants',
+      artwork: 'Contrast Floral Side-Taping & Embroidered Sun Detail',
+      fit: 'Ultra-Cropped Boxy Hoodie + Flapped Cargo Wide-Leg Pants',
+      wash: 'Cold Gentle Machine Wash / Dry in Shade',
+    },
   ];
-  let selectedHeroProduct = heroProducts[1];
+
+  let selectedHeroProduct = heroProducts[0];
   let selectedHeroSize = 'S';
 
-  // Product Catalog: All 8 assets unified with exact filenames
+  // Morph Stage Data (8 Synchronized Looks)
+  const morphOutfits = [
+    {
+      idx: 0,
+      name: 'Crimson Carpet Festive Set',
+      price: '₹2,199',
+      tag: 'DROP 01 • SIGNATURE 01',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      watermark: '01 CRIMSON',
+    },
+    {
+      idx: 1,
+      name: 'Midnight Warli Cropped Zip Set',
+      price: '₹2,299',
+      tag: 'DROP 01 • SIGNATURE 02',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      watermark: '02 INDIGO',
+    },
+    {
+      idx: 2,
+      name: 'Ash Grey Warli Co-ord Set',
+      price: '₹2,099',
+      tag: 'DROP 01 • SIGNATURE 03',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      watermark: '03 ASH GREY',
+    },
+    {
+      idx: 3,
+      name: 'Forest Green Paisley Set',
+      price: '₹2,399',
+      tag: 'DROP 01 • SIGNATURE 04',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      watermark: '04 FOREST GREEN',
+    },
+    {
+      idx: 4,
+      name: 'Raw Khaki Heritage Floral Set',
+      price: '₹2,199',
+      tag: 'DROP 01 • SIGNATURE 05',
+      subtitle: '300 GSM Unbleached Combed Fleece • Drop 01',
+      watermark: '05 RAW KHAKI',
+    },
+    {
+      idx: 5,
+      name: 'Sandstone Taupe Geometric Set',
+      price: '₹2,149',
+      tag: 'DROP 01 • SIGNATURE 06',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      watermark: '06 SANDSTONE',
+    },
+    {
+      idx: 6,
+      name: 'Noir Black Lotus Embroidered Set',
+      price: '₹2,299',
+      tag: 'DROP 01 • SIGNATURE 07',
+      subtitle: '300 GSM Bio-Washed Fleece • Drop 01',
+      watermark: '07 NOIR LOTUS',
+    },
+    {
+      idx: 7,
+      name: 'Onyx & Slate Two-Tone Cargo Set',
+      price: '₹2,499',
+      tag: 'DROP 01 • SIGNATURE 08',
+      subtitle: '300 GSM Bio-Washed Fleece & Twill • Drop 01',
+      watermark: '08 ONYX & SLATE',
+    },
+  ];
+
+  let activeMorphIdx = 0;
+
+  function updateMorphHud(idx) {
+    if (idx < 0 || idx >= morphOutfits.length) return;
+    activeMorphIdx = idx;
+    const o = morphOutfits[idx];
+    
+    // Update Desktop Right HUD
+    const nameEl = document.getElementById('hudOutfitName');
+    const priceEl = document.getElementById('hudOutfitPrice');
+    const tagEl = document.getElementById('hudDropTag');
+    const subEl = document.getElementById('hudOutfitSubtitle');
+    if (nameEl) nameEl.textContent = o.name;
+    if (priceEl) priceEl.textContent = o.price;
+    if (tagEl) tagEl.textContent = o.tag;
+    if (subEl) subEl.textContent = o.subtitle;
+
+    // Update Mobile Bottom HUD
+    const mName = document.getElementById('hudMobileOutfitName');
+    const mPrice = document.getElementById('hudMobileOutfitPrice');
+    const mTag = document.getElementById('hudMobileDropTag');
+    if (mName) mName.textContent = o.name;
+    if (mPrice) mPrice.textContent = o.price;
+    if (mTag) mTag.textContent = o.tag;
+
+    // Update Left HUD Indicators
+    for (let i = 0; i < 8; i++) {
+      const item = document.getElementById('morphDot' + i);
+      if (!item) continue;
+      const bar = item.querySelector('.morph-bar');
+      const num = item.querySelector('.morph-num');
+      if (i === idx) {
+        if (bar) { bar.style.width = '24px'; bar.style.background = 'var(--ink)'; }
+        if (num) { num.style.color = 'var(--ink)'; num.style.fontWeight = 'bold'; }
+        item.classList.add('active');
+      } else {
+        if (bar) { bar.style.width = '8px'; bar.style.background = 'rgba(13,27,42,0.25)'; }
+        if (num) { num.style.color = 'rgba(13,27,42,0.4)'; num.style.fontWeight = 'normal'; }
+        item.classList.remove('active');
+      }
+    }
+
+    // Update Watermark text
+    const wm = document.getElementById('morphWatermarkText');
+    if (wm && wm.textContent.trim() !== o.watermark) {
+      wm.textContent = o.watermark;
+    }
+  }
+
+  function openActiveOutfitDrawer() {
+    openHeroModal(activeMorphIdx);
+  }
+
+  function jumpToOutfit(idx) {
+    if (!window.ScrollTrigger) {
+      updateMorphHud(idx);
+      return;
+    }
+    const st = ScrollTrigger.getById('morphScrollTrigger');
+    if (!st) {
+      updateMorphHud(idx);
+      return;
+    }
+    // Target the center of that outfit's resting plateau
+    const progress = (idx === 0) ? 0.03 : (idx / 7) * 0.94 + 0.03;
+    const targetY = st.start + progress * (st.end - st.start);
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+  }
+
+  // Product Catalog: All 8 sets with unified clean image paths
   const products = [
-    { name: 'Warli Cropped Zip Hoodie Set', tag: 'Indian Roots • Black • Warli, Sun & Lotus', price: 1999, priceStr: '₹1,999', img: 'assets/design-0.jpg' },
-    { name: 'Paisley Heritage Wide-Leg Set', tag: 'Indian Roots • Grey • Paisley & Floral Vines', price: 1899, priceStr: '₹1,899', img: 'assets/design-1.jpg' },
-    { name: 'Carpet Motif Festive Set', tag: 'Everyday Roots • Crimson/Gold • Prayer-Arch & Rug', price: 2199, priceStr: '₹2,199', img: 'assets/design-2.jpg' },
-    { name: 'Medallion Engraved Set', tag: 'Crafted • Navy/Silver/Bronze • Medallion & Geometric', price: 2099, priceStr: '₹2,099', img: 'assets/design-3.jpg' },
-    { name: 'Charcoal Warli Heritage Set', tag: 'Indian Roots • Charcoal • Warli, Sun & Lotus', price: 1799, priceStr: '₹1,799', img: 'assets/design-4.jpg' },
-    { name: 'Taupe Folk Embroidery Set', tag: 'Everyday Roots • Taupe/Khaki • Folk Embroidery & Sun', price: 1699, priceStr: '₹1,699', img: 'assets/design-5.jpg' },
-    { name: 'Neel Slate Indigo Set', tag: 'Heritage Streetwear • Slate/Indigo • Geometric Temples', price: 2299, priceStr: '₹2,299', img: 'assets/design-6.jpg' },
-    { name: 'Temple Arch Fleece Set', tag: 'Indian Roots • Raw Khadi • Temple Arch Print', price: 2499, priceStr: '₹2,499', img: 'assets/design-7.jpg' },
+    { name: 'Crimson Carpet Festive Set', tag: 'Everyday Roots • Crimson & Gold • Prayer-Arch', price: 2199, priceStr: '₹2,199', img: 'designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png' },
+    { name: 'Midnight Warli Cropped Zip Set', tag: 'Indian Roots • Midnight Indigo • Warli Sun & Lotus', price: 2299, priceStr: '₹2,299', img: 'designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png' },
+    { name: 'Ash Grey Warli Co-ord Set', tag: 'Indian Roots • Ash Grey • Tribal Warli Figures', price: 2099, priceStr: '₹2,099', img: 'designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png' },
+    { name: 'Forest Green Paisley Set', tag: 'Indian Roots • Forest Green • Golden Royal Paisley', price: 2399, priceStr: '₹2,399', img: 'designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png' },
+    { name: 'Raw Khaki Heritage Floral Set', tag: 'Everyday Roots • Raw Khadi • Crimson Floral Vine', price: 2199, priceStr: '₹2,199', img: 'designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png' },
+    { name: 'Sandstone Taupe Geometric Set', tag: 'Everyday Roots • Sandstone Taupe • Diamond Weave', price: 2149, priceStr: '₹2,149', img: 'designs/taupe/Taupe Embroidered Tracksuit Portrait.png' },
+    { name: 'Noir Black Lotus Embroidered Set', tag: 'Indian Roots • Jet Black • Sacred Lotus', price: 2299, priceStr: '₹2,299', img: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png' },
+    { name: 'Onyx & Slate Two-Tone Cargo Set', tag: 'Heritage Streetwear • Noir & Slate • Cargo Co-ord', price: 2499, priceStr: '₹2,499', img: 'designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png' },
   ];
 
   // Helper to extract clean filename
   function getFilename(path) {
     if (!path) return '';
-    return path.split('/').pop().split('\\').pop().split('?')[0];
+    return decodeURIComponent(path).split('/').pop().split('\\').pop().split('?')[0];
   }
 
-  // Unified Product Finder matching by filename
+  // Unified Product Finder matching by filename or name
   function findProduct(btn) {
     if (!btn) return products[0];
     if (btn.closest && btn.closest('#quickViewModal')) {
@@ -946,8 +1207,8 @@
       const foundByName = products.find(p => p.name === qvName);
       if (foundByName) return foundByName;
     }
-    const card = btn.closest ? btn.closest('.product-card, .carousel-card') : null;
-    const img = card ? card.querySelector('img') : null;
+    const layer = btn.closest ? btn.closest('.morph-layer') : null;
+    const img = layer ? layer.querySelector('img') : null;
     const src = img ? (img.getAttribute('src') || '') : '';
     const srcName = getFilename(src);
     return products.find(p => getFilename(p.img) === srcName) || products[0];
@@ -1007,7 +1268,7 @@
   function renderCart() {
     const container = document.getElementById('cartItems');
     if (cart.length === 0) {
-      container.innerHTML = '<div class="py-12 text-center"><p class="text-sm font-medium" style="color:var(--slate)">Your bag is currently empty.</p><button onclick="closeCart();document.getElementById(\'shop\').scrollIntoView({behavior:\'smooth\'})" class="mt-4 pill px-5 py-2 text-xs font-semibold cursor-pointer" style="background:var(--navy);color:var(--khadi)">Shop Drop 01</button></div>';
+      container.innerHTML = '<div class="py-12 text-center"><p class="text-sm font-medium" style="color:var(--slate)">Your bag is currently empty.</p><button onclick="closeCart();document.getElementById(\'morphStageSection\').scrollIntoView({behavior:\'smooth\'})" class="mt-4 pill px-5 py-2 text-xs font-semibold cursor-pointer" style="background:var(--navy);color:var(--khadi)">Explore Drop 01</button></div>';
       document.getElementById('cartSubtotal').textContent = '₹0';
       return;
     }
@@ -1159,140 +1420,127 @@
     }
     updateBagBadge();
     showToast('Added ' + item.name + ' (' + item.size + ') to bag');
-    closeHeroModal();
   }
 
-  function buyHeroNow() {
+  function buyNowHero() {
     addHeroToBag();
+    closeHeroModal();
     openCart();
   }
 
-  // Interactive Hover Zoom on Hero Modal Image
-  const heroZoomContainer = document.getElementById('heroZoomContainer');
-  const heroModalImg = document.getElementById('heroModalImg');
-  if (heroZoomContainer && heroModalImg) {
-    heroZoomContainer.addEventListener('mousemove', (e) => {
-      const rect = heroZoomContainer.getBoundingClientRect();
+  // Interactive Hover Zoom
+  const heroZoomWrap = document.getElementById('heroZoomContainer');
+  const heroZoomPhoto = document.getElementById('heroModalImg');
+  if (heroZoomWrap && heroZoomPhoto) {
+    heroZoomWrap.addEventListener('mousemove', (e) => {
+      const rect = heroZoomWrap.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
-      heroModalImg.style.transformOrigin = `${x}% ${y}%`;
-      heroModalImg.style.transform = 'scale(2.2)';
+      heroZoomPhoto.style.transformOrigin = `${x}% ${y}%`;
+      heroZoomPhoto.style.transform = 'scale(1.9)';
     });
-    heroZoomContainer.addEventListener('mouseleave', () => {
-      heroModalImg.style.transformOrigin = 'center center';
-      heroModalImg.style.transform = 'scale(1)';
+    heroZoomWrap.addEventListener('mouseleave', () => {
+      heroZoomPhoto.style.transform = 'scale(1)';
+      heroZoomPhoto.style.transformOrigin = 'center center';
     });
   }
 
-  // Quick View Modal
-  let currentQvProduct = null;
-  function openQuickView(btn) {
-    const prod = findProduct(btn);
-    currentQvProduct = prod;
+  // Interactive Quick View Modal
+  function openQuickView(triggerBtn) {
+    const prod = findProduct(triggerBtn);
     document.getElementById('qvImg').src = prod.img;
     document.getElementById('qvName').textContent = prod.name;
     document.getElementById('qvTag').textContent = prod.tag;
     document.getElementById('qvPrice').textContent = prod.priceStr;
-    const addBtn = document.getElementById('qvAddBtn');
-    addBtn.onclick = function(e) {
-      e.stopPropagation();
-      addProductToBag(currentQvProduct);
-      closeQuickView();
-    };
     const modal = document.getElementById('quickViewModal');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
+    if (window.gsap) {
+      gsap.fromTo('#quickViewModal > div:last-child', { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: 'power2.out' });
+    }
   }
+
   function closeQuickView() {
     const modal = document.getElementById('quickViewModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
   }
 
-  // Hero Tier 2: Interactive Editorial Lookbook
+  // Lookbook Data (5 Editorial Looks)
   const lookbookSlides = [
     {
-      img: 'assets/design-0.jpg',
-      caption: 'Warli Cropped Zip Hoodie Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with artisanal Warli sun & lotus screen prints.',
+      img: 'designs/forest-green/Embroidered Forest Green Tracksuit Portrait.png',
+      caption: 'Forest Green Paisley Set — Indian Roots collection. 300 GSM bio-washed combed cotton fleece with intricate golden royal paisley chest embroidery.',
+      title: 'Forest Green Paisley Set',
+      index: '01',
     },
     {
-      img: 'assets/design-2.jpg',
-      caption: 'Carpet Motif Festive Set — Everyday Roots collection. Crimson & antique gold prayer-arch patterns on brushed fleece for cool evenings.',
+      img: 'designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png',
+      caption: 'Crimson Carpet Festive Set — Everyday Roots collection. Crimson & antique gold prayer-arch patterns on brushed fleece for cold urban evenings.',
+      title: 'Crimson Carpet Festive Set',
+      index: '02',
     },
     {
-      img: 'assets/design-4.jpg',
-      caption: 'Charcoal Warli Heritage Set — Indian Roots collection. Oversized drop-shoulder silhouette with charcoal monochrome high-density puff motifs.',
+      img: 'designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png',
+      caption: 'Raw Khaki Heritage Floral Set — Natural unbleached organic cotton fleece draped in traditional crimson floral border embroidery.',
+      title: 'Raw Khaki Heritage Floral Set',
+      index: '03',
+    },
+    {
+      img: 'designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png',
+      caption: 'Two-Tone Noir & Slate Cargo Set — Contrast floral side-taping with structured cargo wide-leg fit and cropped zip boxiness.',
+      title: 'Two-Tone Noir & Slate Cargo Set',
+      index: '04',
+    },
+    {
+      img: 'designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png',
+      caption: 'Ash Grey Warli Co-ord Set — Monochromatic high-density Warli screen artwork on heavyweight 300 GSM combed cotton fleece.',
+      title: 'Ash Grey Warli Co-ord Set',
+      index: '05',
     },
   ];
-  let lookbookIdx = 0;
+  let curLookbook = 0;
+
   function setLookbook(i) {
-    lookbookIdx = i;
+    curLookbook = ((i % lookbookSlides.length) + lookbookSlides.length) % lookbookSlides.length;
+    const slide = lookbookSlides[curLookbook];
     const img = document.getElementById('lookbookImg');
-    if (!img) return;
-    img.style.opacity = '0';
-    img.style.transform = 'scale(0.97)';
-    setTimeout(() => {
-      img.src = lookbookSlides[i].img;
-      const idxEl = document.getElementById('lookbookIndex');
-      if (idxEl) idxEl.textContent = String(i + 1).padStart(2, '0');
-      const capEl = document.getElementById('lookbookCaption');
-      if (capEl) capEl.textContent = lookbookSlides[i].caption;
-      img.style.opacity = '1';
-      img.style.transform = 'scale(1)';
-    }, 200);
+    const caption = document.getElementById('lookbookCaption');
+    const idx = document.getElementById('lookbookIndex');
+    
+    if (window.gsap && img) {
+      gsap.to(img, {
+        opacity: 0.35, scale: 0.98, duration: 0.2, ease: 'power2.in',
+        onComplete: () => {
+          img.src = slide.img;
+          if (caption) caption.textContent = slide.caption;
+          if (idx) idx.textContent = slide.index;
+          gsap.to(img, { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' });
+        }
+      });
+    } else {
+      if (img) img.src = slide.img;
+      if (caption) caption.textContent = slide.caption;
+      if (idx) idx.textContent = slide.index;
+    }
+
+    // Update Lookbook Dots
     document.querySelectorAll('.lookbook-dot').forEach((d, idx) => {
-      if (idx === i) {
+      if (idx === curLookbook) {
         d.style.background = 'var(--ink)';
-        d.classList.remove('w-2.5');
-        d.classList.add('w-8');
+        d.style.width = '32px';
       } else {
         d.style.background = 'var(--sandstone)';
-        d.classList.remove('w-8');
-        d.classList.add('w-2.5');
+        d.style.width = '10px';
       }
     });
   }
+
   function stepLookbook(delta) {
-    let next = (lookbookIdx + delta + lookbookSlides.length) % lookbookSlides.length;
-    setLookbook(next);
+    setLookbook(curLookbook + delta);
   }
 
-  // Top-Selling Carousel Card Active State
-  function setActiveCard(i) {
-    document.querySelectorAll('.carousel-card').forEach((c, idx) => {
-      const isActive = (idx === i);
-      c.classList.toggle('active', isActive);
-      if (isActive) {
-        c.style.backgroundColor = 'var(--sage)';
-        c.style.borderColor = 'transparent';
-        c.style.color = 'var(--khadi)';
-      } else {
-        c.style.backgroundColor = '#FFFFFF';
-        c.style.borderColor = 'rgba(13,27,42,0.08)';
-        c.style.color = '';
-      }
-    });
-  }
-
-  // Dark Band 2: Upcoming Drop Slider & Waitlist
-  const upcomingDrops = [
-    { img: 'assets/design-6.jpg', title: 'Neel Slate Indigo Set', meta: '300 GSM Brushed Fleece • Boxy Cut' },
-    { img: 'assets/design-7.jpg', title: 'Temple Arch Fleece Set', meta: 'Raw Khadi Combed Cotton • Temple Print' },
-    { img: 'assets/design-4.jpg', title: 'Charcoal Warli Heritage Set', meta: 'Monochrome High-Density Puff Print' },
-  ];
-  let upcomingIdx = 0;
-  function changeUpcomingDrop(delta) {
-    upcomingIdx = (upcomingIdx + delta + upcomingDrops.length) % upcomingDrops.length;
-    const cur = upcomingDrops[upcomingIdx];
-    const img = document.getElementById('upcomingDropImg');
-    img.style.opacity = '0';
-    setTimeout(() => {
-      img.src = cur.img;
-      document.getElementById('upcomingTitle').textContent = cur.title;
-      document.getElementById('upcomingMeta').textContent = cur.meta;
-      img.style.opacity = '1';
-    }, 200);
-  }
+  // Upcoming Drop Notification
   function notifyUpcoming() {
     showToast('You are on the Drop 02 waitlist!');
   }
@@ -1397,95 +1645,170 @@
     }
   });
 
-  // Mobile Hero Swipe Carousel Navigation
-  function scrollHeroCard(idx) {
-    const container = document.getElementById('heroCardsContainer');
-    const card = document.getElementById('heroCard' + idx);
-    if (!container || !card) return;
-    const offset = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
-    container.scrollTo({ left: offset, behavior: 'smooth' });
-    updateHeroDots(idx);
-  }
-
-  function updateHeroDots(activeIdx) {
-    for (let i = 0; i < 3; i++) {
-      const dot = document.getElementById('heroDot' + i);
-      if (!dot) continue;
-      if (i === activeIdx) {
-        dot.style.background = 'var(--ink)';
-        dot.style.width = '28px';
-      } else {
-        dot.style.background = 'var(--sandstone)';
-        dot.style.width = '8px';
-      }
-    }
-  }
-
-  // Horizontal scroll listener for mobile swipe
-  const heroCardsScroll = document.getElementById('heroCardsContainer');
-  if (heroCardsScroll) {
-    let heroDebounceTimer = null;
-    heroCardsScroll.addEventListener('scroll', () => {
-      clearTimeout(heroDebounceTimer);
-      heroDebounceTimer = setTimeout(() => {
-        const center = heroCardsScroll.scrollLeft + heroCardsScroll.clientWidth / 2;
-        let closestIdx = 0;
-        let minDist = Infinity;
-        for (let i = 0; i < 3; i++) {
-          const card = document.getElementById('heroCard' + i);
-          if (!card) continue;
-          const cardCenter = card.offsetLeft + card.clientWidth / 2;
-          const dist = Math.abs(center - cardCenter);
-          if (dist < minDist) {
-            minDist = dist;
-            closestIdx = i;
-          }
-        }
-        updateHeroDots(closestIdx);
-      }, 50);
-    }, { passive: true });
-  }
-
-  function triggerHeroEntrance() {
+  // GSAP Initial Headline Entrance
+  function triggerHeroHeadlineEntrance() {
     if (!window.gsap) return;
-    
-    // Set initial states
     gsap.set('.hero-line-1, .hero-line-2', { y: 45, opacity: 0 });
-    gsap.set('.hero-card', { scale: 0.35, y: 25, opacity: 0, transformOrigin: 'center bottom' });
     gsap.set('.rotating-badge', { scale: 0, opacity: 0, rotation: -90 });
 
-    const entranceTl = gsap.timeline({
-      delay: 0.05,
-      onComplete: () => {
-        document.querySelectorAll('.hero-card').forEach(c => c.classList.add('idle-floating'));
-      }
-    });
-    
-    // 1. Headline lands in first with crisp editorial easing
+    const entranceTl = gsap.timeline({ delay: 0.05 });
     entranceTl.to('.hero-line-1, .hero-line-2', {
-      y: 0,
-      opacity: 1,
-      duration: 0.65,
-      stagger: 0.12,
-      ease: 'power3.out'
+      y: 0, opacity: 1, duration: 0.65, stagger: 0.12, ease: 'power3.out'
     });
     entranceTl.to('.rotating-badge', {
-      scale: 1,
-      opacity: 1,
-      rotation: 0,
-      duration: 0.55,
-      ease: 'back.out(1.8)'
+      scale: 1, opacity: 1, rotation: 0, duration: 0.55, ease: 'back.out(1.8)'
     }, '-=0.35');
+  }
 
-    // 2. Immediately after headline lands, the 3 cards spring/pop in with snappy elastic back-out
-    entranceTl.to('.hero-card', {
-      scale: 1,
-      y: 0,
-      opacity: 1,
-      duration: 0.65,
-      stagger: 0.1,
-      ease: 'back.out(1.8)'
-    }, '+=0.12');
+  // Pinned 3D Outfit Morph Stage Initialization
+  function init3DMorphStage() {
+    if (!window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const stage = document.getElementById('morphStageSection');
+    if (!stage) return;
+
+    // 1. Initial State: Outfit 01 is primed, others hidden
+    gsap.set('#morphLayer0', { scale: 0.35, opacity: 0, rotateX: 14, z: -120, transformOrigin: 'center bottom' });
+    gsap.set('#morphWatermarkText', { opacity: 0, y: 50, scale: 0.9 });
+    gsap.set('#morphLeftHud, #morphRightHud, #morphMobileHud', { opacity: 0, y: 20 });
+
+    for (let i = 1; i < 8; i++) {
+      gsap.set('#morphLayer' + i, {
+        opacity: 0,
+        scale: 1.04,
+        rotateY: -8,
+        clipPath: 'polygon(0% 100%, 100% 85%, 100% 100%, 0% 100%)',
+        transformOrigin: 'center bottom'
+      });
+    }
+
+    // 2. Pre-Pin Pop-In Entrance (Animates in as user scrolls down into section)
+    let entranceDone = false;
+    function playEntrance() {
+      if (entranceDone) return;
+      entranceDone = true;
+      gsap.to('#morphLayer0', {
+        scale: 1, opacity: 1, rotateX: 0, z: 0,
+        duration: 0.75, ease: 'back.out(1.5)'
+      });
+      gsap.to('#morphWatermarkText', {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.65, ease: 'power2.out', delay: 0.08
+      });
+      gsap.to('#morphLeftHud, #morphRightHud, #morphMobileHud', {
+        opacity: 1, y: 0,
+        duration: 0.55, ease: 'power2.out', delay: 0.15
+      });
+    }
+
+    ScrollTrigger.create({
+      trigger: '#morphStageSection',
+      start: 'top 75%',
+      onEnter: playEntrance,
+      onEnterBack: playEntrance
+    });
+
+    // 3. Pinned Scroll Scrub Timeline (pin: true, scrub: 0.8)
+    // 7 Transitions between 8 Outfits.
+    // Each segment has: Resting Plateau (stable 100% view) -> Snappy 3D Morph.
+    const morphTl = gsap.timeline({
+      scrollTrigger: {
+        id: 'morphScrollTrigger',
+        trigger: '#morphStageSection',
+        start: 'top top',
+        end: '+=3600',
+        pin: true,
+        scrub: 0.8,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          const p = self.progress;
+          const idx = Math.min(7, Math.floor(p * 8));
+          updateMorphHud(idx);
+        }
+      }
+    });
+
+    // 7 Transitions (normalized duration: 2.0 units per outfit slice)
+    for (let i = 0; i < 7; i++) {
+      const curLayer = '#morphLayer' + i;
+      const nextLayer = '#morphLayer' + (i + 1);
+      const segStart = i * 2.0;
+      const transStart = segStart + 1.2; // 1.2 units resting plateau
+      const transDur = 0.8;             // 0.8 units snappy morph transition
+
+      // Outgoing outfit: 3D twist (0 -> 8deg), micro scale down, fade out
+      morphTl.to(curLayer, {
+        rotateY: 8,
+        scale: 0.98,
+        opacity: 0,
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 15%, 0% 0%)',
+        duration: transDur,
+        ease: 'power1.inOut'
+      }, transStart);
+
+      // Incoming outfit: 3D twist (-8deg -> 0), scale pulse (1.04 -> 1.0), diagonal clip reveal
+      morphTl.to(nextLayer, {
+        opacity: 1,
+        scale: 1.0,
+        rotateY: 0,
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        duration: transDur,
+        ease: 'power1.inOut'
+      }, transStart);
+
+      // Watermark vertical parallax & swap
+      morphTl.to('#morphWatermarkText', {
+        y: -30, opacity: 0.15, duration: transDur * 0.5, ease: 'power1.in'
+      }, transStart);
+      morphTl.to('#morphWatermarkText', {
+        y: 0, opacity: 1, duration: transDur * 0.5, ease: 'power1.out'
+      }, transStart + transDur * 0.5);
+    }
+
+    // Interactive Mouse 3D Tilt (perspective: 1200px)
+    const morphSection = document.getElementById('morphStageSection');
+    const centerStage = document.getElementById('morphStageCenter');
+    const watermark = document.getElementById('morphWatermarkLayer');
+    const leftHud = document.getElementById('morphLeftHud');
+    const rightHud = document.getElementById('morphRightHud');
+
+    let mouseX = 0, mouseY = 0;
+    let currentX = 0, currentY = 0;
+    let rafId = null;
+
+    function renderMouseTilt() {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+
+      if (centerStage) {
+        centerStage.style.transform = `perspective(1200px) rotateY(${currentX * 10}deg) rotateX(${-currentY * 8}deg) translateZ(30px)`;
+      }
+      if (watermark) {
+        watermark.style.transform = `perspective(1200px) translate3d(${-currentX * 24}px, ${-currentY * 16}px, -60px)`;
+      }
+      if (leftHud) {
+        leftHud.style.transform = `perspective(1200px) translate3d(${currentX * 12}px, calc(-50% + ${currentY * 8}px), 50px)`;
+      }
+      if (rightHud) {
+        rightHud.style.transform = `perspective(1200px) translate3d(${currentX * 12}px, calc(-50% + ${currentY * 8}px), 50px)`;
+      }
+
+      rafId = requestAnimationFrame(renderMouseTilt);
+    }
+
+    morphSection.addEventListener('mousemove', (e) => {
+      if (window.innerWidth < 768) return;
+      const rect = morphSection.getBoundingClientRect();
+      mouseX = ((e.clientX - rect.left) / rect.width) - 0.5;
+      mouseY = ((e.clientY - rect.top) / rect.height) - 0.5;
+      if (!rafId) rafId = requestAnimationFrame(renderMouseTilt);
+    });
+
+    morphSection.addEventListener('mouseleave', () => {
+      mouseX = 0;
+      mouseY = 0;
+    });
   }
 
   // Page Initialization
@@ -1493,7 +1816,6 @@
     document.getElementById('bagCount').textContent = '0';
     cart = [];
     bagCount = 0;
-    setActiveCard(0);
     const p = document.getElementById('preloader');
     if (p) {
       if (window.gsap) {
@@ -1503,25 +1825,25 @@
           ease: 'power2.inOut',
           onComplete: () => {
             p.classList.add('hide');
-            triggerHeroEntrance();
+            triggerHeroHeadlineEntrance();
+            init3DMorphStage();
           }
         });
       } else {
         p.classList.add('hide');
-        triggerHeroEntrance();
+        triggerHeroHeadlineEntrance();
+        init3DMorphStage();
       }
     } else {
-      triggerHeroEntrance();
+      triggerHeroHeadlineEntrance();
+      init3DMorphStage();
     }
   });
 
-  // GSAP Animations & Physics
+  // Other GSAP Animations & Physics
   if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.from('#hero h2', { y: 40, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
-
     document.querySelectorAll('section').forEach((sec) => {
+      if (sec.id === 'morphStageSection' || sec.id === 'hero') return;
       const heads = sec.querySelectorAll('h2, h3');
       if (heads.length) {
         gsap.from(heads, {
@@ -1529,39 +1851,6 @@
           scrollTrigger: { trigger: sec, start: 'top 85%' }
         });
       }
-    });
-
-    gsap.from('.carousel-card', {
-      y: 50, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '#shop', start: 'top 75%' }
-    });
-
-    // 3D tilt physics for hero cards on desktop
-    document.querySelectorAll('.hero-card').forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        if (window.innerWidth < 768) return;
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) scale(1.03)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
-    // 3D tilt physics for carousel cards
-    document.querySelectorAll('.carousel-card').forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        if (window.innerWidth < 768) return;
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = 'perspective(1000px) rotateY(' + (x * 12) + 'deg) rotateX(' + (-y * 12) + 'deg) scale(1.02)';
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
     });
 
     gsap.from('.review-card', {
