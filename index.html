@@ -31,7 +31,7 @@
     overflow-x: hidden;
   }
   .display { font-family: 'Bebas Neue', 'Impact', sans-serif; letter-spacing: -0.01em; }
-  .pill { border-radius: 9999px; }
+  .pill { border-radius: 2px; }
 
   .marquee { overflow: hidden; white-space: nowrap; }
   .marquee-track { display: inline-flex; gap: 2.5rem; animation: marquee 24s linear infinite; will-change: transform; }
@@ -49,7 +49,7 @@
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 
-  .nav-pill { background: rgba(244,241,222,.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(13,27,42,.12); }
+  .nav-pill { background: rgba(244,241,222,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(13,27,42,.12); border-radius: 2px; }
 
   #preloader { position: fixed; inset: 0; background: var(--khadi); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity .6s ease, visibility .6s; }
   #preloader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -218,19 +218,19 @@
 <header id="header" class="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 md:px-8 py-3 md:py-4">
   <div class="max-w-[1440px] mx-auto flex items-center justify-between gap-2 sm:gap-4">
     <a href="#" class="display text-2xl md:text-3xl tracking-tight" style="color:var(--ink)">ARAEL</a>
-    <div class="hidden md:flex items-center gap-3 text-xs font-semibold tracking-wider uppercase" style="color:var(--slate)">Pan-India Shipping • COD Available</div>
-    <nav class="nav-pill pill hidden lg:flex items-center gap-1 px-2 py-1.5 shadow-sm">
-      <a href="#hero" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Home</a>
-      <a href="#morphStageSection" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Shop</a>
-      <a href="#details" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Details</a>
-      <a href="#reviews" class="px-4 py-2 text-sm font-medium rounded-full hover:bg-black/5 transition">Reviews</a>
+    <div class="hidden md:flex items-center gap-3 text-xs font-mono font-semibold tracking-widest uppercase" style="color:var(--slate)">Pan-India Shipping • COD Available</div>
+    <nav class="nav-pill hidden lg:flex items-center gap-1 px-3 py-1.5 shadow-sm border border-black/10 rounded-sm">
+      <a href="#hero" class="px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider rounded-sm hover:bg-black/5 transition">Home</a>
+      <a href="#morphStageSection" class="px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider rounded-sm hover:bg-black/5 transition">Shop</a>
+      <a href="#details" class="px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider rounded-sm hover:bg-black/5 transition">Details</a>
+      <a href="#reviews" class="px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider rounded-sm hover:bg-black/5 transition">Reviews</a>
     </nav>
-    <!-- floating top-right pill container with Shop Drop 01 + Bag -->
-    <div class="nav-pill pill flex items-center gap-1.5 sm:gap-2 px-1.5 sm:px-2 py-1 sm:py-1.5 shadow-sm">
-      <button class="pill flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold transition hover:scale-105 cursor-pointer whitespace-nowrap" style="background:var(--navy);color:var(--khadi)" onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})">Shop Drop 01</button>
-      <button class="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center hover:bg-black/5 transition relative cursor-pointer" aria-label="Bag" onclick="openCart()">
+    <!-- floating top-right container with Shop Drop 01 + Bag -->
+    <div class="nav-pill flex items-center gap-1.5 sm:gap-2 px-2 py-1.5 shadow-sm border border-black/10 rounded-sm">
+      <button class="flex items-center gap-1.5 px-4 py-2 text-xs font-mono font-bold tracking-widest uppercase transition hover:bg-black cursor-pointer whitespace-nowrap rounded-sm shadow-sm" style="background:var(--navy);color:var(--khadi)" onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})">Shop Drop 01</button>
+      <button class="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-black/10 flex items-center justify-center hover:bg-black/5 transition relative cursor-pointer" aria-label="Bag" onclick="openCart()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span id="bagCount" class="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold transition-transform" style="background:var(--navy);color:var(--khadi)">0</span>
+        <span id="bagCount" class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 text-[9px] font-mono font-bold flex items-center justify-center rounded-sm" style="background:var(--navy);color:var(--khadi)">0</span>
       </button>
     </div>
   </div>
@@ -243,18 +243,6 @@
 
   <div class="max-w-[1440px] mx-auto relative">
     <div class="relative text-center">
-      <!-- Rotating circular badge -->
-      <div class="absolute top-0 right-4 lg:right-24 hidden md:flex items-center justify-center hero-layer z-10">
-        <div class="rotating-badge relative w-28 h-28 rounded-full flex items-center justify-center shadow-lg" style="background:var(--sage);color:var(--ink)">
-          <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full">
-            <defs><path id="circlePath" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"/></defs>
-            <text font-family="Bebas Neue" font-size="11" fill="var(--ink)" letter-spacing="2">
-              <textPath href="#circlePath">300 GSM HEAVYWEIGHT • DROP 01 • </textPath>
-            </text>
-          </svg>
-          <span class="display text-xl" style="color:var(--ink)">01</span>
-        </div>
-      </div>
 
       <!-- Display Headline (Animates In First) -->
       <h1 id="heroHeadline" class="display text-[clamp(48px,11vw,150px)] leading-[0.84] tracking-tight relative z-10 select-none" style="color:var(--ink)">
@@ -411,21 +399,17 @@
 <!-- ============ EDITORIAL LOOKBOOK SECTION ============ -->
 <section id="lookbook" class="py-24 px-4 md:px-8 relative overflow-hidden" style="background:var(--khadi)">
   <div class="max-w-[1440px] mx-auto">
-<!-- Second tier: Interactive Editorial Lookbook -->
     <div>
       <div class="grid md:grid-cols-2 gap-10 items-center">
-        <!-- Lookbook Preview Image -->
-        <div class="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl max-w-md mx-auto md:mx-0 group" style="background:var(--sandstone)">
+        <!-- Lookbook Preview Image (Unobstructed Edge-to-Edge) -->
+        <div class="relative rounded-sm overflow-hidden aspect-[4/5] shadow-2xl max-w-md mx-auto md:mx-0 group border border-black/10" style="background:var(--sandstone)">
           <img id="lookbookImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" alt="Lookbook Preview">
-          <div class="absolute top-4 left-4 pill px-3.5 py-1 text-xs font-semibold backdrop-blur-md shadow-sm" style="background:rgba(244,241,222,0.9);color:var(--ink)">
-            Editorial Lookbook
-          </div>
         </div>
 
         <!-- Lookbook Content & Interactive Dot Navigation -->
         <div class="text-center md:text-left">
-          <p class="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style="color:var(--slate)">
-            <span id="lookbookIndex" class="font-bold">01</span> / 05 — Editorial Lookbook
+          <p class="text-xs font-mono tracking-[0.25em] uppercase mb-3 font-semibold text-[var(--slate)]">
+            <span id="lookbookIndex" class="font-bold text-[var(--ink)]">01</span> / 05 — EDITORIAL LOOKBOOK
           </p>
           <h2 class="display text-[clamp(32px,5.5vw,64px)] leading-[0.92] mb-4" style="color:var(--ink)">
             Streetwear that <span style="color:rgba(13,27,42,0.38)">honors your roots</span>
@@ -433,44 +417,43 @@
           <p id="lookbookCaption" class="text-sm md:text-base leading-relaxed mb-6 max-w-lg" style="color:var(--slate)">
             Crimson Carpet Festive Set — Everyday Roots collection. Crimson & antique gold prayer-arch patterns on brushed fleece for cold urban evenings.
           </p>
-          <!-- 5 Clickable Indicator Dots with smooth slide switching -->
+          <!-- 5 Clickable Minimal Indicators with smooth slide switching -->
           <div class="flex items-center justify-center md:justify-start gap-2.5 mb-8">
-            <button class="lookbook-dot w-8 h-2.5 rounded-full transition-all duration-300 cursor-pointer" style="background:var(--ink)" onclick="setLookbook(0)" aria-label="Slide 01"></button>
-            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(1)" aria-label="Slide 02"></button>
-            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(2)" aria-label="Slide 03"></button>
-            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(3)" aria-label="Slide 04"></button>
-            <button class="lookbook-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer hover:scale-125" style="background:var(--sandstone)" onclick="setLookbook(4)" aria-label="Slide 05"></button>
+            <button class="lookbook-dot w-8 h-[2px] rounded-sm transition-all duration-300 cursor-pointer" style="background:var(--ink)" onclick="setLookbook(0)" aria-label="Slide 01"></button>
+            <button class="lookbook-dot w-3 h-[2px] rounded-sm transition-all duration-300 cursor-pointer hover:w-6" style="background:var(--sandstone)" onclick="setLookbook(1)" aria-label="Slide 02"></button>
+            <button class="lookbook-dot w-3 h-[2px] rounded-sm transition-all duration-300 cursor-pointer hover:w-6" style="background:var(--sandstone)" onclick="setLookbook(2)" aria-label="Slide 03"></button>
+            <button class="lookbook-dot w-3 h-[2px] rounded-sm transition-all duration-300 cursor-pointer hover:w-6" style="background:var(--sandstone)" onclick="setLookbook(3)" aria-label="Slide 04"></button>
+            <button class="lookbook-dot w-3 h-[2px] rounded-sm transition-all duration-300 cursor-pointer hover:w-6" style="background:var(--sandstone)" onclick="setLookbook(4)" aria-label="Slide 05"></button>
             <div class="flex items-center gap-1.5 ml-3">
-              <button onclick="stepLookbook(-1)" class="w-8 h-8 rounded-full flex items-center justify-center transition hover:bg-black/5 cursor-pointer" style="border:1px solid rgba(13,27,42,0.18);color:var(--ink)" aria-label="Previous lookbook slide">←</button>
-              <button onclick="stepLookbook(1)" class="w-8 h-8 rounded-full flex items-center justify-center transition hover:bg-black/5 cursor-pointer" style="border:1px solid rgba(13,27,42,0.18);color:var(--ink)" aria-label="Next lookbook slide">→</button>
+              <button onclick="stepLookbook(-1)" class="w-8 h-8 rounded-sm border border-black/20 flex items-center justify-center font-mono text-xs transition hover:bg-black/5 cursor-pointer" style="color:var(--ink)" aria-label="Previous lookbook slide">←</button>
+              <button onclick="stepLookbook(1)" class="w-8 h-8 rounded-sm border border-black/20 flex items-center justify-center font-mono text-xs transition hover:bg-black/5 cursor-pointer" style="color:var(--ink)" aria-label="Next lookbook slide">→</button>
             </div>
           </div>
-          <button onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})" class="pill inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">
-            Explore Collection ↗
+          <button onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})" class="rounded-sm inline-flex items-center gap-2 px-8 py-3.5 text-xs font-mono font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[var(--ink)] shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">
+            EXPLORE COLLECTION ↗
           </button>
         </div>
       </div>
     </div>
   </div>
 </section>
-  </div>
-</section>
+
 <!-- ============ DARK CONTRAST BAND 1 ============ -->
 <section class="py-20 px-4 md:px-8 relative overflow-hidden" style="background:var(--ink);color:var(--khadi)">
   <div class="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-10 items-center">
-    <div class="rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto md:mx-0 shadow-2xl">
+    <div class="rounded-sm overflow-hidden aspect-[4/5] max-w-md mx-auto md:mx-0 shadow-2xl border border-white/10">
       <img src="designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png" class="w-full h-full object-cover" alt="Featured Drop Model">
     </div>
     <div>
-      <p class="text-xs tracking-[0.3em] uppercase mb-3 font-semibold" style="color:var(--sage)">Featured Drop</p>
+      <p class="text-xs font-mono tracking-[0.25em] uppercase mb-3 font-semibold text-[var(--sage)]">Featured Drop</p>
       <h2 class="display text-[clamp(36px,6vw,72px)] leading-[0.9] mb-6" style="color:var(--khadi)">
         Heavyweight 300 GSM <span style="color:rgba(244,241,222,0.42)">comfort meets unapologetic Indian roots.</span>
       </h2>
       <p class="text-sm md:text-base leading-relaxed max-w-md" style="color:var(--sandstone)">
         Crafted from premium bio-washed combed cotton fleece. Designed for late-night college runs, festive nights, and everyday flexing—accessible heritage streetwear without luxury gatekeeping.
       </p>
-      <button class="mt-8 pill flex items-center gap-2 px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})">
-        Explore Drop ↗
+      <button class="mt-8 rounded-sm flex items-center gap-2 px-7 py-3.5 text-xs font-mono font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:brightness-110 shadow-xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="document.getElementById('morphStageSection').scrollIntoView({behavior:'smooth'})">
+        EXPLORE DROP ↗
       </button>
     </div>
   </div>
@@ -493,7 +476,7 @@
   <div class="max-w-[1440px] mx-auto relative z-10">
     <div class="flex items-start md:items-end justify-between flex-col md:flex-row gap-6 mb-8">
       <div>
-        <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--sage)">Winter 2026 Preview</p>
+        <p class="text-xs font-mono tracking-[0.25em] uppercase mb-2 font-semibold text-[var(--sage)]">Winter 2026 Preview</p>
         <h2 class="display text-[clamp(38px,6.5vw,80px)] leading-[0.88]" style="color:var(--khadi)">
           Upcoming <span style="color:rgba(244,241,222,0.42)">Drop 02</span>
         </h2>
@@ -504,30 +487,28 @@
       </div>
     </div>
 
-    <!-- Centered model card with overlapping "Notify Me ↗" CTA pill -->
+    <!-- Centered model card with sharp corners and unobstructed photo -->
     <div class="relative max-w-md mx-auto my-10">
-      <div class="relative rounded-3xl overflow-hidden aspect-[3/4] shadow-2xl" style="background:var(--navy)">
+      <div class="relative rounded-sm overflow-hidden aspect-[3/4] shadow-2xl border border-white/10" style="background:var(--navy)">
         <img id="upcomingDropImg" src="designs/taupe/Taupe Embroidered Tracksuit Portrait.png" class="w-full h-full object-cover transition-opacity duration-300" alt="Upcoming Drop Preview">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-        <div class="absolute top-4 left-4 pill px-3.5 py-1 text-xs font-semibold backdrop-blur-md" style="background:rgba(13,27,42,0.7);color:var(--khadi);border:1px solid rgba(244,241,222,0.2)">
-          Drop 02 Exclusive
-        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none"></div>
         <div class="absolute bottom-5 left-5 text-left pointer-events-none">
-          <p id="upcomingTitle" class="display text-2xl" style="color:var(--khadi)">Neel Slate Indigo Set</p>
-          <p id="upcomingMeta" class="text-xs font-medium" style="color:var(--sandstone)">300 GSM Brushed Fleece • Boxy Cut</p>
+          <p class="text-[10px] font-mono tracking-[0.25em] uppercase text-[#778D7A] font-bold mb-1">DROP 02 PREVIEW</p>
+          <p id="upcomingTitle" class="display text-2xl uppercase" style="color:var(--khadi)">Neel Slate Indigo Set</p>
+          <p id="upcomingMeta" class="text-xs font-mono text-[var(--sandstone)]">300 GSM Brushed Fleece • Boxy Cut</p>
         </div>
       </div>
 
-      <!-- Overlapping "Notify Me ↗" CTA pill on bottom-right edge of model card -->
-      <button class="pill px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 absolute -bottom-5 -right-3 md:-right-6 z-20 shadow-2xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="notifyUpcoming()">
-        <span>Notify Me</span>
-        <span class="text-base font-bold leading-none">↗</span>
+      <!-- Overlapping "Notify Me ↗" CTA on bottom-right edge of model card -->
+      <button class="rounded-sm px-6 py-3 text-xs font-mono font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:brightness-110 flex items-center gap-2 absolute -bottom-4 -right-2 md:-right-4 z-20 shadow-2xl cursor-pointer" style="background:var(--sage);color:var(--ink)" onclick="notifyUpcoming()">
+        <span>NOTIFY ME</span>
+        <span class="text-sm font-bold leading-none">↗</span>
       </button>
 
       <!-- Bottom-left slide switcher for upcoming drop designs -->
-      <div class="absolute -bottom-5 left-2 md:-left-4 z-20 flex items-center gap-2">
-        <button onclick="changeUpcomingDrop(-1)" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:scale-110 shadow-lg text-sm font-bold cursor-pointer" style="background:var(--sandstone);color:var(--ink)" aria-label="Previous preview">←</button>
-        <button onclick="changeUpcomingDrop(1)" class="w-10 h-10 rounded-full flex items-center justify-center transition hover:scale-110 shadow-lg text-sm font-bold cursor-pointer" style="background:var(--sage);color:var(--ink)" aria-label="Next preview">→</button>
+      <div class="absolute -bottom-4 left-2 md:-left-4 z-20 flex items-center gap-1.5">
+        <button onclick="changeUpcomingDrop(-1)" class="w-9 h-9 rounded-sm flex items-center justify-center transition hover:bg-white/10 border border-white/20 font-mono text-xs font-bold cursor-pointer" style="background:rgba(13,27,42,0.85);color:var(--khadi)" aria-label="Previous preview">←</button>
+        <button onclick="changeUpcomingDrop(1)" class="w-9 h-9 rounded-sm flex items-center justify-center transition hover:bg-white/10 border border-white/20 font-mono text-xs font-bold cursor-pointer" style="background:rgba(13,27,42,0.85);color:var(--khadi)" aria-label="Next preview">→</button>
       </div>
     </div>
   </div>
@@ -537,48 +518,30 @@
 <section id="details" class="py-24 px-4 md:px-8" style="background:var(--khadi)">
   <div class="max-w-[1440px] mx-auto">
     <div class="mb-10">
-      <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Craft & Construction</p>
+      <p class="text-xs font-mono tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Craft & Construction</p>
       <h2 class="display text-[clamp(40px,6vw,72px)] leading-[0.9]" style="color:var(--ink)">
         Product <span style="color:rgba(13,27,42,0.38)">Details</span>
       </h2>
     </div>
 
-    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl overflow-hidden shadow-sm p-6 sm:p-8 lg:p-12" style="border:1px solid rgba(13,27,42,0.1)">
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-sm overflow-hidden shadow-sm p-6 sm:p-8 lg:p-12 border border-black/10">
       
       <!-- LEFT: Image Gallery & Dynamic Thumbnails (7 cols on lg) -->
       <div class="lg:col-span-7 flex flex-col justify-between">
         
-        <!-- Main Viewer with Hotspots & Status Badge -->
-        <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[4/5] relative mb-5 shadow-sm group bg-[#EAE5D9]/40 border border-black/5" id="cfgGallery">
+        <!-- Main Viewer (100% Unobstructed Edge-to-Edge, Zero Floating UI Pills) -->
+        <div class="rounded-sm overflow-hidden aspect-[4/5] relative mb-4 shadow-sm group bg-[#EAE5D9]/40 border border-black/10" id="cfgGallery">
           <img id="cfgImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover transition-all duration-500" alt="Product details">
-          
-          <!-- Floating Status / Angle Badge -->
-          <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
-            <span id="cfgImageBadge" class="pill px-3 py-1.5 text-[11px] font-mono tracking-wider uppercase font-semibold backdrop-blur-md shadow-sm border border-black/10 bg-white/85 text-[var(--ink)]">
-              1 / 4 • LOOKBOOK PORTRAIT
-            </span>
-          </div>
-
-          <!-- Hotspots (Chest, Sleeve, Hem) -->
-          <div id="hotspotChest" class="hotspot" style="top:36%;left:50%" onclick="showHotspot('chest')" onmouseenter="showHotspot('chest')" title="Chest Embroidery"></div>
-          <div id="hotspotSleeve" class="hotspot" style="top:48%;left:22%" onclick="showHotspot('sleeve')" onmouseenter="showHotspot('sleeve')" title="Sleeve Motifs"></div>
-          <div id="hotspotHem" class="hotspot" style="top:82%;left:48%" onclick="showHotspot('hem')" onmouseenter="showHotspot('hem')" title="Trouser Hem & Taping"></div>
-          
-          <!-- Spec Tooltip Badge -->
-          <div id="specBadge" class="spec-badge" style="top:20%;left:50%;transform:translateX(-50%)">
-            <p class="font-semibold mb-1" style="color:var(--ink)" id="specTitle">300 GSM Bio-Washed Fleece</p>
-            <p class="text-xs leading-relaxed" style="color:var(--slate)" id="specDesc">Premium combed cotton fleece, bio-washed for softness.</p>
-          </div>
         </div>
 
-        <!-- Thumbnails Gallery Row Header & Container -->
+        <!-- Thumbnails Gallery Row Header & Container (Outside Frame Typography) -->
         <div>
           <div class="flex items-center justify-between mb-3 px-1">
-            <p id="cfgViewLabel" class="text-xs font-mono uppercase tracking-wider font-semibold" style="color:var(--slate)">
-              Colorway Gallery (4 Views)
+            <p id="cfgViewLabel" class="text-xs font-mono uppercase tracking-[0.2em] font-bold" style="color:var(--slate)">
+              COLORWAY GALLERY (4 VIEWS)
             </p>
-            <span class="text-[11px] font-mono text-[var(--slate)] tracking-wider hidden sm:inline">
-              SELECT ANGLE TO INSPECT
+            <span id="cfgAngleLabel" class="text-xs font-mono text-[var(--ink)] tracking-[0.2em] font-bold uppercase">
+              01 / 04 • LOOKBOOK PORTRAIT
             </span>
           </div>
 
@@ -594,13 +557,13 @@
       <div class="lg:col-span-5 flex flex-col justify-between">
         
         <div>
-          <!-- Tag & Rating -->
+          <!-- Tag & Rating (Clean Plain Typography, Zero Pill Bubbles) -->
           <div class="flex items-center justify-between gap-2 mb-3">
             <span id="cfgTag" class="text-[11px] font-mono tracking-[0.25em] uppercase font-bold text-[var(--slate)]">
               Everyday Roots • Crimson & Gold • Prayer-Arch
             </span>
-            <span class="pill px-2.5 py-0.5 text-[11px] font-bold shrink-0" style="background:rgba(119,141,122,0.18);color:var(--navy)">
-              ★ 4.9 (142 Reviews)
+            <span class="text-xs font-mono font-bold tracking-wider text-[var(--navy)] shrink-0">
+              ★ 4.9 (142 REVIEWS)
             </span>
           </div>
 
@@ -617,11 +580,11 @@
           <!-- ALL 7 COLORWAYS SELECTOR -->
           <div class="mb-6 pb-6 border-b border-black/10">
             <div class="flex items-center justify-between mb-3">
-              <p class="text-xs uppercase tracking-wider font-semibold" style="color:var(--slate)">
+              <p class="text-xs font-mono uppercase tracking-wider font-semibold" style="color:var(--slate)">
                 Select Colorway: <span id="cfgColorName" class="font-bold text-sm tracking-normal capitalize" style="color:var(--ink)">Crimson Maroon</span>
               </p>
-              <span class="text-[10px] font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full" style="background:rgba(13,27,42,0.06);color:var(--slate)">
-                7 Colorways
+              <span class="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-[var(--slate)]">
+                7 COLORWAYS AVAILABLE
               </span>
             </div>
 
@@ -631,47 +594,47 @@
             </div>
           </div>
 
-          <!-- SIZE SELECTOR -->
+          <!-- SIZE SELECTOR (Sharp 2px Corners) -->
           <div class="mb-6">
             <div class="flex items-center justify-between mb-2">
-              <p class="text-xs uppercase tracking-wider font-semibold" style="color:var(--slate)">
-                Size: <span id="cfgSizeLabel" class="font-bold text-sm" style="color:var(--ink)">M (Oversized Boxy Fit)</span>
+              <p class="text-xs font-mono uppercase tracking-wider font-semibold" style="color:var(--slate)">
+                Size: <span id="cfgSizeLabel" class="font-bold text-sm font-sans" style="color:var(--ink)">M (Oversized Boxy Fit)</span>
               </p>
-              <button type="button" onclick="showToast('Boxy drop-shoulder fit. For standard fit, size down one size.')" class="text-xs underline cursor-pointer hover:text-black" style="color:var(--slate)">
-                Size Guide
+              <button type="button" onclick="showToast('Boxy drop-shoulder fit. For standard fit, size down one size.')" class="text-xs font-mono underline cursor-pointer hover:text-black" style="color:var(--slate)">
+                SIZE GUIDE ↗
               </button>
             </div>
             <div class="flex gap-2" id="cfgSizes">
-              <button type="button" onclick="selectCfgSize('XS', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">XS</button>
-              <button type="button" onclick="selectCfgSize('S', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">S</button>
-              <button type="button" onclick="selectCfgSize('M', this)" class="cfg-size-btn active px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="background:var(--navy);border-color:var(--navy);color:var(--khadi)">M</button>
-              <button type="button" onclick="selectCfgSize('L', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">L</button>
-              <button type="button" onclick="selectCfgSize('XL', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">XL</button>
+              <button type="button" onclick="selectCfgSize('XS', this)" class="cfg-size-btn px-4 py-2.5 text-xs font-mono font-bold rounded-sm border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">XS</button>
+              <button type="button" onclick="selectCfgSize('S', this)" class="cfg-size-btn px-4 py-2.5 text-xs font-mono font-bold rounded-sm border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">S</button>
+              <button type="button" onclick="selectCfgSize('M', this)" class="cfg-size-btn active px-4 py-2.5 text-xs font-mono font-bold rounded-sm border transition cursor-pointer" style="background:var(--navy);border-color:var(--navy);color:var(--khadi)">M</button>
+              <button type="button" onclick="selectCfgSize('L', this)" class="cfg-size-btn px-4 py-2.5 text-xs font-mono font-bold rounded-sm border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">L</button>
+              <button type="button" onclick="selectCfgSize('XL', this)" class="cfg-size-btn px-4 py-2.5 text-xs font-mono font-bold rounded-sm border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">XL</button>
             </div>
           </div>
 
           <!-- PRICE -->
           <div class="mb-6">
-            <p class="text-xs uppercase tracking-wider font-semibold mb-1" style="color:var(--slate)">Price (Co-ord 2-Piece Set):</p>
+            <p class="text-xs font-mono uppercase tracking-wider font-semibold mb-1" style="color:var(--slate)">Price (Co-ord 2-Piece Set):</p>
             <div class="flex items-baseline gap-3">
               <p class="display text-4xl sm:text-5xl" id="cfgPrice" style="color:var(--navy)">₹2,199</p>
-              <span class="text-xs font-medium px-2.5 py-1 rounded bg-black/5" style="color:var(--slate)">
-                Taxes & Free Shipping Included
+              <span class="text-xs font-mono text-[var(--slate)] uppercase tracking-wider">
+                INCL. TAXES • FREE SHIPPING
               </span>
             </div>
           </div>
 
         </div>
 
-        <!-- QUANTITY & ADD TO BAG -->
+        <!-- QUANTITY & ADD TO BAG (Sharp Editorial Controls) -->
         <div>
           <div class="flex items-center gap-3 sm:gap-4 flex-wrap mb-4">
-            <div class="flex items-center rounded-full border bg-white" style="border-color:var(--ink)">
-              <button type="button" onclick="cfgQty(-1)" class="w-11 h-11 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer rounded-l-full transition" aria-label="Decrease quantity">-</button>
-              <span id="cfgQty" class="px-4 font-semibold text-base min-w-[2rem] text-center">1</span>
-              <button type="button" onclick="cfgQty(1)" class="w-11 h-11 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer rounded-r-full transition" aria-label="Increase quantity">+</button>
+            <div class="flex items-center rounded-sm border bg-white" style="border-color:var(--ink)">
+              <button type="button" onclick="cfgQty(-1)" class="w-11 h-11 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer rounded-none transition" aria-label="Decrease quantity">-</button>
+              <span id="cfgQty" class="px-4 font-semibold text-base min-w-[2rem] text-center font-mono">1</span>
+              <button type="button" onclick="cfgQty(1)" class="w-11 h-11 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer rounded-none transition" aria-label="Increase quantity">+</button>
             </div>
-            <button type="button" onclick="addToBagCfg()" class="pill flex-1 min-w-[200px] py-3.5 px-8 text-sm font-semibold tracking-wider transition-all duration-300 hover:scale-105 shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-2 uppercase" style="background:var(--navy);color:var(--khadi)">
+            <button type="button" onclick="addToBagCfg()" class="rounded-sm flex-1 min-w-[200px] py-4 px-8 text-xs font-mono font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[var(--ink)] shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-2" style="background:var(--navy);color:var(--khadi)">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
               <span>ADD TO BAG</span>
             </button>
@@ -710,21 +673,21 @@
       </h2>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="review-card rounded-3xl p-7 shadow-sm" style="background:var(--sandstone)">
+      <div class="review-card rounded-sm p-7 shadow-sm border border-black/10" style="background:var(--sandstone)">
         <div class="flex gap-1 mb-3 text-sm" style="color:var(--navy)">★★★★★</div>
         <p class="text-sm leading-relaxed mb-5" style="color:var(--ink)">
           "Bro the 300 GSM is actually insane, so warm for Delhi winters. Boxy fit hits different. The Indigo and Raw Khadi tones are unmatched."
         </p>
         <p class="text-xs font-bold uppercase tracking-wider" style="color:var(--ink)">— Arjun, Delhi University</p>
       </div>
-      <div class="review-card active rounded-3xl p-7 shadow-xl">
+      <div class="review-card active rounded-sm p-7 shadow-xl">
         <div class="flex gap-1 mb-3 text-sm" style="color:var(--khadi)">★★★★★</div>
         <p class="text-sm leading-relaxed mb-5">
           "Finally a brand that doesn't gatekeep streetwear. The set in rich Indigo and Mehendi Sage is gorgeous, fits oversized perfectly. COD available?? Already ordered two more."
         </p>
         <p class="text-xs font-bold uppercase tracking-wider">— Priya, Bangalore</p>
       </div>
-      <div class="review-card rounded-3xl p-7 shadow-sm" style="background:var(--sandstone)">
+      <div class="review-card rounded-sm p-7 shadow-sm border border-black/10" style="background:var(--sandstone)">
         <div class="flex gap-1 mb-3 text-sm" style="color:var(--navy)">★★★★☆</div>
         <p class="text-sm leading-relaxed mb-5" style="color:var(--ink)">
           "The folk embroidery set in Raw Khadi Cream and Neel Slate is my new go-to. Washed it twice, color still popping. Drop-shoulder fit is chef's kiss."
@@ -738,20 +701,20 @@
 <!-- ============ NEWSLETTER ============ -->
 <section class="py-20 px-4 md:px-8" style="background:var(--khadi)">
   <div class="max-w-[1440px] mx-auto">
-    <div class="rounded-3xl p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm" style="background:var(--sandstone)">
+    <div class="rounded-sm p-8 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm border border-black/10" style="background:var(--sandstone)">
       <div>
-        <p class="text-xs tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Drop Radar</p>
+        <p class="text-xs font-mono tracking-[0.3em] uppercase mb-2 font-semibold" style="color:var(--slate)">Drop Radar</p>
         <h2 class="display text-[clamp(32px,5vw,56px)] leading-[0.9]" style="color:var(--ink)">
           DROP UPDATES <span style="color:rgba(13,27,42,0.38)">TO YOUR INBOX!</span>
         </h2>
       </div>
       <div class="flex items-center gap-3 w-full md:w-auto">
-        <div class="pill flex items-center gap-3 px-5 py-3.5 flex-1 md:w-80 shadow-sm" style="background:var(--khadi)">
+        <div class="rounded-sm border border-black/15 flex items-center gap-3 px-5 py-3.5 flex-1 md:w-80 shadow-sm" style="background:var(--khadi)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--slate)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <input type="email" id="newsletterEmail" placeholder="Enter Your Email" class="bg-transparent outline-none text-sm w-full font-medium" onkeydown="if(event.key==='Enter')subscribeNewsletter()">
+          <input type="email" id="newsletterEmail" placeholder="Enter Your Email" class="bg-transparent outline-none text-xs font-mono w-full font-medium" onkeydown="if(event.key==='Enter')subscribeNewsletter()">
         </div>
-        <button class="pill px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer whitespace-nowrap" style="background:var(--navy);color:var(--khadi)" onclick="subscribeNewsletter()">
-          Subscribe Now
+        <button class="rounded-sm px-7 py-3.5 text-xs font-mono font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-[var(--ink)] shadow-md cursor-pointer whitespace-nowrap" style="background:var(--navy);color:var(--khadi)" onclick="subscribeNewsletter()">
+          SUBSCRIBE NOW
         </button>
       </div>
     </div>
@@ -955,34 +918,34 @@
 
 <!-- ============ QUICK VIEW MODAL ============ -->
 <div id="quickViewModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4" style="background:rgba(13,27,42,.6);backdrop-filter:blur(6px)">
-  <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-auto grid md:grid-cols-2 gap-0 shadow-2xl relative" style="border:2px solid var(--ink)">
-    <div class="aspect-[3/4] md:aspect-auto overflow-hidden rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none relative" style="background:var(--sandstone)">
+  <div class="bg-white rounded-sm max-w-3xl w-full max-h-[90vh] overflow-auto grid md:grid-cols-2 gap-0 shadow-2xl relative border-2 border-[var(--ink)]">
+    <div class="aspect-[3/4] md:aspect-auto overflow-hidden rounded-none relative" style="background:var(--sandstone)">
       <img id="qvImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover" alt="Product Quick View">
     </div>
     <div class="p-6 md:p-8 flex flex-col justify-between">
       <div>
         <div class="flex items-start justify-between mb-2">
-          <h3 id="qvName" class="font-bold text-2xl" style="color:var(--ink)">Warli Cropped Zip Hoodie Set</h3>
-          <button onclick="closeQuickView()" class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Close">✕</button>
+          <h3 id="qvName" class="font-bold text-2xl uppercase font-mono" style="color:var(--ink)">Warli Cropped Zip Hoodie Set</h3>
+          <button onclick="closeQuickView()" class="w-8 h-8 rounded-sm border border-black/10 flex items-center justify-center font-bold text-base hover:bg-black/5 cursor-pointer" aria-label="Close">✕</button>
         </div>
-        <p id="qvTag" class="text-xs mb-3 font-medium" style="color:var(--slate)">Indian Roots • Black • Warli, Sun & Lotus</p>
-        <div class="display text-4xl mb-4 font-bold" id="qvPrice" style="color:var(--navy)">₹1,999</div>
+        <p id="qvTag" class="text-xs mb-3 font-mono text-[var(--slate)] uppercase">Everyday Roots • Maroon • Prayer-Arch</p>
+        <div class="display text-4xl mb-4 font-bold" id="qvPrice" style="color:var(--navy)">₹2,199</div>
         <p class="text-sm leading-relaxed mb-6" style="color:var(--ink)">
           300 GSM bio-washed combed cotton fleece. Cropped zip hoodie + wide-leg trousers set. Drop-shoulder boxy fit with heritage motif print.
         </p>
         <div class="mb-6">
-          <p class="text-xs font-semibold uppercase tracking-wider mb-2" style="color:var(--slate)">Select Size</p>
+          <p class="text-xs font-mono font-semibold uppercase tracking-wider mb-2" style="color:var(--slate)">Select Size</p>
           <div class="flex flex-wrap gap-2" id="qvSizes">
-            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border active cursor-pointer" style="border-color:var(--ink)">S</button>
-            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">M</button>
-            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">L</button>
-            <button class="size-pill pill px-4 py-1.5 text-xs font-semibold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">XL</button>
+            <button class="size-pill rounded-sm px-4 py-2 text-xs font-mono font-bold border active cursor-pointer" style="border-color:var(--ink)">S</button>
+            <button class="size-pill rounded-sm px-4 py-2 text-xs font-mono font-bold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">M</button>
+            <button class="size-pill rounded-sm px-4 py-2 text-xs font-mono font-bold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">L</button>
+            <button class="size-pill rounded-sm px-4 py-2 text-xs font-mono font-bold border cursor-pointer" style="border-color:var(--ink);color:var(--ink)">XL</button>
           </div>
         </div>
       </div>
       <div class="flex gap-3 flex-wrap pt-4 border-t" style="border-color:rgba(13,27,42,0.08)">
-        <button id="qvAddBtn" class="pill flex-1 py-3 text-sm font-semibold transition hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">Add to Bag</button>
-        <button onclick="closeQuickView()" class="pill px-6 py-3 text-sm font-semibold border transition hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)">Close</button>
+        <button id="qvAddBtn" class="rounded-sm flex-1 py-3.5 text-xs font-mono font-bold tracking-[0.2em] uppercase transition hover:bg-[var(--ink)] shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">ADD TO BAG</button>
+        <button onclick="closeQuickView()" class="rounded-sm px-6 py-3.5 text-xs font-mono font-bold tracking-[0.2em] uppercase border transition hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)">CLOSE</button>
       </div>
     </div>
   </div>
@@ -990,32 +953,32 @@
 
 <!-- ============ CART DRAWER ============ -->
 <div id="cartDrawer" class="fixed inset-0 z-[100] hidden" style="background:rgba(13,27,42,.5);backdrop-filter:blur(4px)">
-  <div class="absolute right-0 top-0 h-full w-full max-w-md flex flex-col shadow-2xl" style="background:var(--khadi);border-left:2px solid var(--ink)">
+  <div class="absolute right-0 top-0 h-full w-full max-w-md flex flex-col shadow-2xl rounded-none" style="background:var(--khadi);border-left:2px solid var(--ink)">
     <div class="flex items-center justify-between p-5 border-b" style="border-color:var(--sandstone)">
       <div class="flex items-center gap-2">
-        <h3 class="display text-2xl" style="color:var(--ink)">Your Bag</h3>
-        <span class="text-xs px-2.5 py-0.5 rounded-full font-semibold" style="background:var(--sandstone);color:var(--ink)">Drop 01</span>
+        <h3 class="display text-2xl uppercase" style="color:var(--ink)">Your Bag</h3>
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[var(--slate)] font-bold">DROP 01</span>
       </div>
-      <button onclick="closeCart()" class="w-9 h-9 rounded-full flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Close">✕</button>
+      <button onclick="closeCart()" class="w-8 h-8 rounded-sm border border-black/10 flex items-center justify-center font-bold text-base hover:bg-black/5 cursor-pointer" aria-label="Close">✕</button>
     </div>
     <div id="cartItems" class="flex-1 overflow-auto p-5 space-y-3"></div>
     <div class="p-5 border-t" style="border-color:var(--sandstone)">
       <div class="flex items-center justify-between mb-2">
-        <span class="text-xs uppercase tracking-wider font-semibold" style="color:var(--slate)">Shipping</span>
-        <span class="text-xs font-bold text-emerald-800">FREE Pan-India</span>
+        <span class="text-xs font-mono uppercase tracking-wider font-semibold" style="color:var(--slate)">Shipping</span>
+        <span class="text-xs font-mono font-bold text-emerald-800">FREE PAN-INDIA</span>
       </div>
       <div class="flex items-center justify-between mb-4">
-        <span class="font-semibold text-lg" style="color:var(--ink)">Subtotal</span>
+        <span class="font-mono uppercase font-bold text-base" style="color:var(--ink)">Subtotal</span>
         <span id="cartSubtotal" class="display text-3xl font-bold" style="color:var(--navy)">₹0</span>
       </div>
-      <button onclick="checkout()" class="pill block w-full text-center px-5 py-3.5 text-sm font-semibold transition hover:scale-105 shadow-xl cursor-pointer" style="background:var(--navy);color:var(--khadi)">Proceed to Checkout ↗</button>
-      <p class="text-[11px] text-center mt-2 font-medium" style="color:var(--slate)">COD Available • 7-Day Hassle-Free Exchange</p>
+      <button onclick="checkout()" class="rounded-sm block w-full text-center px-5 py-4 text-xs font-mono font-bold tracking-[0.2em] uppercase transition hover:bg-[var(--ink)] shadow-xl cursor-pointer" style="background:var(--navy);color:var(--khadi)">PROCEED TO CHECKOUT ↗</button>
+      <p class="text-[11px] font-mono text-center mt-2 font-medium" style="color:var(--slate)">COD Available • 7-Day Hassle-Free Exchange</p>
     </div>
   </div>
 </div>
 
 <!-- ============ TOAST ============ -->
-<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[130] hidden pill px-6 py-3 text-sm font-semibold shadow-2xl flex items-center gap-4 transition-all" style="background:var(--ink);color:var(--khadi)">
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[130] hidden rounded-sm px-6 py-3.5 text-xs font-mono tracking-wider uppercase font-semibold shadow-2xl flex items-center gap-4 transition-all border border-white/10" style="background:var(--ink);color:var(--khadi)">
   <span id="toastMsg">Added to bag</span>
   <button onclick="openCart()" class="underline font-bold transition hover:opacity-80 cursor-pointer" style="color:var(--sage)">View Bag</button>
 </div>
@@ -1338,7 +1301,7 @@
   function renderCart() {
     const container = document.getElementById('cartItems');
     if (cart.length === 0) {
-      container.innerHTML = '<div class="py-12 text-center"><p class="text-sm font-medium" style="color:var(--slate)">Your bag is currently empty.</p><button onclick="closeCart();document.getElementById(\'morphStageSection\').scrollIntoView({behavior:\'smooth\'})" class="mt-4 pill px-5 py-2 text-xs font-semibold cursor-pointer" style="background:var(--navy);color:var(--khadi)">Explore Drop 01</button></div>';
+      container.innerHTML = '<div class="py-12 text-center"><p class="text-xs font-mono tracking-wider uppercase font-medium" style="color:var(--slate)">Your bag is currently empty.</p><button onclick="closeCart();document.getElementById(\'morphStageSection\').scrollIntoView({behavior:\'smooth\'})" class="mt-4 rounded-sm px-6 py-2.5 text-xs font-mono font-bold tracking-widest uppercase cursor-pointer" style="background:var(--navy);color:var(--khadi)">EXPLORE DROP 01</button></div>';
       document.getElementById('cartSubtotal').textContent = '₹0';
       return;
     }
@@ -1346,17 +1309,17 @@
     let subtotal = 0;
     cart.forEach((c, i) => {
       subtotal += c.price * c.qty;
-      const sizeTag = c.size ? ' • Size ' + c.size : '';
-      html += '<div class="flex gap-4 items-center p-3.5 rounded-2xl bg-white shadow-sm" style="border:1px solid rgba(13,27,42,0.08)">' +
-        '<img src="' + c.img + '" class="w-16 h-20 object-cover rounded-xl flex-none" alt="' + c.name + '">' +
+      const sizeTag = c.size ? ' • SIZE ' + c.size : '';
+      html += '<div class="flex gap-4 items-center p-3 rounded-sm bg-white shadow-sm border border-black/10">' +
+        '<img src="' + c.img + '" class="w-16 h-20 object-cover rounded-none flex-none border border-black/10" alt="' + c.name + '">' +
         '<div class="flex-1 min-w-0">' +
-          '<p class="text-sm font-semibold truncate" style="color:var(--ink)">' + c.name + '</p>' +
-          '<p class="text-xs" style="color:var(--slate)">' + c.priceStr + sizeTag + ' × ' + c.qty + '</p>' +
+          '<p class="text-xs font-mono font-bold uppercase truncate" style="color:var(--ink)">' + c.name + '</p>' +
+          '<p class="text-xs font-mono text-[var(--slate)]">' + c.priceStr + sizeTag + ' × ' + c.qty + '</p>' +
         '</div>' +
-        '<div class="flex items-center gap-1.5 flex-none">' +
-          '<button onclick="changeQty(' + i + ',-1)" class="w-7 h-7 rounded-full flex items-center justify-center border font-bold hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)" aria-label="Decrease quantity">−</button>' +
-          '<span class="w-6 text-center text-sm font-semibold">' + c.qty + '</span>' +
-          '<button onclick="changeQty(' + i + ',1)" class="w-7 h-7 rounded-full flex items-center justify-center border font-bold hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)" aria-label="Increase quantity">+</button>' +
+        '<div class="flex items-center gap-1 flex-none">' +
+          '<button onclick="changeQty(' + i + ',-1)" class="w-7 h-7 rounded-sm flex items-center justify-center border font-mono font-bold hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)" aria-label="Decrease quantity">−</button>' +
+          '<span class="w-6 text-center text-xs font-mono font-bold">' + c.qty + '</span>' +
+          '<button onclick="changeQty(' + i + ',1)" class="w-7 h-7 rounded-sm flex items-center justify-center border font-mono font-bold hover:bg-black/5 cursor-pointer" style="border-color:var(--ink);color:var(--ink)" aria-label="Increase quantity">+</button>' +
         '</div>' +
       '</div>';
     });
@@ -1594,14 +1557,16 @@
       if (idx) idx.textContent = slide.index;
     }
 
-    // Update Lookbook Dots
+    // Update Lookbook Indicators (clean minimal dashes)
     document.querySelectorAll('.lookbook-dot').forEach((d, idx) => {
+      d.style.height = '2px';
+      d.style.borderRadius = '2px';
       if (idx === curLookbook) {
         d.style.background = 'var(--ink)';
         d.style.width = '32px';
       } else {
         d.style.background = 'var(--sandstone)';
-        d.style.width = '10px';
+        d.style.width = '12px';
       }
     });
   }
@@ -1820,10 +1785,12 @@
       }
     });
 
-    // Update badge & view label
-    const badge = document.getElementById('cfgImageBadge');
-    if (badge) {
-      badge.textContent = `${imgIdx + 1} / ${cw.images.length} • ${imgObj.label.toUpperCase()}`;
+    // Update clean minimal plain text label outside image
+    const angleLabel = document.getElementById('cfgAngleLabel');
+    if (angleLabel) {
+      const padIdx = String(imgIdx + 1).padStart(2, '0');
+      const padTotal = String(cw.images.length).padStart(2, '0');
+      angleLabel.textContent = `${padIdx} / ${padTotal} • ${imgObj.label.toUpperCase()}`;
     }
   }
 
@@ -1832,22 +1799,22 @@
     if (!container) return;
     container.innerHTML = cw.images.map((imgObj, i) => {
       const isAct = i === activeImageIdx;
-      const actStyle = isAct ? 'border-color:var(--ink); box-shadow:0 0 0 2px var(--ink);' : 'border-color:rgba(0,0,0,0.1);';
+      const actStyle = isAct ? 'border-color:var(--ink); box-shadow:0 0 0 2px var(--ink);' : 'border-color:rgba(0,0,0,0.12);';
       const actClass = isAct ? 'scale-105' : 'opacity-60 hover:opacity-100 hover:scale-105';
       return `
         <button type="button"
                 onclick="selectThumbnail(${i})"
                 title="${imgObj.label}"
-                class="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 shrink-0 bg-white/50 p-0.5 border ${actClass}"
+                class="w-16 h-16 md:w-20 md:h-20 rounded-none overflow-hidden cursor-pointer transition-all duration-200 shrink-0 bg-white/50 p-0.5 border ${actClass}"
                 style="${actStyle}">
-          <img src="${imgObj.src}" class="w-full h-full object-cover rounded-xl pointer-events-none" alt="${cw.name} - ${imgObj.label}">
+          <img src="${imgObj.src}" class="w-full h-full object-cover rounded-none pointer-events-none" alt="${cw.name} - ${imgObj.label}">
         </button>
       `;
     }).join('');
 
     const countLabel = document.getElementById('cfgViewLabel');
     if (countLabel) {
-      countLabel.textContent = `Colorway Gallery (${cw.images.length} Views)`;
+      countLabel.textContent = `COLORWAY GALLERY (${cw.images.length} VIEWS)`;
     }
   }
 
@@ -2001,15 +1968,11 @@
   function triggerHeroHeadlineEntrance() {
     if (!window.gsap) return;
     gsap.set('.hero-line-1, .hero-line-2', { y: 45, opacity: 0 });
-    gsap.set('.rotating-badge', { scale: 0, opacity: 0, rotation: -90 });
 
     const entranceTl = gsap.timeline({ delay: 0.05 });
     entranceTl.to('.hero-line-1, .hero-line-2', {
       y: 0, opacity: 1, duration: 0.65, stagger: 0.12, ease: 'power3.out'
     });
-    entranceTl.to('.rotating-badge', {
-      scale: 1, opacity: 1, rotation: 0, duration: 0.55, ease: 'back.out(1.8)'
-    }, '-=0.35');
   }
 
   // Pinned 3D Outfit Morph Stage Initialization (60 FPS, Velocity-Aware Snap, Locked Sync)
