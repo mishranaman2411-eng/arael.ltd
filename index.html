@@ -542,59 +542,160 @@
         Product <span style="color:rgba(13,27,42,0.38)">Details</span>
       </h2>
     </div>
-    <div class="grid md:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden shadow-sm" style="border:1px solid rgba(13,27,42,0.1)">
-      <!-- gallery with hotspots -->
-      <div class="p-6 md:p-8 relative" style="background:var(--sandstone)">
-        <div class="rounded-2xl overflow-hidden aspect-[4/5] relative mb-4 shadow-sm" id="cfgGallery">
-          <img id="cfgImg" src="designs/midnight-navy/Cropped_zip_hoodie_and_trousers_fae99eee-clean.png" class="w-full h-full object-cover transition-transform duration-500" alt="Product details">
-          <!-- hotspots -->
-          <div class="hotspot" style="top:38%;left:48%" onclick="showHotspot('chest')" onmouseenter="showHotspot('chest')" title="Hoodie Chest"></div>
-          <div class="hotspot" style="top:52%;left:22%" onclick="showHotspot('sleeve')" onmouseenter="showHotspot('sleeve')" title="Sleeve Print"></div>
-          <div class="hotspot" style="top:82%;left:50%" onclick="showHotspot('hem')" onmouseenter="showHotspot('hem')" title="Trouser Hem"></div>
-          <!-- spec badge -->
+
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 bg-white rounded-3xl overflow-hidden shadow-sm p-6 sm:p-8 lg:p-12" style="border:1px solid rgba(13,27,42,0.1)">
+      
+      <!-- LEFT: Image Gallery & Dynamic Thumbnails (7 cols on lg) -->
+      <div class="lg:col-span-7 flex flex-col justify-between">
+        
+        <!-- Main Viewer with Hotspots & Status Badge -->
+        <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-[4/5] relative mb-5 shadow-sm group bg-[#EAE5D9]/40 border border-black/5" id="cfgGallery">
+          <img id="cfgImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover transition-all duration-500" alt="Product details">
+          
+          <!-- Floating Status / Angle Badge -->
+          <div class="absolute top-4 left-4 z-20 flex items-center gap-2">
+            <span id="cfgImageBadge" class="pill px-3 py-1.5 text-[11px] font-mono tracking-wider uppercase font-semibold backdrop-blur-md shadow-sm border border-black/10 bg-white/85 text-[var(--ink)]">
+              1 / 4 • LOOKBOOK PORTRAIT
+            </span>
+          </div>
+
+          <!-- Hotspots (Chest, Sleeve, Hem) -->
+          <div id="hotspotChest" class="hotspot" style="top:36%;left:50%" onclick="showHotspot('chest')" onmouseenter="showHotspot('chest')" title="Chest Embroidery"></div>
+          <div id="hotspotSleeve" class="hotspot" style="top:48%;left:22%" onclick="showHotspot('sleeve')" onmouseenter="showHotspot('sleeve')" title="Sleeve Motifs"></div>
+          <div id="hotspotHem" class="hotspot" style="top:82%;left:48%" onclick="showHotspot('hem')" onmouseenter="showHotspot('hem')" title="Trouser Hem & Taping"></div>
+          
+          <!-- Spec Tooltip Badge -->
           <div id="specBadge" class="spec-badge" style="top:20%;left:50%;transform:translateX(-50%)">
             <p class="font-semibold mb-1" style="color:var(--ink)" id="specTitle">300 GSM Bio-Washed Fleece</p>
             <p class="text-xs leading-relaxed" style="color:var(--slate)" id="specDesc">Premium combed cotton fleece, bio-washed for softness.</p>
           </div>
         </div>
-        <div class="flex gap-3">
-          <button onclick="setCfgGallery(0)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--ink)"><img src="designs/midnight-navy/Cropped_zip_hoodie_and_trousers_fae99eee-clean.png" class="w-full h-full object-cover" alt="Thumb 1"></button>
-          <button onclick="setCfgGallery(1)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="designs/ash-grey/Hoodie_and_trousers_on_mannequin_81ea9fe2-clean.png" class="w-full h-full object-cover" alt="Thumb 2"></button>
-          <button onclick="setCfgGallery(2)" class="w-16 h-16 rounded-2xl overflow-hidden border-2 cursor-pointer transition hover:scale-105" style="border-color:var(--sandstone)"><img src="designs/raw-khadi/Zip_hoodie_and_trousers_display_995885be-clean.png" class="w-full h-full object-cover" alt="Thumb 3"></button>
-        </div>
-      </div>
-      <!-- info -->
-      <div class="p-8 md:p-12 flex flex-col justify-center">
-        <h3 id="cfgName" class="display text-4xl md:text-5xl mb-2" style="color:var(--ink)">Warli Cropped Zip Hoodie Set</h3>
-        <div class="flex items-center gap-2 mb-4">
-          <span class="pill px-3.5 py-1 text-xs font-bold" style="background:var(--sage);color:var(--ink)">4.9 ★★★★★ (128 Reviews)</span>
-        </div>
-        <p class="text-sm md:text-base leading-relaxed mb-6" style="color:var(--slate)">
-          300 GSM bio-washed combed cotton fleece. Cropped zip hoodie + wide-leg trousers set. Drop-shoulder boxy fit with heritage motif print, tailored for effortless draping and unmatched comfort.
-        </p>
-        <div class="mb-6">
-          <p class="text-xs uppercase tracking-wider font-semibold mb-2" style="color:var(--slate)">Colorway</p>
-          <div class="flex gap-3">
-            <button class="w-8 h-8 rounded-full border-2 transition hover:scale-110 cursor-pointer" style="background:var(--ink);border-color:var(--ink)" onclick="selectSwatch(this, 0)" aria-label="Ink"></button>
-            <button class="w-8 h-8 rounded-full border-2 transition hover:scale-110 cursor-pointer" style="background:var(--sage);border-color:var(--sandstone)" onclick="selectSwatch(this, 1)" aria-label="Sage"></button>
-            <button class="w-8 h-8 rounded-full border-2 transition hover:scale-110 cursor-pointer" style="background:var(--sandstone);border-color:var(--sandstone)" onclick="selectSwatch(this, 2)" aria-label="Sandstone"></button>
+
+        <!-- Thumbnails Gallery Row Header & Container -->
+        <div>
+          <div class="flex items-center justify-between mb-3 px-1">
+            <p id="cfgViewLabel" class="text-xs font-mono uppercase tracking-wider font-semibold" style="color:var(--slate)">
+              Colorway Gallery (4 Views)
+            </p>
+            <span class="text-[11px] font-mono text-[var(--slate)] tracking-wider hidden sm:inline">
+              SELECT ANGLE TO INSPECT
+            </span>
+          </div>
+
+          <!-- All thumbnails for the selected colorway are rendered here dynamically -->
+          <div id="cfgThumbs" class="flex gap-3 overflow-x-auto pb-2 scrollbar-none items-center">
+            <!-- Populated dynamically via renderCfgThumbnails -->
           </div>
         </div>
-        <div class="mb-6">
-          <p class="text-xs uppercase tracking-wider font-semibold mb-1" style="color:var(--slate)">Price:</p>
-          <p class="display text-5xl" id="cfgPrice" style="color:var(--navy)">₹1,999</p>
-        </div>
-        <div class="flex items-center gap-4 flex-wrap">
-          <div class="flex items-center rounded-full border" style="border-color:var(--ink)">
-            <button onclick="cfgQty(-1)" class="w-10 h-10 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Decrease quantity">-</button>
-            <span id="cfgQty" class="px-4 font-semibold text-base">1</span>
-            <button onclick="cfgQty(1)" class="w-10 h-10 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer" aria-label="Increase quantity">+</button>
-          </div>
-          <button onclick="addToBagCfg()" class="pill px-8 py-3.5 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-md cursor-pointer" style="background:var(--navy);color:var(--khadi)">
-            ADD TO BAG
-          </button>
-        </div>
+
       </div>
+
+      <!-- RIGHT: Product Info, All 7 Colorways, Sizes, Price, Add to Bag (5 cols on lg) -->
+      <div class="lg:col-span-5 flex flex-col justify-between">
+        
+        <div>
+          <!-- Tag & Rating -->
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span id="cfgTag" class="text-[11px] font-mono tracking-[0.25em] uppercase font-bold text-[var(--slate)]">
+              Everyday Roots • Crimson & Gold • Prayer-Arch
+            </span>
+            <span class="pill px-2.5 py-0.5 text-[11px] font-bold shrink-0" style="background:rgba(119,141,122,0.18);color:var(--navy)">
+              ★ 4.9 (142 Reviews)
+            </span>
+          </div>
+
+          <!-- Product Title -->
+          <h3 id="cfgName" class="display text-3xl sm:text-4xl lg:text-[42px] leading-[1.05] mb-3" style="color:var(--ink)">
+            Crimson Carpet Festive Set
+          </h3>
+
+          <!-- Description -->
+          <p id="cfgDesc" class="text-sm leading-relaxed mb-6" style="color:var(--slate)">
+            300 GSM bio-washed combed cotton fleece in deep Crimson Maroon with antique gold prayer-arch patchwork motifs. Cropped zip hoodie + tailored wide-leg trousers built for festive evenings and winter layering.
+          </p>
+
+          <!-- ALL 7 COLORWAYS SELECTOR -->
+          <div class="mb-6 pb-6 border-b border-black/10">
+            <div class="flex items-center justify-between mb-3">
+              <p class="text-xs uppercase tracking-wider font-semibold" style="color:var(--slate)">
+                Select Colorway: <span id="cfgColorName" class="font-bold text-sm tracking-normal capitalize" style="color:var(--ink)">Crimson Maroon</span>
+              </p>
+              <span class="text-[10px] font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full" style="background:rgba(13,27,42,0.06);color:var(--slate)">
+                7 Colorways
+              </span>
+            </div>
+
+            <!-- 7 Luxury Circular Color Swatches (Exact folder colors) -->
+            <div id="cfgColorSwatches" class="flex flex-wrap gap-2.5 sm:gap-3">
+              <!-- Rendered dynamically via renderCfgSwatches -->
+            </div>
+          </div>
+
+          <!-- SIZE SELECTOR -->
+          <div class="mb-6">
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-xs uppercase tracking-wider font-semibold" style="color:var(--slate)">
+                Size: <span id="cfgSizeLabel" class="font-bold text-sm" style="color:var(--ink)">M (Oversized Boxy Fit)</span>
+              </p>
+              <button type="button" onclick="showToast('Boxy drop-shoulder fit. For standard fit, size down one size.')" class="text-xs underline cursor-pointer hover:text-black" style="color:var(--slate)">
+                Size Guide
+              </button>
+            </div>
+            <div class="flex gap-2" id="cfgSizes">
+              <button type="button" onclick="selectCfgSize('XS', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">XS</button>
+              <button type="button" onclick="selectCfgSize('S', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">S</button>
+              <button type="button" onclick="selectCfgSize('M', this)" class="cfg-size-btn active px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="background:var(--navy);border-color:var(--navy);color:var(--khadi)">M</button>
+              <button type="button" onclick="selectCfgSize('L', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">L</button>
+              <button type="button" onclick="selectCfgSize('XL', this)" class="cfg-size-btn px-4 py-2 text-xs font-bold rounded-xl border transition cursor-pointer" style="border-color:rgba(13,27,42,0.18);color:var(--ink)">XL</button>
+            </div>
+          </div>
+
+          <!-- PRICE -->
+          <div class="mb-6">
+            <p class="text-xs uppercase tracking-wider font-semibold mb-1" style="color:var(--slate)">Price (Co-ord 2-Piece Set):</p>
+            <div class="flex items-baseline gap-3">
+              <p class="display text-4xl sm:text-5xl" id="cfgPrice" style="color:var(--navy)">₹2,199</p>
+              <span class="text-xs font-medium px-2.5 py-1 rounded bg-black/5" style="color:var(--slate)">
+                Taxes & Free Shipping Included
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- QUANTITY & ADD TO BAG -->
+        <div>
+          <div class="flex items-center gap-3 sm:gap-4 flex-wrap mb-4">
+            <div class="flex items-center rounded-full border bg-white" style="border-color:var(--ink)">
+              <button type="button" onclick="cfgQty(-1)" class="w-11 h-11 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer rounded-l-full transition" aria-label="Decrease quantity">-</button>
+              <span id="cfgQty" class="px-4 font-semibold text-base min-w-[2rem] text-center">1</span>
+              <button type="button" onclick="cfgQty(1)" class="w-11 h-11 flex items-center justify-center font-bold text-lg hover:bg-black/5 cursor-pointer rounded-r-full transition" aria-label="Increase quantity">+</button>
+            </div>
+            <button type="button" onclick="addToBagCfg()" class="pill flex-1 min-w-[200px] py-3.5 px-8 text-sm font-semibold tracking-wider transition-all duration-300 hover:scale-105 shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-2 uppercase" style="background:var(--navy);color:var(--khadi)">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+              <span>ADD TO BAG</span>
+            </button>
+          </div>
+
+          <!-- Assurance Badges -->
+          <div class="grid grid-cols-3 gap-2 pt-4 border-t border-black/10 text-[11px] font-medium" style="color:var(--slate)">
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-emerald-700 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>300 GSM Combed Fleece</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-emerald-700 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Cash on Delivery</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-emerald-700 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>7-Day Easy Exchange</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </section>
@@ -1514,36 +1615,318 @@
     showToast('You are on the Drop 02 waitlist!');
   }
 
-  // Product Details Configurator
+  // ============ PRODUCT DETAILS CONFIGURATOR (ALL 7 COLORWAYS) ============
+  const colorwayDetails = [
+    {
+      id: 'maroon',
+      name: 'Crimson Carpet Festive Set',
+      colorName: 'Crimson Maroon',
+      hex: '#701C24',
+      tag: 'Everyday Roots • Crimson & Gold • Prayer-Arch',
+      price: 2199,
+      priceStr: '₹2,199',
+      desc: '300 GSM bio-washed combed cotton fleece in deep Crimson Maroon with antique gold prayer-arch patchwork motifs. Cropped zip hoodie + tailored wide-leg trousers built for festive evenings and winter layering.',
+      images: [
+        { src: 'designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png', label: 'Lookbook Portrait' },
+        { src: 'designs/maroon/Ghost_mannequin_hoodie_and_trousers_470d9706-clean.png', label: 'Mannequin Set' },
+        { src: 'designs/maroon/Photographing_hoodie_and_trouser…_8b67168e-clean.png', label: 'Editorial Display' },
+        { src: 'designs/maroon/Photographing_hoodie_zipper_and_…_686e4268-clean.png', label: 'Macro Zipper & Embroidery' }
+      ]
+    },
+    {
+      id: 'midnight-navy',
+      name: 'Midnight Warli Cropped Zip Set',
+      colorName: 'Midnight Indigo',
+      hex: '#1B263B',
+      tag: 'Indian Roots • Midnight Indigo • Warli Sun & Lotus',
+      price: 2299,
+      priceStr: '₹2,299',
+      desc: '300 GSM bio-washed combed cotton fleece in Midnight Indigo with celestial Warli sun and lotus high-density puff print. Cropped boxy zip hoodie + wide-leg trousers tailored for effortless draping.',
+      images: [
+        { src: 'designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png', label: 'Lookbook Model' },
+        { src: 'designs/midnight-navy/Cropped_zip_hoodie_and_trousers_fae99eee-clean.png', label: 'Cropped Zip Set' },
+        { src: 'designs/midnight-navy/Zip_hoodie_and_trousers_display_91d2fdae-clean.png', label: 'Tracksuit Display' },
+        { src: 'designs/midnight-navy/Macro_photograph_of_hoodie_zipper_71f7852f-clean.png', label: 'Macro Zipper & Embroidery' }
+      ]
+    },
+    {
+      id: 'ash-grey',
+      name: 'Ash Grey Warli Co-ord Set',
+      colorName: 'Ash Grey',
+      hex: '#8E9297',
+      tag: 'Indian Roots • Ash Grey • Tribal Warli Figures',
+      price: 2099,
+      priceStr: '₹2,099',
+      desc: '300 GSM bio-washed combed cotton fleece in refined Ash Grey featuring authentic Warli folk dancing tribal figures. Drop-shoulder zip hoodie + relaxed wide-leg trousers with ribbed accents.',
+      images: [
+        { src: 'designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png', label: 'Lookbook Model' },
+        { src: 'designs/ash-grey/Hoodie_and_trousers_on_mannequin_81ea9fe2-clean.png', label: 'Mannequin Front' },
+        { src: 'designs/ash-grey/Hoodie_and_trousers_on_mannequin_f4039187-clean.png', label: 'Mannequin Angle' },
+        { src: 'designs/ash-grey/Hoodie_zipper_and_embroidered_bo…_b58ad8f3-clean.png', label: 'Macro Zipper Detail' },
+        { src: 'designs/ash-grey/Macro_close-up_of_hoodie_zipper_d3596c6e-clean.png', label: 'Macro Zipper Teeth' }
+      ]
+    },
+    {
+      id: 'raw-khadi',
+      name: 'Raw Khaki Heritage Floral Set',
+      colorName: 'Raw Khaki',
+      hex: '#E6DFCC',
+      tag: 'Everyday Roots • Raw Khadi • Crimson Floral Vine',
+      price: 2199,
+      priceStr: '₹2,199',
+      desc: '300 GSM unbleached organic cotton fleece in authentic Raw Khadi Cream draped in heritage crimson floral border embroidery and sacred temple-edge trims.',
+      images: [
+        { src: 'designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png', label: 'Lookbook Model' },
+        { src: 'designs/raw-khadi/Zip_hoodie_and_trousers_display_995885be-clean.png', label: 'Tracksuit Display' },
+        { src: 'designs/raw-khadi/Back_view_of_zip_hoodie_f40007da-clean.png', label: 'Back View Silhouette' },
+        { src: 'designs/raw-khadi/Hoodie_zipper_and_embroidered_bo…_f2a0685c-clean.png', label: 'Macro Zipper & Floral Detail' }
+      ]
+    },
+    {
+      id: 'taupe',
+      name: 'Sandstone Taupe Geometric Set',
+      colorName: 'Sandstone Taupe',
+      hex: '#9B8871',
+      tag: 'Everyday Roots • Sandstone Taupe • Diamond Weave',
+      price: 2149,
+      priceStr: '₹2,149',
+      desc: '300 GSM bio-washed combed cotton fleece in warm Sandstone Taupe with subtle diamond weave embroidery along the zipper placket and side trouser seams.',
+      images: [
+        { src: 'designs/taupe/Taupe Embroidered Tracksuit Portrait.png', label: 'Lookbook Portrait' },
+        { src: 'designs/taupe/Hoodie_and_trousers_on_mannequin_8204bc05-clean.png', label: 'Mannequin Front' },
+        { src: 'designs/taupe/Zip_hoodie_and_trousers_display_b9c9f80f-clean.png', label: 'Tracksuit Display' },
+        { src: 'designs/taupe/Macro_photograph_of_hoodie_zipper_dccdced5-clean.png', label: 'Macro Zipper Detail' }
+      ]
+    },
+    {
+      id: 'black',
+      name: 'Noir Black Lotus Embroidered Set',
+      colorName: 'Noir Lotus Black',
+      hex: '#1A1A1A',
+      tag: 'Indian Roots • Jet Black • Sacred Lotus',
+      price: 2299,
+      priceStr: '₹2,299',
+      desc: '300 GSM bio-washed combed cotton fleece in deep Noir Jet Black with sacred lotus needlework embroidery in gold-cream thread. Cropped zip hoodie + tailored trousers.',
+      images: [
+        { src: 'designs/black/Black Embroidered Lotus Tracksuit.png', label: 'Lookbook Portrait' },
+        { src: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', label: 'Full Set Display' },
+        { src: 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', label: 'Macro Zipper & Lotus' }
+      ]
+    },
+    {
+      id: 'two-tone-black-grey',
+      name: 'Onyx & Slate Two-Tone Cargo Set',
+      colorName: 'Two-Tone Noir & Slate',
+      hex: 'linear-gradient(135deg, #1A1A1A 50%, #5C6773 50%)',
+      tag: 'Heritage Streetwear • Noir & Slate • Cargo Co-ord',
+      price: 2499,
+      priceStr: '₹2,499',
+      desc: '300 GSM dual-tone fleece combining deep Noir Black and Slate Grey with contrast floral side-taping, structured cargo pockets, and cropped zip boxiness.',
+      images: [
+        { src: 'designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png', label: 'Lookbook Model' },
+        { src: 'designs/two-tone-black-grey/Hoodie_and_trousers_on_mannequin_526e0421-clean.png', label: 'Mannequin Front' },
+        { src: 'designs/two-tone-black-grey/Zip_hoodie_and_trousers_display_78d8345f-clean.png', label: 'Tracksuit Display' }
+      ]
+    }
+  ];
+
+  let activeColorwayIdx = 0;
+  let activeImageIdx = 0;
+  let activeCfgSize = 'M';
   let cfgQtyVal = 1;
+
   function cfgQty(delta) {
     cfgQtyVal = Math.max(1, cfgQtyVal + delta);
-    document.getElementById('cfgQty').textContent = cfgQtyVal;
+    const qtyEl = document.getElementById('cfgQty');
+    if (qtyEl) qtyEl.textContent = cfgQtyVal;
+  }
+
+  function selectCfgSize(size, btn) {
+    activeCfgSize = size;
+    const label = document.getElementById('cfgSizeLabel');
+    if (label) label.textContent = size + ' (Oversized Boxy Fit)';
+    document.querySelectorAll('.cfg-size-btn').forEach(b => {
+      b.style.background = 'transparent';
+      b.style.borderColor = 'rgba(13,27,42,0.18)';
+      b.style.color = 'var(--ink)';
+      b.classList.remove('active');
+    });
+    if (btn) {
+      btn.style.background = 'var(--navy)';
+      btn.style.borderColor = 'var(--navy)';
+      btn.style.color = 'var(--khadi)';
+      btn.classList.add('active');
+    }
+  }
+
+  function renderCfgSwatches() {
+    const container = document.getElementById('cfgColorSwatches');
+    if (!container) return;
+    container.innerHTML = colorwayDetails.map((cw, i) => {
+      const isGrad = cw.hex.includes('gradient');
+      const bgStyle = isGrad ? `background:${cw.hex}` : `background-color:${cw.hex}`;
+      const borderStyle = cw.hex === '#E6DFCC' ? 'border:1px solid rgba(13,27,42,0.25);' : 'border:1px solid rgba(13,27,42,0.1);';
+      return `
+        <button type="button"
+                onclick="selectColorway(${i})"
+                data-idx="${i}"
+                class="cfg-swatch w-10 h-10 md:w-11 md:h-11 rounded-full cursor-pointer transition-all duration-200 relative flex items-center justify-center hover:scale-110 shadow-sm"
+                style="${bgStyle}; ${borderStyle}"
+                title="${cw.colorName}"
+                aria-label="${cw.colorName}">
+          <span class="swatch-check hidden w-3 h-3 rounded-full bg-white shadow-sm pointer-events-none"></span>
+        </button>
+      `;
+    }).join('');
+  }
+
+  function selectThumbnail(imgIdx) {
+    const cw = colorwayDetails[activeColorwayIdx];
+    if (!cw || !cw.images[imgIdx]) return;
+    activeImageIdx = imgIdx;
+    const imgObj = cw.images[imgIdx];
+    const mainImg = document.getElementById('cfgImg');
+    
+    if (mainImg) {
+      if (window.gsap) {
+        gsap.to(mainImg, {
+          opacity: 0.35,
+          scale: 0.98,
+          duration: 0.12,
+          ease: 'power1.out',
+          onComplete: () => {
+            mainImg.src = imgObj.src;
+            gsap.to(mainImg, { opacity: 1, scale: 1, duration: 0.22, ease: 'power2.out' });
+          }
+        });
+      } else {
+        mainImg.src = imgObj.src;
+      }
+    }
+
+    // Update active thumbnail border
+    const thumbBtns = document.querySelectorAll('#cfgThumbs button');
+    thumbBtns.forEach((btn, i) => {
+      if (i === imgIdx) {
+        btn.style.borderColor = 'var(--ink)';
+        btn.style.boxShadow = '0 0 0 2px var(--ink)';
+        btn.classList.add('scale-105');
+        btn.classList.remove('opacity-60');
+      } else {
+        btn.style.borderColor = 'rgba(0,0,0,0.1)';
+        btn.style.boxShadow = 'none';
+        btn.classList.remove('scale-105');
+        btn.classList.add('opacity-60');
+      }
+    });
+
+    // Update badge & view label
+    const badge = document.getElementById('cfgImageBadge');
+    if (badge) {
+      badge.textContent = `${imgIdx + 1} / ${cw.images.length} • ${imgObj.label.toUpperCase()}`;
+    }
+  }
+
+  function renderCfgThumbnails(cw) {
+    const container = document.getElementById('cfgThumbs');
+    if (!container) return;
+    container.innerHTML = cw.images.map((imgObj, i) => {
+      const isAct = i === activeImageIdx;
+      const actStyle = isAct ? 'border-color:var(--ink); box-shadow:0 0 0 2px var(--ink);' : 'border-color:rgba(0,0,0,0.1);';
+      const actClass = isAct ? 'scale-105' : 'opacity-60 hover:opacity-100 hover:scale-105';
+      return `
+        <button type="button"
+                onclick="selectThumbnail(${i})"
+                title="${imgObj.label}"
+                class="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden cursor-pointer transition-all duration-200 shrink-0 bg-white/50 p-0.5 border ${actClass}"
+                style="${actStyle}">
+          <img src="${imgObj.src}" class="w-full h-full object-cover rounded-xl pointer-events-none" alt="${cw.name} - ${imgObj.label}">
+        </button>
+      `;
+    }).join('');
+
+    const countLabel = document.getElementById('cfgViewLabel');
+    if (countLabel) {
+      countLabel.textContent = `Colorway Gallery (${cw.images.length} Views)`;
+    }
+  }
+
+  function selectColorway(idx) {
+    if (idx < 0 || idx >= colorwayDetails.length) idx = 0;
+    activeColorwayIdx = idx;
+    activeImageIdx = 0;
+    const cw = colorwayDetails[idx];
+
+    // Update text fields
+    const nameEl = document.getElementById('cfgName');
+    const priceEl = document.getElementById('cfgPrice');
+    const descEl = document.getElementById('cfgDesc');
+    const tagEl = document.getElementById('cfgTag');
+    const colorLabelEl = document.getElementById('cfgColorName');
+
+    if (nameEl) nameEl.textContent = cw.name;
+    if (priceEl) priceEl.textContent = cw.priceStr;
+    if (descEl) descEl.textContent = cw.desc;
+    if (tagEl) tagEl.textContent = cw.tag;
+    if (colorLabelEl) colorLabelEl.textContent = cw.colorName;
+
+    // Update swatches active ring
+    const swatches = document.querySelectorAll('.cfg-swatch');
+    swatches.forEach((sw, i) => {
+      const check = sw.querySelector('.swatch-check');
+      if (i === idx) {
+        sw.style.boxShadow = '0 0 0 3px #F4F1DE, 0 0 0 5px var(--ink)';
+        sw.classList.add('scale-110');
+        if (check) check.classList.remove('hidden');
+      } else {
+        sw.style.boxShadow = 'none';
+        sw.classList.remove('scale-110');
+        if (check) check.classList.add('hidden');
+      }
+    });
+
+    // Render thumbnails and select primary view
+    renderCfgThumbnails(cw);
+    selectThumbnail(0);
+  }
+
+  // Backwards compatibility wrappers
+  function selectSwatch(btn, idx) {
+    selectColorway(idx);
   }
   function setCfgGallery(idx) {
-    const p = products[idx % products.length];
-    document.getElementById('cfgImg').src = p.img;
-    document.getElementById('cfgName').textContent = p.name;
-    document.getElementById('cfgPrice').textContent = p.priceStr;
+    selectColorway(idx);
   }
+
   function addToBagCfg() {
-    const curSrc = getFilename(document.getElementById('cfgImg').getAttribute('src'));
-    const p = products.find(item => getFilename(item.img) === curSrc) || products[0];
-    const existing = cart.find(c => getFilename(c.img) === getFilename(p.img));
+    const cw = colorwayDetails[activeColorwayIdx];
+    const curImgObj = cw.images[activeImageIdx] || cw.images[0];
+    const size = activeCfgSize || 'M';
+    const item = {
+      name: cw.name,
+      tag: cw.tag,
+      price: cw.price,
+      priceStr: cw.priceStr,
+      img: curImgObj.src,
+      size: size
+    };
+    const prodFile = getFilename(item.img);
+    const existing = cart.find(c => getFilename(c.img) === prodFile && c.size === item.size);
     if (existing) {
       existing.qty += cfgQtyVal;
     } else {
-      cart.push({ ...p, qty: cfgQtyVal });
+      cart.push({ ...item, qty: cfgQtyVal });
     }
     updateBagBadge();
-    showToast('Added ' + p.name + ' (' + cfgQtyVal + ') to bag');
+    showToast(`Added ${cw.name} (${size}) x ${cfgQtyVal} to bag`);
   }
-  function selectSwatch(btn, idx) {
-    const parent = btn.parentElement;
-    parent.querySelectorAll('button').forEach(b => b.style.borderColor = 'var(--sandstone)');
-    btn.style.borderColor = 'var(--ink)';
-    setCfgGallery(idx);
+
+  function initProductDetails() {
+    renderCfgSwatches();
+    selectColorway(0);
   }
+  // Initialize immediately
+  initProductDetails();
 
   // Hotspots
   const hotspotSpecs = {
@@ -1889,6 +2272,7 @@
     document.getElementById('bagCount').textContent = '0';
     cart = [];
     bagCount = 0;
+    initProductDetails();
     const p = document.getElementById('preloader');
     if (p) {
       if (window.gsap) {
