@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Noir Black Lotus Set — ARAEL | Indian Streetwear</title>
+<meta name="description" content="An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,300;1,6..72,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="../products-data.js"></script>
+<style>
+  :root {
+    --surface-base: #F8F6F1;
+    --surface-card: #FFFFFF;
+    --surface-subtle: #F2EFE8;
+    --surface-muted: #EAE5DB;
+    --surface-dark: #191816;
+    --ink-primary: #1C1A17;
+    --ink-secondary: #545048;
+    --ink-muted: #847E72;
+    --accent-sage: #5E6D60;
+    --accent-sand: #D5CEBD;
+    --border-hairline: rgba(28, 26, 23, 0.08);
+    --border-subtle: rgba(28, 26, 23, 0.12);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--surface-base);
+    color: var(--ink-primary);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .display {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+  }
+  .editorial-serif {
+    font-family: 'Newsreader', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+  .micro-label {
+    font-family: 'Space Grotesk', monospace;
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .body-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink-secondary);
+    line-height: 1.68;
+  }
+  .btn-primary {
+    background-color: var(--surface-dark);
+    color: var(--surface-base);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover {
+    background-color: #2D2A26;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(25, 24, 22, 0.12);
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+</head>
+<body class="bg-[var(--surface-base)] text-[var(--ink-primary)]">
+
+<!-- ============ FIXED MINIMAL EDITORIAL HEADER ============ -->
+<header id="header" class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3.5 sm:py-4 bg-[rgba(247,245,240,0.95)] backdrop-blur-md border-b border-[var(--border-hairline)] shadow-sm">
+  <div class="max-w-[1360px] mx-auto flex items-center justify-between gap-4">
+    <a href="../index.html" class="display text-xl sm:text-2xl tracking-[-0.04em] font-medium hover:opacity-85 transition">
+      ARAEL
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-[12px] font-medium text-[var(--ink-secondary)]">
+      <a href="../index.html#statement" class="hover:text-[var(--ink-primary)] transition">THE IDEA</a>
+      <a href="../index.html#showcase" class="hover:text-[var(--ink-primary)] transition">SHOP</a>
+      <a href="../index.html#lookbook" class="hover:text-[var(--ink-primary)] transition">CAMPAIGN</a>
+      <a href="../index.html#craft" class="hover:text-[var(--ink-primary)] transition">THE DETAILS</a>
+      <a href="../index.html#reviews" class="hover:text-[var(--ink-primary)] transition">YOUR TAKE</a>
+      <button onclick="openModal('sizeGuideModal')" class="hover:text-[var(--ink-primary)] transition cursor-pointer">SIZE GUIDE</button>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="../index.html#showcase" class="px-4 py-2 text-[11px] font-mono tracking-wider uppercase font-semibold rounded-full bg-[var(--surface-dark)] text-[var(--surface-base)] hover:bg-[#2D2A26] transition shadow-sm">
+        DROP 01
+      </a>
+      <button onclick="openCart()" class="w-9 h-9 border border-[var(--border-subtle)] bg-[var(--surface-card)] flex items-center justify-center transition relative cursor-pointer rounded-full" aria-label="Open Shopping Bag">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span id="bagCount" class="absolute -top-1 -right-1 min-w-[17px] h-[17px] px-1 text-[9px] font-mono font-bold flex items-center justify-center rounded-full bg-[var(--surface-dark)] text-[var(--surface-base)]">
+          0
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="pt-24 sm:pt-28 md:pt-32 pb-20 px-4 sm:px-8 max-w-[1360px] mx-auto">
+
+  <!-- Breadcrumbs -->
+  <nav class="flex items-center gap-2 mb-6 sm:mb-8 text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider" aria-label="Breadcrumb">
+    <a href="../index.html" class="hover:text-[var(--ink-primary)] transition">HOME</a>
+    <span>/</span>
+    <a href="../index.html#showcase" class="hover:text-[var(--ink-primary)] transition">DROP 01</a>
+    <span>/</span>
+    <span class="text-[var(--ink-primary)] font-semibold truncate">Noir Black Lotus Set</span>
+  </nav>
+
+  <!-- Product Main Grid (Full Outfit Never Cut Off) -->
+  <div class="grid lg:grid-cols-12 gap-8 lg:gap-14 surface-card p-5 sm:p-8 lg:p-12 border border-[var(--border-subtle)] shadow-sm">
+    
+    <!-- LEFT: Image Gallery (7 cols) -->
+    <div class="lg:col-span-7 flex flex-col justify-start">
+      
+      <!-- Main Photo Viewport: 9:16 vertical ratio ensures hoodie and pants are 100% visible without cutoffs -->
+      <div id="mainImageWrap" class="w-full max-w-[460px] mx-auto aspect-[9/16] max-h-[820px] bg-[var(--surface-subtle)] border border-[var(--border-hairline)] relative overflow-hidden group cursor-crosshair flex items-center justify-center mb-4">
+        <img id="mainProductImg" src="../designs/black/Black Embroidered Lotus Tracksuit.png" alt="Noir Black Lotus Set - Full Look" class="w-full h-full object-contain transition-transform duration-200">
+      </div>
+
+      <!-- Angle & Thumbnails Row -->
+      <div class="flex items-center justify-between mb-2.5 px-1 text-xs font-mono">
+        <span class="micro-label text-[var(--ink-muted)]">SEE EVERY ANGLE</span>
+        <span id="angleLabel" class="text-[var(--ink-muted)] uppercase tracking-wider font-semibold">01 / 03 • FULL LOOK</span>
+      </div>
+
+      <div class="flex gap-2.5 overflow-x-auto pb-2 no-scrollbar items-center">
+        
+        <button type="button" onclick="selectProductImage(0)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--ink-primary)] shadow-[0_0_0_1.5px_var(--ink-primary)] bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="0">
+          <img src="../designs/black/Black Embroidered Lotus Tracksuit.png" alt="Noir Black Lotus Set - Full Look" class="w-full h-full object-cover">
+        </button>
+        <button type="button" onclick="selectProductImage(1)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--border-subtle)] opacity-60 hover:opacity-100 bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="1">
+          <img src="../designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-cover">
+        </button>
+        <button type="button" onclick="selectProductImage(2)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--border-subtle)] opacity-60 hover:opacity-100 bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="2">
+          <img src="../designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png" alt="Noir Black Lotus Set - Zipper Detail" class="w-full h-full object-cover">
+        </button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Info, Sizing, Details & Purchase (5 cols) -->
+    <div class="lg:col-span-5 flex flex-col justify-between">
+      
+      <div>
+        <span class="micro-label text-[var(--accent-sage)] block mb-2">NOIR BLACK / LOTUS MOTIF</span>
+        <h1 class="display text-3xl sm:text-4xl text-[var(--ink-primary)] leading-[1.05] mb-3">Noir Black Lotus Set</h1>
+        
+        <!-- Price -->
+        <div class="flex items-baseline gap-3 mb-5 pb-5 border-b border-[var(--border-hairline)]">
+          <span class="display text-3xl sm:text-4xl text-[var(--ink-primary)]">₹2,299</span>
+          <span class="text-[11px] font-mono text-[var(--ink-muted)] uppercase tracking-wider">
+            TAXES INCLUDED • PAN-INDIA DISPATCH
+          </span>
+        </div>
+
+        <p class="body-text text-sm leading-relaxed mb-6 text-[var(--ink-secondary)]">
+          An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.
+        </p>
+
+        <!-- Garment Specifications -->
+        <div class="p-4 bg-[var(--surface-subtle)] border border-[var(--border-hairline)] mb-6 text-xs font-mono space-y-2">
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--accent-sage)] font-bold uppercase min-w-[76px]">Material:</span>
+            <span class="text-[var(--ink-primary)]">300 GSM 100% Combed Heavyweight Cotton Fleece</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--accent-sage)] font-bold uppercase min-w-[76px]">Artwork:</span>
+            <span class="text-[var(--ink-primary)]">Sacred Lotus Flower Back & Chest High-Definition Embroidery</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--accent-sage)] font-bold uppercase min-w-[76px]">Fit:</span>
+            <span class="text-[var(--ink-primary)]">Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="text-[var(--accent-sage)] font-bold uppercase min-w-[76px]">Care:</span>
+            <span class="text-[var(--ink-primary)]">Cold Gentle Machine Wash / Dry in Shade</span>
+          </div>
+        </div>
+
+        <!-- Size Selector -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-xs font-mono uppercase tracking-wider font-semibold text-[var(--ink-secondary)]">
+              SIZE / <span id="sizeLabel" class="font-bold font-sans text-[var(--ink-primary)]">M · OVERSIZED FIT</span>
+            </span>
+            <button type="button" onclick="openModal('sizeGuideModal')" class="text-xs font-mono underline hover:text-[var(--accent-sage)] cursor-pointer text-[var(--ink-muted)]">
+              SIZE GUIDE ↗
+            </button>
+          </div>
+          <div class="grid grid-cols-5 gap-1.5" id="sizeContainer">
+            
+        <button type="button" onclick="selectSize('XS', this)" class="prod-size-btn py-3 text-xs font-mono font-bold border transition cursor-pointer border-[var(--border-subtle)] hover:border-[var(--ink-primary)] text-[var(--ink-primary)]">XS</button>
+        <button type="button" onclick="selectSize('S', this)" class="prod-size-btn py-3 text-xs font-mono font-bold border transition cursor-pointer border-[var(--border-subtle)] hover:border-[var(--ink-primary)] text-[var(--ink-primary)]">S</button>
+        <button type="button" onclick="selectSize('M', this)" class="prod-size-btn py-3 text-xs font-mono font-bold border transition cursor-pointer bg-[var(--surface-dark)] text-[var(--surface-base)] border-[var(--surface-dark)] active">M</button>
+        <button type="button" onclick="selectSize('L', this)" class="prod-size-btn py-3 text-xs font-mono font-bold border transition cursor-pointer border-[var(--border-subtle)] hover:border-[var(--ink-primary)] text-[var(--ink-primary)]">L</button>
+        <button type="button" onclick="selectSize('XL', this)" class="prod-size-btn py-3 text-xs font-mono font-bold border transition cursor-pointer border-[var(--border-subtle)] hover:border-[var(--ink-primary)] text-[var(--ink-primary)]">XL</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Actions & Guarantees -->
+      <div>
+        <div class="flex items-center gap-3 sm:gap-4 flex-wrap mb-4">
+          <div class="flex items-center border border-[var(--border-subtle)] bg-[var(--surface-base)]">
+            <button type="button" onclick="changeQty(-1)" class="w-10 h-11 flex items-center justify-center font-bold text-base hover:bg-[var(--surface-muted)] cursor-pointer transition text-[var(--ink-primary)]" aria-label="Decrease quantity">−</button>
+            <span id="qtyVal" class="px-3 font-semibold text-sm min-w-[2.2rem] text-center font-mono text-[var(--ink-primary)]">1</span>
+            <button type="button" onclick="changeQty(1)" class="w-10 h-11 flex items-center justify-center font-bold text-base hover:bg-[var(--surface-muted)] cursor-pointer transition text-[var(--ink-primary)]" aria-label="Increase quantity">+</button>
+          </div>
+          
+          <button type="button" onclick="addToBagCurrent()" class="btn-primary flex-1 min-w-[200px] py-3.5 px-6 text-xs font-mono font-bold tracking-[0.2em] uppercase cursor-pointer flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <span>ADD TO BAG</span>
+          </button>
+        </div>
+
+        <!-- Assurance Row -->
+        <div class="grid grid-cols-3 gap-2 pt-4 border-t border-[var(--border-hairline)] text-[11px] font-mono text-[var(--ink-muted)] uppercase">
+          <div class="flex items-center gap-1.5">
+            <span class="text-[var(--accent-sage)]">✓</span>
+            <span>Substantial Fleece</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-[var(--accent-sage)]">✓</span>
+            <span>Cash on Delivery</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-[var(--accent-sage)]">✓</span>
+            <span>7-Day Exchange</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Related Outfits: Displayed separately, NOT as colour variants -->
+  <section class="mt-20 sm:mt-28 border-t border-[var(--border-hairline)] pt-12 sm:pt-16">
+    <div class="flex items-end justify-between gap-4 mb-8">
+      <div>
+        <p class="micro-label text-[var(--accent-sage)]">MORE FROM DROP 01</p>
+        <h2 class="display text-2xl sm:text-3xl text-[var(--ink-primary)] mt-1.5">OTHER SILHOUETTES</h2>
+      </div>
+      <a href="../index.html#showcase" class="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1">
+        <span>VIEW ALL SETS</span> <span>→</span>
+      </a>
+    </div>
+
+    <div class="overflow-x-auto no-scrollbar scroll-smooth flex gap-5 sm:gap-7 pb-4 snap-x snap-mandatory">
+      
+        <div class="w-[240px] sm:w-[280px] flex-none snap-start group">
+          <a href="crimson-carpet.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative flex items-center justify-center">
+            <img loading="lazy" decoding="async" src="../designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Crimson Carpet Festive Set">
+          </a>
+          <div class="pt-3">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="display text-sm sm:text-base text-[var(--ink-primary)] truncate">Crimson Carpet Festive Set</h4>
+              <span class="font-mono text-xs font-semibold text-[var(--ink-primary)] flex-none">₹2,199</span>
+            </div>
+            <p class="text-xs text-[var(--ink-secondary)] mt-1 line-clamp-2 leading-relaxed">Deep crimson maroon with antique gold prayer-arch motifs. A statement colour with a relaxed, everyday silhouette.</p>
+            <a href="crimson-carpet.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
+              <span>VIEW THE SET</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+        <div class="w-[240px] sm:w-[280px] flex-none snap-start group">
+          <a href="midnight-warli.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative flex items-center justify-center">
+            <img loading="lazy" decoding="async" src="../designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Midnight Warli Cropped Zip Set">
+          </a>
+          <div class="pt-3">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="display text-sm sm:text-base text-[var(--ink-primary)] truncate">Midnight Warli Cropped Zip Set</h4>
+              <span class="font-mono text-xs font-semibold text-[var(--ink-primary)] flex-none">₹2,299</span>
+            </div>
+            <p class="text-xs text-[var(--ink-secondary)] mt-1 line-clamp-2 leading-relaxed">Washed charcoal, cream Warli-inspired motifs and a cropped zip silhouette. Built around the contrast between dark fabric and intricate detail.</p>
+            <a href="midnight-warli.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
+              <span>VIEW THE SET</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+        <div class="w-[240px] sm:w-[280px] flex-none snap-start group">
+          <a href="ash-grey-warli.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative flex items-center justify-center">
+            <img loading="lazy" decoding="async" src="../designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Ash Grey Warli Co-ord Set">
+          </a>
+          <div class="pt-3">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="display text-sm sm:text-base text-[var(--ink-primary)] truncate">Ash Grey Warli Co-ord Set</h4>
+              <span class="font-mono text-xs font-semibold text-[var(--ink-primary)] flex-none">₹2,099</span>
+            </div>
+            <p class="text-xs text-[var(--ink-secondary)] mt-1 line-clamp-2 leading-relaxed">Ash grey with folk-inspired detailing. A quieter colourway that lets the pattern do the talking.</p>
+            <a href="ash-grey-warli.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
+              <span>VIEW THE SET</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+        <div class="w-[240px] sm:w-[280px] flex-none snap-start group">
+          <a href="raw-khadi-heritage.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative flex items-center justify-center">
+            <img loading="lazy" decoding="async" src="../designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Raw Khaki Heritage Floral Set">
+          </a>
+          <div class="pt-3">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="display text-sm sm:text-base text-[var(--ink-primary)] truncate">Raw Khaki Heritage Floral Set</h4>
+              <span class="font-mono text-xs font-semibold text-[var(--ink-primary)] flex-none">₹2,199</span>
+            </div>
+            <p class="text-xs text-[var(--ink-secondary)] mt-1 line-clamp-2 leading-relaxed">Raw khaki tones with floral-inspired motifs. Earthy colour, relaxed proportions and a distinct visual identity.</p>
+            <a href="raw-khadi-heritage.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
+              <span>VIEW THE SET</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+        <div class="w-[240px] sm:w-[280px] flex-none snap-start group">
+          <a href="sandstone-taupe.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative flex items-center justify-center">
+            <img loading="lazy" decoding="async" src="../designs/taupe/Taupe Embroidered Tracksuit Portrait.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Sandstone Taupe Geometric Set">
+          </a>
+          <div class="pt-3">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="display text-sm sm:text-base text-[var(--ink-primary)] truncate">Sandstone Taupe Geometric Set</h4>
+              <span class="font-mono text-xs font-semibold text-[var(--ink-primary)] flex-none">₹2,149</span>
+            </div>
+            <p class="text-xs text-[var(--ink-secondary)] mt-1 line-clamp-2 leading-relaxed">Muted taupe with geometric detailing. A neutral base with more going on up close.</p>
+            <a href="sandstone-taupe.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
+              <span>VIEW THE SET</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+        <div class="w-[240px] sm:w-[280px] flex-none snap-start group">
+          <a href="two-tone-cargo.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative flex items-center justify-center">
+            <img loading="lazy" decoding="async" src="../designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Onyx & Slate Two-Tone Cargo Set">
+          </a>
+          <div class="pt-3">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="display text-sm sm:text-base text-[var(--ink-primary)] truncate">Onyx & Slate Two-Tone Cargo Set</h4>
+              <span class="font-mono text-xs font-semibold text-[var(--ink-primary)] flex-none">₹2,499</span>
+            </div>
+            <p class="text-xs text-[var(--ink-secondary)] mt-1 line-clamp-2 leading-relaxed">Onyx and slate meet in a two-tone cargo silhouette. A more utility-driven direction for everyday wear.</p>
+            <a href="two-tone-cargo.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
+              <span>VIEW THE SET</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-[var(--border-hairline)] surface-card py-16 px-4 sm:px-8 mt-12">
+  <div class="max-w-[1360px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-mono text-[var(--ink-muted)]">
+    <div class="display text-xl text-[var(--ink-primary)]">ARAEL</div>
+    <div>© 2026 ARAEL. ROOTED IN CULTURE. MADE FOR NOW.</div>
+    <div class="flex gap-6 uppercase tracking-wider">
+      <a href="../index.html#showcase" class="hover:text-[var(--ink-primary)]">DROP 01</a>
+      <a href="../index.html#craft" class="hover:text-[var(--ink-primary)]">THE DETAILS</a>
+      <a href="../index.html#statement" class="hover:text-[var(--ink-primary)]">THE IDEA</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SHOPPING BAG DRAWER ============ -->
+<div id="cartDrawer" class="fixed inset-0 z-[120] hidden bg-black/60 backdrop-blur-sm justify-end">
+  <div class="w-full max-w-md bg-[var(--surface-base)] text-[var(--ink-primary)] h-full flex flex-col justify-between p-6 sm:p-8 border-l border-[var(--border-subtle)] shadow-2xl overflow-y-auto">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-[var(--border-hairline)]">
+        <span class="micro-label text-[var(--accent-sage)]">YOUR BAG</span>
+        <button onclick="closeCart()" class="text-xs font-mono tracking-widest uppercase hover:text-[var(--accent-sage)] p-1 text-[var(--ink-primary)] cursor-pointer">
+          CLOSE ×
+        </button>
+      </div>
+      <div id="cartItems" class="space-y-3 mt-6"></div>
+    </div>
+    <div class="pt-6 border-t border-[var(--border-hairline)] space-y-4">
+      <div class="flex justify-between items-baseline">
+        <span class="micro-label text-[var(--ink-muted)]">SUBTOTAL</span>
+        <span id="cartSubtotal" class="font-mono text-2xl font-bold text-[var(--ink-primary)]">₹0</span>
+      </div>
+      <p class="text-[11px] font-mono text-[var(--ink-muted)]">Pan-India express dispatch. Taxes included.</p>
+      <button onclick="checkout()" class="btn-primary w-full py-4 text-xs font-mono font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-2 cursor-pointer shadow-md">
+        PROCEED TO CHECKOUT
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SIZE GUIDE MODAL ============ -->
+<div id="sizeGuideModal" class="fixed inset-0 z-[130] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+  <div class="bg-[var(--surface-base)] max-w-lg w-full p-6 sm:p-8 border border-[var(--border-subtle)] shadow-2xl relative">
+    <div class="flex items-center justify-between pb-4 border-b border-[var(--border-hairline)]">
+      <h3 class="display text-xl text-[var(--ink-primary)]">SIZE & FIT GUIDE</h3>
+      <button onclick="closeModal('sizeGuideModal')" class="text-xs font-mono tracking-widest uppercase text-[var(--ink-primary)] hover:text-[var(--accent-sage)] cursor-pointer">CLOSE ×</button>
+    </div>
+    <div class="py-4 text-xs font-mono text-[var(--ink-secondary)] space-y-3">
+      <p>All Drop 01 sets feature relaxed, drop-shoulder tailoring and wide-leg trousers.</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border border-[var(--border-hairline)] text-xs">
+          <thead class="bg-[var(--surface-muted)] uppercase text-[10px] tracking-wider text-[var(--ink-primary)]">
+            <tr><th class="p-2 border">Size</th><th class="p-2 border">Chest (in)</th><th class="p-2 border">Hoodie Len</th><th class="p-2 border">Waist (in)</th><th class="p-2 border">Pant Len</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="p-2 border font-bold">XS</td><td class="p-2 border">42</td><td class="p-2 border">24</td><td class="p-2 border">28-30</td><td class="p-2 border">39</td></tr>
+            <tr><td class="p-2 border font-bold">S</td><td class="p-2 border">44</td><td class="p-2 border">25</td><td class="p-2 border">30-32</td><td class="p-2 border">40</td></tr>
+            <tr><td class="p-2 border font-bold">M</td><td class="p-2 border">46</td><td class="p-2 border">26</td><td class="p-2 border">32-34</td><td class="p-2 border">41</td></tr>
+            <tr><td class="p-2 border font-bold">L</td><td class="p-2 border">48</td><td class="p-2 border">27</td><td class="p-2 border">34-36</td><td class="p-2 border">42</td></tr>
+            <tr><td class="p-2 border font-bold">XL</td><td class="p-2 border">50</td><td class="p-2 border">28</td><td class="p-2 border">36-38</td><td class="p-2 border">43</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-[11px] text-[var(--ink-muted)] pt-1">Select your standard size for the intended oversized look. Size down for a regular fit.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TOAST NOTIFICATION ============ -->
+<div id="toast" class="fixed bottom-6 right-6 z-[140] hidden items-center gap-3 bg-[var(--surface-dark)] text-[var(--surface-base)] px-5 py-3.5 shadow-2xl border border-[rgba(248,246,241,0.15)] text-xs font-mono">
+  <span id="toastMsg">Notification</span>
+</div>
+
+<script>
+  const CURRENT_PRODUCT = {'id': 'noir-black-lotus', 'slug': 'noir-black-lotus', 'name': 'Noir Black Lotus Set', 'tag': 'NOIR BLACK / LOTUS MOTIF', 'price': 2299, 'priceStr': '₹2,299', 'desc': 'An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.', 'material': '300 GSM 100% Combed Heavyweight Cotton Fleece', 'artwork': 'Sacred Lotus Flower Back & Chest High-Definition Embroidery', 'fit': 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser', 'wash': 'Cold Gentle Machine Wash / Dry in Shade', 'sizes': ['XS', 'S', 'M', 'L', 'XL'], 'heroImg': 'designs/black/Black Embroidered Lotus Tracksuit.png', 'images': [{'src': 'designs/black/Black Embroidered Lotus Tracksuit.png', 'label': 'FULL LOOK', 'alt': 'Noir Black Lotus Set - Full Look'}, {'src': 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', 'label': 'FRONT VIEW', 'alt': 'Noir Black Lotus Set - Front View'}, {'src': 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', 'label': 'CLOSE-UP', 'alt': 'Noir Black Lotus Set - Zipper Detail'}]};
+  let selectedSize = 'M';
+  let currentQty = 1;
+  let activeImageIndex = 0;
+
+  function selectProductImage(idx) {
+    if (!CURRENT_PRODUCT.images[idx]) return;
+    activeImageIndex = idx;
+    const imgObj = CURRENT_PRODUCT.images[idx];
+    const mainImg = document.getElementById('mainProductImg');
+    const angleLabel = document.getElementById('angleLabel');
+    if (mainImg) {
+      mainImg.src = "../" + imgObj.src;
+      mainImg.alt = imgObj.alt;
+    }
+    if (angleLabel) {
+      const padIdx = String(idx + 1).padStart(2, '0');
+      const padTotal = String(CURRENT_PRODUCT.images.length).padStart(2, '0');
+      angleLabel.textContent = `${padIdx} / ${padTotal} • ${imgObj.label}`;
+    }
+    document.querySelectorAll('.prod-thumb-btn').forEach((btn, i) => {
+      if (i === idx) {
+        btn.classList.add('border-[var(--ink-primary)]', 'shadow-[0_0_0_1.5px_var(--ink-primary)]');
+        btn.classList.remove('border-[var(--border-subtle)]', 'opacity-60');
+      } else {
+        btn.classList.remove('border-[var(--ink-primary)]', 'shadow-[0_0_0_1.5px_var(--ink-primary)]');
+        btn.classList.add('border-[var(--border-subtle)]', 'opacity-60');
+      }
+    });
+  }
+
+  function selectSize(size, btn) {
+    selectedSize = size;
+    const label = document.getElementById('sizeLabel');
+    if (label) label.textContent = size + ' · OVERSIZED FIT';
+    document.querySelectorAll('.prod-size-btn').forEach(b => {
+      b.className = 'prod-size-btn py-3 text-xs font-mono font-bold border transition cursor-pointer border-[var(--border-subtle)] hover:border-[var(--ink-primary)] text-[var(--ink-primary)]';
+    });
+    if (btn) {
+      btn.className = 'prod-size-btn py-3 text-xs font-mono font-bold border transition cursor-pointer bg-[var(--surface-dark)] text-[var(--surface-base)] border-[var(--surface-dark)] active';
+    }
+  }
+
+  function changeQty(delta) {
+    currentQty = Math.max(1, currentQty + delta);
+    const qtyEl = document.getElementById('qtyVal');
+    if (qtyEl) qtyEl.textContent = currentQty;
+  }
+
+  function addToBagCurrent() {
+    const curImg = CURRENT_PRODUCT.images[activeImageIndex] || CURRENT_PRODUCT.images[0];
+    araelAddToCart({
+      id: CURRENT_PRODUCT.id,
+      name: CURRENT_PRODUCT.name,
+      tag: CURRENT_PRODUCT.tag,
+      price: CURRENT_PRODUCT.price,
+      priceStr: CURRENT_PRODUCT.priceStr,
+      img: curImg.src,
+      size: selectedSize,
+      qty: currentQty
+    });
+  }
+
+  function openCart() {
+    araelRenderCartDrawer();
+    const d = document.getElementById('cartDrawer');
+    if (d) {
+      d.classList.remove('hidden');
+      d.classList.add('flex');
+    }
+  }
+  function closeCart() {
+    const d = document.getElementById('cartDrawer');
+    if (d) {
+      d.classList.add('hidden');
+      d.classList.remove('flex');
+    }
+  }
+
+  function openModal(id) {
+    const m = document.getElementById(id);
+    if (m) {
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+  }
+  function closeModal(id) {
+    const m = document.getElementById(id);
+    if (m) {
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    const msgEl = document.getElementById('toastMsg');
+    if (msgEl) msgEl.textContent = msg;
+    if (t) {
+      t.classList.remove('hidden');
+      t.classList.add('flex');
+      clearTimeout(window._tTimer);
+      window._tTimer = setTimeout(() => {
+        t.classList.add('hidden');
+        t.classList.remove('flex');
+      }, 3200);
+    }
+  }
+
+  function checkout() {
+    const cart = araelGetCart();
+    if (cart.length === 0) {
+      showToast('Your bag is empty.');
+      return;
+    }
+    showToast('Redirecting to secure express checkout...');
+  }
+
+  // Interactive Hover Zoom
+  const wrap = document.getElementById('mainImageWrap');
+  const mainPhoto = document.getElementById('mainProductImg');
+  if (wrap && mainPhoto) {
+    wrap.addEventListener('mousemove', (e) => {
+      const rect = wrap.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      mainPhoto.style.transformOrigin = `${x}% ${y}%`;
+      mainPhoto.style.transform = 'scale(1.75)';
+    });
+    wrap.addEventListener('mouseleave', () => {
+      mainPhoto.style.transform = 'scale(1)';
+      mainPhoto.style.transformOrigin = 'center top';
+    });
+  }
+
+  window.addEventListener('load', () => {
+    araelUpdateBadge();
+  });
+</script>
+</body>
+</html>
