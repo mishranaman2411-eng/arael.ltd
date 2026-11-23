@@ -278,9 +278,7 @@
     <nav class="hidden md:flex items-center gap-7 text-[12px] font-medium">
       <a href="#statement" class="nav-link transition-colors">THE IDEA</a>
       <a href="#showcase" class="nav-link transition-colors">SHOP</a>
-      <a href="#lookbook" class="nav-link transition-colors">CAMPAIGN</a>
       <a href="#craft" class="nav-link transition-colors">THE DETAILS</a>
-      
       <a href="#reviews" class="nav-link transition-colors">YOUR TAKE</a>
       <button onclick="openModal('sizeGuideModal')" class="nav-link transition-colors cursor-pointer">SIZE GUIDE</button>
     </nav>
@@ -328,11 +326,11 @@
 </section>
 
 <!-- ============ EDITORIAL STATEMENT (WARM-EDITORIAL, SCROLL-HIGHLIGHTED MANIFESTO) ============ -->
-<section id="statement" class="relative surface-base py-28 sm:py-36 md:py-48 px-5 sm:px-10 md:px-16 overflow-hidden select-none border-b border-[var(--border-hairline)]">
+<section id="statement" class="relative surface-base pt-16 sm:pt-24 md:pt-32 pb-6 sm:pb-8 md:pb-10 px-5 sm:px-10 md:px-16 overflow-hidden select-none">
   <div class="max-w-[1240px] mx-auto">
     
     <!-- Micro-Label -->
-    <div class="flex items-center gap-2.5 mb-8 sm:mb-12">
+    <div class="flex items-center gap-2.5 mb-6 sm:mb-8">
       <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-sage)]"></span>
       <span class="micro-label text-[var(--ink-muted)]">THE IDEA • DROP 01</span>
     </div>
@@ -367,30 +365,15 @@
       <span class="statement-phrase" data-phrase="4">without compromising on ease or form.</span>
     </p>
 
-    <!-- Bottom Metric Accent Strip -->
-    <div class="mt-14 sm:mt-20 pt-8 sm:pt-10 border-t border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-6 text-xs font-mono text-[var(--ink-muted)]">
-      <div class="flex items-center gap-6 sm:gap-10">
-        <span>300 GSM COMBED COTTON</span>
-        <span class="hidden sm:inline">•</span>
-        <span>DOUBLE BIO-WASHED</span>
-        <span class="hidden sm:inline">•</span>
-        <span>SACRED NEEDLEWORK</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="text-[var(--accent-sage)]">DROP 01 LIVE</span>
-        <span>/ PAN-INDIA DISPATCH</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- ============ MULTI-ITEM SHOWCASE TRACK (CRISP, UNCLIPPED CARDS & CLEAN METRICS BENEATH) ============ -->
-<section id="showcase" class="py-24 sm:py-32 px-4 sm:px-8 surface-base border-t border-[var(--border-hairline)]">
+<section id="showcase" class="pt-4 sm:pt-6 pb-20 sm:pb-28 px-4 sm:px-8 surface-base">
   <div class="max-w-[1360px] mx-auto">
     
     <!-- Section Header Row -->
-    <div class="flex items-end justify-between gap-6 mb-12 sm:mb-16">
+    <div class="flex items-end justify-between gap-6 mb-8 sm:mb-10">
       <div>
         <h2 class="display text-[clamp(28px,4.5vw,52px)] leading-[0.96] text-[var(--ink-primary)]">
           DROP 01
@@ -538,63 +521,6 @@
   </div>
 </section>
 
-<!-- ============ EDITORIAL LOOKBOOK (CLEAN 50/50 SPLIT) ============ -->
-<section id="lookbook" class="py-24 sm:py-36 px-4 sm:px-8 relative overflow-hidden surface-subtle border-t border-b border-[var(--border-hairline)]">
-  <div class="max-w-[1360px] mx-auto">
-    
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-      
-      <!-- 50% Left: Lookbook Primary Frame (Crisp, Unclipped Media, Zero Overlays) -->
-      <div class="relative aspect-[4/5] bg-[var(--surface-muted)] overflow-hidden border border-[var(--border-subtle)] shadow-sm">
-        <img loading="lazy" decoding="async" id="lookbookImg" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-cover transition-all duration-500 hover:scale-105" alt="THE CAMPAIGN">
-      </div>
-
-      <!-- 50% Right: Narrative & Navigation -->
-      <div class="flex flex-col justify-between">
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <span id="lookbookIndex" class="font-mono text-xs font-bold text-[var(--ink-primary)]">01</span>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">/ 05</span>
-          </div>
-
-          <h2 class="display text-[clamp(32px,5vw,56px)] leading-[0.96] text-[var(--ink-primary)] mb-5">
-            ROOTED IN CULTURE.<br>
-            <span class="editorial-serif font-light text-[var(--ink-secondary)]">MADE FOR NOW.</span>
-          </h2>
-
-          <p id="lookbookCaption" class="body-text text-sm sm:text-base mb-7 text-[var(--ink-secondary)]">
-            Familiar motifs. Different proportions. A new way to wear the details.
-          </p>
-
-          <!-- Minimal Dashes and Understated Arrows -->
-          <div class="flex items-center gap-4 mb-8">
-            <div class="flex items-center gap-2">
-              <button class="lookbook-dot w-8 h-[2px] transition-all duration-300 cursor-pointer bg-[var(--ink-primary)]" onclick="setLookbook(0)" aria-label="Slide 01"></button>
-              <button class="lookbook-dot w-3 h-[2px] transition-all duration-300 cursor-pointer hover:w-6 bg-[var(--accent-sand)]" onclick="setLookbook(1)" aria-label="Slide 02"></button>
-              <button class="lookbook-dot w-3 h-[2px] transition-all duration-300 cursor-pointer hover:w-6 bg-[var(--accent-sand)]" onclick="setLookbook(2)" aria-label="Slide 03"></button>
-              <button class="lookbook-dot w-3 h-[2px] transition-all duration-300 cursor-pointer hover:w-6 bg-[var(--accent-sand)]" onclick="setLookbook(3)" aria-label="Slide 04"></button>
-              <button class="lookbook-dot w-3 h-[2px] transition-all duration-300 cursor-pointer hover:w-6 bg-[var(--accent-sand)]" onclick="setLookbook(4)" aria-label="Slide 05"></button>
-            </div>
-
-            <div class="flex items-center gap-1.5 ml-3">
-              <button onclick="stepLookbook(-1)" class="w-8 h-8 border border-[var(--border-subtle)] bg-[var(--surface-card)] flex items-center justify-center font-mono text-xs hover:bg-[var(--surface-muted)] transition cursor-pointer text-[var(--ink-primary)]" aria-label="Previous Slide">←</button>
-              <button onclick="stepLookbook(1)" class="w-8 h-8 border border-[var(--border-subtle)] bg-[var(--surface-card)] flex items-center justify-center font-mono text-xs hover:bg-[var(--surface-muted)] transition cursor-pointer text-[var(--ink-primary)]" aria-label="Next Slide">→</button>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <button onclick="openHeroModal(curLookbook)" class="btn-primary px-7 py-3.5 text-xs font-mono font-bold tracking-[0.2em] uppercase cursor-pointer">
-            VIEW THE LOOK →
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
 
 <!-- ============ TEXTILE & CRAFT ATELIER ============ -->
 <section id="craft" class="py-24 sm:py-36 px-4 sm:px-8 surface-base">
@@ -1629,79 +1555,6 @@
     });
   }
 
-  // Lookbook Campaign Data (Visual Direction & Form)
-  const lookbookSlides = [
-    {
-      img: 'designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png',
-      caption: 'Familiar motifs. Different proportions. A new way to wear the details.',
-      title: 'Crimson Carpet Festive Set',
-      index: '01',
-    },
-    {
-      img: 'designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png',
-      caption: 'Washed charcoal and folk-inspired Warli line work in a cropped zip silhouette.',
-      title: 'Midnight Warli Cropped Zip Set',
-      index: '02',
-    },
-    {
-      img: 'designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png',
-      caption: 'Raw unbleached tones meet heritage floral embroidery in relaxed proportions.',
-      title: 'Raw Khaki Heritage Floral Set',
-      index: '03',
-    },
-    {
-      img: 'designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png',
-      caption: 'Dual-tone construction with structured utility cargo detailing.',
-      title: 'Two-Tone Noir & Slate Cargo Set',
-      index: '04',
-    },
-    {
-      img: 'designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png',
-      caption: 'Quiet ash grey with detailed folk iconography.',
-      title: 'Ash Grey Warli Co-ord Set',
-      index: '05',
-    },
-  ];
-  let curLookbook = 0;
-
-  function setLookbook(i) {
-    curLookbook = ((i % lookbookSlides.length) + lookbookSlides.length) % lookbookSlides.length;
-    const slide = lookbookSlides[curLookbook];
-    const img = document.getElementById('lookbookImg');
-    const caption = document.getElementById('lookbookCaption');
-    const idx = document.getElementById('lookbookIndex');
-    
-    if (window.gsap && img) {
-      gsap.to(img, {
-        opacity: 0.35, scale: 0.98, duration: 0.2, ease: 'power2.in',
-        onComplete: () => {
-          img.src = slide.img;
-          if (caption) caption.textContent = slide.caption;
-          if (idx) idx.textContent = slide.index;
-          gsap.to(img, { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' });
-        }
-      });
-    } else {
-      if (img) img.src = slide.img;
-      if (caption) caption.textContent = slide.caption;
-      if (idx) idx.textContent = slide.index;
-    }
-
-    document.querySelectorAll('.lookbook-dot').forEach((d, dotIdx) => {
-      d.style.height = '2px';
-      if (dotIdx === curLookbook) {
-        d.style.backgroundColor = 'var(--ink-primary)';
-        d.style.width = '32px';
-      } else {
-        d.style.backgroundColor = 'var(--accent-sand)';
-        d.style.width = '12px';
-      }
-    });
-  }
-
-  function stepLookbook(delta) {
-    setLookbook(curLookbook + delta);
-  }
 
   // Upcoming Drop Preview Data & Switcher
   const upcomingPreviews = [
