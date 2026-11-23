@@ -13,5 +13,12 @@ Desktop.ini
 node_modules/
 *.log
 
+# Next.js
+.next/
+out/
+build/
+dist/
+.env*.local
+
 # Scratch directory
 scratch/
