@@ -12,3 +12,6 @@ Desktop.ini
 # Node / Scratch
 node_modules/
 *.log
+
+# Scratch directory
+scratch/
