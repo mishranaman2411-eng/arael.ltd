@@ -7,18 +7,34 @@
 <meta name="description" content="ARAEL — Heavyweight 300 GSM combed cotton fleece streetwear rooted in Indian folk art, sacred motifs, and relaxed boxy silhouettes. Pan-India shipping with COD.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,300;1,6..72,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          heading: ['Rubik', 'sans-serif'],
+          mono: ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        }
+      }
+    }
+  };
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="products-data.js"></script>
 <style>
   :root {
-    /* Warm Alabaster & Stone Surfaces (Vonder-inspired) */
-    --surface-base: #F8F6F1;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Rubik', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Warm Alabaster & Stone Surfaces */
+    --surface-base: #F5F3EE;
     --surface-card: #FFFFFF;
-    --surface-subtle: #F2EFE8;
-    --surface-muted: #EAE5DB;
+    --surface-subtle: #EDE9E0;
+    --surface-muted: #E5E0D5;
     --surface-dark: #191816;
     --surface-dark-card: #22201D;
     
@@ -45,7 +61,7 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-sans);
     background-color: var(--surface-base);
     color: var(--ink-primary);
     -webkit-font-smoothing: antialiased;
@@ -53,29 +69,89 @@
     overflow-x: hidden;
   }
 
-  /* Typography Utilities */
-  .display {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: -0.035em;
+  /* Strict 3-Font System: Rubik (headings/statements), Inter (body/titles), Roboto (nav/prices/buttons/metadata) */
+  h1, h2, h3, .display, .editorial-serif {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
     font-weight: 500;
   }
   .editorial-serif {
-    font-family: 'Newsreader', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
+    font-style: normal;
+  }
+  .micro-label,
+  .font-mono {
+    font-family: var(--font-mono) !important;
+    letter-spacing: 0.18em;
   }
   .micro-label {
-    font-family: 'Space Grotesk', monospace;
-    font-size: 10px;
-    letter-spacing: 0.24em;
+    font-size: 11px;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
   }
   .body-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-sans);
     color: var(--ink-secondary);
     line-height: 1.68;
     max-width: 58ch;
+  }
+
+  /* Hidden Scroll-Past-Footer Easter Egg */
+  #footerEasterEgg {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(16px);
+    background-color: #F5F3EE;
+    border-top: 0 solid #2C2520;
+    transition: max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease,
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  #footerEasterEgg.is-revealed {
+    max-height: 240px;
+    opacity: 1;
+    transform: translateY(0);
+    border-top: 1px solid #2C2520;
+  }
+
+  /* Drop 01 & Our Story Scroll Fade-Up Reveal */
+  .drop01-header-reveal,
+  .story-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .drop01-header-reveal.is-visible,
+  .story-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Scroll-Scrubbed Manifesto Word Fill & Tactile Zipper Woodcut Unroll */
+  .manifesto-word {
+    color: rgba(44, 37, 32, 0.2);
+    transition: color 0.14s ease-out;
+    will-change: color;
+  }
+  .zipper-teeth-top,
+  .zipper-teeth-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 6px;
+    pointer-events: none;
+    z-index: 20;
+    background-repeat: repeat-x;
+    background-size: 8px 6px;
+  }
+  .zipper-teeth-top {
+    top: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'%3E%3Crect x='0.5' y='0' width='4' height='5.5' rx='0.8' fill='%232C2520'/%3E%3Cline x1='1.2' y1='1' x2='3.8' y2='1' stroke='%237A7066' stroke-width='0.7'/%3E%3C/svg%3E");
+  }
+  .zipper-teeth-bottom {
+    bottom: 0;
+    background-position-x: 4px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'%3E%3Crect x='0.5' y='0.5' width='4' height='5.5' rx='0.8' fill='%232C2520'/%3E%3Cline x1='1.2' y1='5' x2='3.8' y2='5' stroke='%237A7066' stroke-width='0.7'/%3E%3C/svg%3E");
   }
 
   /* Soft Surfaces & Borders */
@@ -100,47 +176,58 @@
                 opacity 0.3s ease;
   }
 
-  /* State 1: Over Full-Bleed Ambient Hero — Only top-left ARAEL mark visible, zero background/blur */
+  /* State 1: Over Editorial Hero — Keep sticky header visible on #F5F3EE with 1px hairline */
   #header.header-hero {
     opacity: 1;
-    pointer-events: none;
+    pointer-events: auto;
     transform: translateY(0);
     visibility: visible;
-    background-color: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom: 1px solid transparent;
+    background-color: rgba(245, 243, 238, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(44, 37, 32, 0.12);
     box-shadow: none;
   }
   #header.header-hero .nav-logo {
-    color: #FFFFFF;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    color: #1C1815;
+    text-shadow: none;
     opacity: 1;
     pointer-events: auto;
   }
   #header.header-hero nav,
   #header.header-hero .nav-right-controls {
-    opacity: 0;
-    pointer-events: none;
-    visibility: hidden;
-    transform: translateY(-4px);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   }
+  #header.header-hero .nav-link {
+    color: #2C2520;
+  }
+  #header.header-hero .nav-link:hover {
+    color: #1C1815;
+  }
+  #header.header-hero .nav-bag-badge,
+  #header.header-scrolled .nav-bag-badge {
+    background-color: #2C2520;
+    color: #F5F3EE;
+  }
 
-  /* State 2: Scrolled Past Hero (Warm Alabaster + Charcoal) */
+  /* State 2: Scrolled Past Hero */
   #header.header-scrolled {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
     visibility: visible;
-    background-color: rgba(247, 245, 240, 0.94);
+    background-color: rgba(245, 243, 238, 0.96);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-hairline);
-    box-shadow: 0 4px 20px -8px rgba(28, 26, 23, 0.08);
+    border-bottom: 1px solid rgba(44, 37, 32, 0.12);
+    box-shadow: none;
   }
   #header.header-scrolled .nav-logo {
-    color: var(--ink-primary);
+    color: #1C1815;
     text-shadow: none;
   }
   #header.header-scrolled nav,
@@ -152,52 +239,141 @@
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
   }
   #header.header-scrolled .nav-link {
-    color: var(--ink-secondary);
+    color: #2C2520;
   }
   #header.header-scrolled .nav-link:hover {
-    color: var(--ink-primary);
-  }
-  #header.header-scrolled .nav-status {
-    color: var(--ink-muted);
-    border-color: var(--border-hairline);
-  }
-  #header.header-scrolled .nav-cta {
-    background-color: var(--surface-dark);
-    color: var(--surface-base);
-  }
-  #header.header-scrolled .nav-cta:hover {
-    background-color: #2D2A26;
-    transform: translateY(-1px);
-  }
-  #header.header-scrolled .nav-bag-btn {
-    border-color: var(--border-subtle);
-    background-color: var(--surface-card);
-    color: var(--ink-primary);
-  }
-  #header.header-scrolled .nav-bag-btn:hover {
-    background-color: var(--surface-subtle);
-  }
-  #header.header-scrolled .nav-bag-badge {
-    background-color: var(--surface-dark);
-    color: var(--surface-base);
+    color: #1C1815;
   }
 
-  /* Preloader */
+  /* 4.9-Second Luxury Editorial 3-Act Film Title Sequence Preloader */
   #preloader {
     position: fixed;
     inset: 0;
-    background: var(--surface-base);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+    background-color: #F5F3EE;
+    z-index: 9990;
+    overflow: hidden;
+    pointer-events: all;
   }
-  #preloader.hide {
+  #preloader.is-fading-out {
     opacity: 0;
-    visibility: hidden;
+    transition: opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
   }
+
+  /* Shared Architectural Hairline Frame + Corner Registration Ticks */
+  .editorial-frame {
+    position: absolute;
+    inset: 24px;
+    border: 1px solid rgba(44, 37, 32, 0.12);
+    pointer-events: none;
+  }
+  .editorial-tick {
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    line-height: 1;
+    color: rgba(44, 37, 32, 0.38);
+    user-select: none;
+  }
+
+  /* Act 1 (0.0s - 1.7s): King Bottom-Left + Middle-Right Editorial Block */
+  @keyframes act1KingAnim {
+    0%   { opacity: 0; transform: translateY(36px); }
+    38%  { opacity: 1; transform: translateY(0); }
+    86%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+  }
+  @keyframes act1BlockAnim {
+    0%   { opacity: 0; transform: translateY(14px); }
+    36%  { opacity: 1; transform: translateY(0); }
+    84%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+  }
+  @keyframes inkRuleDraw {
+    0%   { transform: scaleX(0); }
+    100% { transform: scaleX(1); }
+  }
+
+  /* Act 2 (1.7s - 3.4s): Inverted Woman Top-Right + Middle-Left Editorial Block */
+  @keyframes act2WomanAnim {
+    0%   { opacity: 0; transform: translateY(-36px); }
+    38%  { opacity: 1; transform: translateY(0); }
+    86%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(8px); }
+  }
+  @keyframes act2BlockAnim {
+    0%   { opacity: 0; transform: translateY(14px); }
+    36%  { opacity: 1; transform: translateY(0); }
+    84%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+  }
+
+  /* Act 3 (3.4s - 4.8s): Convergence into Final Hero Positions */
+  @keyframes act3KingConverge {
+    0%   { opacity: 0; transform: translateY(28px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes act3WomanConverge {
+    0%   { opacity: 0; transform: translateY(-28px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes act3PresentAnim {
+    0%   { opacity: 0; transform: translateY(6px); }
+    32%  { opacity: 1; transform: translateY(0); }
+    72%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-16px); }
+  }
+
+  /* Single Shared Hero ARAEL + Crest Upward Glide (4.05s -> 4.85s) */
+  #hero.is-pre-converge .hero-wordmark {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  #hero.is-pre-converge .hero-crest {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 48px));
+  }
+  #hero.is-pre-converge .hero-sub-stack {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  @keyframes heroAraelGlideUp {
+    0%   { opacity: 0; transform: translateY(48px); }
+    30%  { opacity: 1; transform: translateY(48px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroCrestGlideUp {
+    0%   { opacity: 0; transform: translate(-50%, calc(-50% + 48px)); }
+    30%  { opacity: 0.07; transform: translate(-50%, calc(-50% + 48px)); }
+    100% { opacity: 0.07; transform: translate(-50%, -50%); }
+  }
+  @keyframes heroSubStackIn {
+    0%   { opacity: 0; transform: translateY(14px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  #hero.is-converging .hero-crest {
+    z-index: 9995;
+    animation: heroCrestGlideUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  #hero.is-converging .hero-wordmark {
+    z-index: 9996;
+    animation: heroAraelGlideUp 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  #hero.is-converging .hero-sub-stack {
+    animation: heroSubStackIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  }
+
+  #preloader.is-playing .act1-king    { animation: act1KingAnim 1.7s cubic-bezier(0.22, 1, 0.36, 1) 0.04s forwards; }
+  #preloader.is-playing .act1-block   { animation: act1BlockAnim 1.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards; }
+  #preloader.is-playing .act1-rule    { transform-origin: left center; animation: inkRuleDraw 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.22s forwards; }
+  #preloader.is-playing .act2-woman   { animation: act2WomanAnim 1.7s cubic-bezier(0.22, 1, 0.36, 1) 1.7s forwards; }
+  #preloader.is-playing .act2-block   { animation: act2BlockAnim 1.65s cubic-bezier(0.22, 1, 0.36, 1) 1.74s forwards; }
+  #preloader.is-playing .act2-rule    { transform-origin: left center; animation: inkRuleDraw 0.65s cubic-bezier(0.22, 1, 0.36, 1) 1.88s forwards; }
+  #preloader.is-playing .act3-king    { animation: act3KingConverge 0.8s cubic-bezier(0.22, 1, 0.36, 1) 3.4s forwards; }
+  #preloader.is-playing .act3-woman   { animation: act3WomanConverge 0.8s cubic-bezier(0.22, 1, 0.36, 1) 3.4s forwards; }
+  #preloader.is-playing .act3-present { animation: act3PresentAnim 0.85s cubic-bezier(0.22, 1, 0.36, 1) 3.4s forwards; }
 
   /* Scrollbars */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -248,58 +424,139 @@
     border-color: var(--ink-primary);
   }
 
-  /* Reduced Motion */
+  /* Kalighat Surya Watermark Ambient Rotation */
+  @keyframes kalighatSunRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .kalighat-sun-rays {
+    transform-origin: 250px 250px;
+    animation: kalighatSunRotate 60s linear infinite;
+  }
+
+  /* Reduced Motion (keep essential loader choreography intact) */
   @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    #heroVideo { display: none !important; }
+    #hero *, #statement *, #showcase * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 </style>
 </head>
 <body class="surface-base">
 
-<!-- ============ PRELOADER ============ -->
-<div id="preloader">
-  <div class="text-center px-6">
-    <div class="display text-4xl sm:text-5xl tracking-tight text-[var(--ink-primary)]">ARAEL</div>
-    <div class="mt-3 micro-label text-[var(--ink-muted)]">Drop 01 • Heavyweight Combed Fleece</div>
+<!-- ============ 3-ACT EDITORIAL FILM TITLE SEQUENCE PRELOADER (0s - 4.8s) ============ -->
+<div id="preloader" class="is-playing" role="status" aria-label="Loading ARAEL">
+  <!-- Raw Cotton Paper Grain Overlay -->
+  <svg class="pointer-events-none absolute inset-0 h-full w-full z-0" style="opacity: 0.05; mix-blend-mode: multiply;" aria-hidden="true">
+    <filter id="loaderPaperGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#loaderPaperGrain)" />
+  </svg>
+
+  <!-- Shared Architectural Hairline Border Frame (inset 24px) & Corner Registration Ticks -->
+  <div class="editorial-frame z-40" aria-hidden="true">
+    <span class="editorial-tick -top-[6px] -left-[4px]">+</span>
+    <span class="editorial-tick -top-[6px] -right-[4px]">+</span>
+    <span class="editorial-tick -bottom-[6px] -left-[4px]">+</span>
+    <span class="editorial-tick -bottom-[6px] -right-[4px]">+</span>
+  </div>
+
+  <!-- ACT 1 (0.0s - 1.7s): Rajput King (Bottom-Left) + Middle-Right Editorial Block -->
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 top-[66px] md:top-[72px] z-10 flex items-center justify-end px-8 sm:px-14 md:pr-[10%]">
+    <img
+      src="assets/hero-rajput-king.webp"
+      alt=""
+      class="act1-king opacity-0 absolute bottom-0 left-0 -ml-1 h-[46vh] md:h-[88vh] lg:h-[92vh] max-h-full w-auto max-w-[44vw] md:max-w-none object-contain object-left-bottom"
+    />
+    <div class="act1-block opacity-0 text-left max-w-[54vw] md:max-w-xl">
+      <div style="font-family: 'Roboto', sans-serif; color: rgba(44, 37, 32, 0.7);" class="text-[11px] tracking-[0.25em] uppercase font-medium">
+        ACT I &nbsp;•&nbsp; MEWAR, RAJASTHAN
+      </div>
+      <div class="act1-rule my-3.5 sm:my-4 h-[1px] w-[120px] bg-[#2C2520]/45" style="transform: scaleX(0);"></div>
+      <p style="font-family: 'Rubik', sans-serif; color: #2C2520; line-height: 1.1;" class="text-[clamp(1.65rem,3.8vw,3.6rem)] font-normal">
+        From the heritage of
+        <span class="block italic text-[clamp(2rem,4.5vw,4.25rem)] mt-1">Maharana Pratap</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ACT 2 (1.7s - 3.4s): Inverted Bengali Woman (Locked Top-Right) + Middle-Left Editorial Block -->
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 top-[66px] md:top-[72px] z-20 flex items-center justify-start px-8 sm:px-14 md:pl-[12%]">
+    <img
+      src="assets/hero-bengali-woman.webp"
+      alt=""
+      class="act2-woman opacity-0 absolute top-0 right-0 -mr-1 h-[46vh] md:h-[88vh] lg:h-[92vh] max-h-full w-auto max-w-[44vw] md:max-w-none object-contain object-right-top"
+    />
+    <div class="act2-block opacity-0 text-left max-w-[54vw] md:max-w-xl">
+      <div style="font-family: 'Roboto', sans-serif; color: rgba(44, 37, 32, 0.7);" class="text-[11px] tracking-[0.25em] uppercase font-medium">
+        ACT II &nbsp;•&nbsp; BENGAL PATACHITRA
+      </div>
+      <div class="act2-rule my-3.5 sm:my-4 h-[1px] w-[120px] bg-[#2C2520]/45" style="transform: scaleX(0);"></div>
+      <p style="font-family: 'Rubik', sans-serif; color: #2C2520; line-height: 1.1;" class="text-[clamp(1.65rem,3.8vw,3.6rem)] font-normal">
+        From the heritage of
+        <span class="block italic text-[clamp(2rem,4.5vw,4.25rem)] mt-1">Bengal Folk</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ACT 3 (3.4s - 4.8s): Convergence Characters + "WE PRESENT TO YOU" (Single shared ARAEL glides in from #hero) -->
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 top-[66px] md:top-[72px] z-30 flex items-center justify-center">
+    <img
+      src="assets/hero-rajput-king.webp"
+      alt=""
+      class="act3-king opacity-0 absolute bottom-0 left-0 -ml-1 h-[46vh] md:h-[88vh] lg:h-[92vh] max-h-full w-auto max-w-[44vw] md:max-w-none object-contain object-left-bottom"
+    />
+    <img
+      src="assets/hero-bengali-woman.webp"
+      alt=""
+      class="act3-woman opacity-0 absolute top-0 right-0 -mr-1 h-[46vh] md:h-[88vh] lg:h-[92vh] max-h-full w-auto max-w-[44vw] md:max-w-none object-contain object-right-top"
+    />
+
+    <!-- "WE PRESENT TO YOU" framed by two short hairlines dead-center -->
+    <div class="relative z-10 w-full md:max-w-[38vw] mx-auto px-6 text-center flex items-center justify-center">
+      <div class="act3-present opacity-0 flex items-center gap-3.5 whitespace-nowrap">
+        <span class="w-8 sm:w-12 h-[1px] bg-[#2C2520]/35"></span>
+        <span style="font-family: 'Roboto', sans-serif; color: #2C2520;" class="text-[12px] sm:text-[13px] tracking-[0.35em] uppercase font-medium">
+          WE PRESENT TO YOU
+        </span>
+        <span class="w-8 sm:w-12 h-[1px] bg-[#2C2520]/35"></span>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ============ ADAPTIVE GLASSMORPHIC HEADER ============ -->
-<header id="header" class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3.5 sm:py-4 header-hero">
-  <div class="max-w-[1360px] mx-auto flex items-center justify-between gap-4">
-    
-    <!-- Brand Mark -->
-    <a href="#top" class="display text-xl sm:text-2xl tracking-[-0.04em] font-medium nav-logo hover:opacity-85 transition">
+<!-- ============ 3-COLUMN ARCHITECTURAL STICKY HEADER ============ -->
+<header id="header" class="sticky top-0 left-0 right-0 z-50 px-5 sm:px-8 py-4 header-hero">
+  <div class="max-w-[1360px] mx-auto grid grid-cols-[1fr_auto_1fr] items-center">
+
+    <!-- Left Column: Brand Wordmark -->
+    <a href="#top" onclick="event.preventDefault(); window.scrollTo({top:0, behavior:'smooth'});" style="font-family: 'Instrument Serif', serif; font-weight: 400; color: #1C1815;" class="justify-self-start text-[24px] tracking-[0.04em] leading-none uppercase nav-logo hover:opacity-75 transition-opacity">
       ARAEL
     </a>
 
-    <!-- Editorial Center Navigation -->
-    <nav class="hidden md:flex items-center gap-7 text-[12px] font-medium">
-      <a href="#statement" class="nav-link transition-colors">THE IDEA</a>
-      <a href="#showcase" class="nav-link transition-colors">SHOP</a>
-      <a href="#craft" class="nav-link transition-colors">THE DETAILS</a>
-      <a href="#reviews" class="nav-link transition-colors">YOUR TAKE</a>
-      <button onclick="openModal('sizeGuideModal')" class="nav-link transition-colors cursor-pointer">SIZE GUIDE</button>
+    <!-- Center Column: True Viewport-Centered Navigation -->
+    <nav class="justify-self-center hidden md:flex items-center gap-8 lg:gap-12 font-mono text-[11px] font-medium uppercase tracking-[0.2em]" style="color: #2C2520;">
+      <a href="#statement" class="nav-link hover:underline underline-offset-4 transition-all">THE IDEA</a>
+      <a href="#showcase" class="nav-link hover:underline underline-offset-4 transition-all">DROP 01</a>
+      <button onclick="openModal('sizeGuideModal')" class="nav-link hover:underline underline-offset-4 transition-all cursor-pointer uppercase">SIZE GUIDE</button>
     </nav>
 
-    <!-- Right Controls: Status, Drop CTA & Bag -->
-    <div class="flex items-center gap-2.5 sm:gap-3 nav-right-controls">
-      <span class="hidden xl:inline-block micro-label nav-status border-r pr-4">
-        Pan-India Express Dispatch
-      </span>
-
-      <button onclick="document.getElementById('showcase').scrollIntoView({behavior:'smooth'})" class="nav-cta px-4 py-2 text-[11px] font-mono tracking-wider uppercase font-semibold rounded-full cursor-pointer transition shadow-sm">
-        SHOP DROP 01
+    <!-- Right Column: Minimalist Account & Bag Icons -->
+    <div class="justify-self-end flex items-center gap-5 nav-right-controls">
+      <button onclick="openModal('conciergeModal')" class="text-[#2C2520] hover:opacity-65 transition-opacity cursor-pointer flex items-center justify-center" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2C2520" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
       </button>
 
-      <button onclick="openCart()" class="w-9 h-9 border nav-bag-btn flex items-center justify-center transition relative cursor-pointer rounded-full" aria-label="Open Shopping Bag">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <button onclick="openCart()" class="text-[#2C2520] hover:opacity-65 transition-opacity relative cursor-pointer flex items-center justify-center" aria-label="Open Shopping Bag">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2C2520" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
           <line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 0 1-8 0"/>
         </svg>
-        <span id="bagCount" class="absolute -top-1 -right-1 min-w-[17px] h-[17px] px-1 text-[9px] font-mono font-bold flex items-center justify-center rounded-full nav-bag-badge">
+        <span id="bagCount" class="absolute -top-1.5 -right-2 min-w-[16px] h-[16px] px-1 text-[9px] font-mono font-medium flex items-center justify-center rounded-full nav-bag-badge">
           0
         </span>
       </button>
@@ -310,455 +567,478 @@
 
 <main id="top">
 
-<!-- ============ FULL-BLEED AMBIENT HERO VIDEO (100SVH) ============ -->
-<section id="hero" class="relative w-full h-[100svh] min-h-[560px] flex items-end overflow-hidden select-none bg-black bg-cover bg-center" style="background-image: url('assets/hero-poster.webp');">
-  
-  <!-- Full-Bleed Ambient Video Layer with Clean Poster Fallback -->
-  <div class="absolute inset-0 z-0">
-    <video id="heroVideo" class="w-full h-full object-cover object-center" autoplay muted playsinline preload="metadata" poster="assets/hero-poster.webp">
-      <source src="assets/hero-video.mp4" type="video/mp4">
-    </video>
-    
-    <!-- Subtle Warm Scrim Gradients -->
-    <div class="absolute inset-0 bg-gradient-to-t from-[#141413]/35 via-transparent to-transparent pointer-events-none"></div>
+<!-- ============ FULL-VIEWPORT EDITORIAL FOLK-ART HERO BANNER ============ -->
+<section id="hero" class="is-pre-converge relative w-full px-0 h-[calc(100svh-66px)] min-h-[480px] md:h-[calc(100vh-72px)] md:min-h-[580px] flex items-center justify-center overflow-hidden select-none" style="background-color: #F5F3EE;">
+
+  <!-- Architectural Hairline Border Frame (inset 24px) & Corner Registration Ticks -->
+  <div class="editorial-frame z-0" aria-hidden="true">
+    <span class="editorial-tick -top-[6px] -left-[4px]">+</span>
+    <span class="editorial-tick -top-[6px] -right-[4px]">+</span>
+    <span class="editorial-tick -bottom-[6px] -left-[4px]">+</span>
+    <span class="editorial-tick -bottom-[6px] -right-[4px]">+</span>
   </div>
+
+  <!-- Raw Cotton 300 GSM Paper Grain Texture Overlay -->
+  <svg class="pointer-events-none absolute inset-0 h-full w-full z-0" style="opacity: 0.05; mix-blend-mode: multiply;" aria-hidden="true">
+    <filter id="cottonPaperGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#cottonPaperGrain)" />
+  </svg>
+
+  <!-- Kalighat Patachitra Surya & Lotus Watermark Crest Behind ARAEL -->
+  <div class="hero-crest pointer-events-none select-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-[260px] h-[260px] md:w-[480px] md:h-[480px]" style="opacity: 0.07; color: #2C2520;" aria-hidden="true">
+    <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Outer Rotating Surya Rays & Folk Dot Motifs (60s ambient rotation) -->
+      <g class="kalighat-sun-rays">
+        <!-- 16 Bold Brushstroke Flame / Sun Rays -->
+        <g fill="currentColor">
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(22.5 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(45 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(67.5 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(90 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(112.5 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(135 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(157.5 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(180 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(202.5 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(225 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(247.5 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(270 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(292.5 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(315 250 250)" />
+          <path d="M250 18 C256 44 261 68 250 86 C239 68 244 44 250 18 Z" transform="rotate(337.5 250 250)" />
+        </g>
+        <!-- Alternating Delicate Dot Motifs Between Sun Rays -->
+        <g fill="currentColor">
+          <circle cx="250" cy="52" r="4" transform="rotate(11.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(33.75 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(56.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(78.75 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(101.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(123.75 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(146.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(168.75 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(191.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(213.75 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(236.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(258.75 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(281.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(303.75 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(326.25 250 250)" />
+          <circle cx="250" cy="52" r="4" transform="rotate(348.75 250 250)" />
+        </g>
+      </g>
+
+      <!-- Static Inner Kalighat Lotus Medallion & Ink Rings -->
+      <circle cx="250" cy="250" r="158" stroke="currentColor" stroke-width="4.5" />
+      <circle cx="250" cy="250" r="148" stroke="currentColor" stroke-width="1.8" stroke-dasharray="4 7" stroke-linecap="round" />
+
+      <!-- 12 Symmetrical Bold-Brushstroke Lotus Petals -->
+      <g stroke="currentColor" stroke-width="3.2" stroke-linejoin="round" fill="none">
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(30 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(60 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(90 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(120 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(150 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(180 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(210 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(240 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(270 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(300 250 250)" />
+        <path d="M250 104 C270 132 272 164 250 186 C228 164 230 132 250 104 Z" transform="rotate(330 250 250)" />
+      </g>
+
+      <!-- Inner Surya Disc & Delicate Dot Ring -->
+      <circle cx="250" cy="250" r="64" stroke="currentColor" stroke-width="3.5" />
+      <circle cx="250" cy="250" r="46" stroke="currentColor" stroke-width="1.8" />
+      <g fill="currentColor">
+        <circle cx="250" cy="195" r="3" />
+        <circle cx="250" cy="195" r="3" transform="rotate(30 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(60 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(90 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(120 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(150 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(180 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(210 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(240 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(270 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(300 250 250)" />
+        <circle cx="250" cy="195" r="3" transform="rotate(330 250 250)" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- Left Edge: Rajput King (flush bottom-left edge, 46vh mobile / 88vh-92vh desktop, zero clipping) -->
+  <img
+    src="assets/hero-rajput-king.webp"
+    alt="Rajput king in black and charcoal Bengal folk art brushstrokes"
+    class="hero-king absolute bottom-0 left-0 -ml-1 h-[46vh] md:h-[88vh] lg:h-[92vh] max-h-full w-auto max-w-[44vw] md:max-w-none object-contain object-left-bottom origin-bottom-left pointer-events-none select-none z-0"
+  />
+
+  <!-- Center: Single Brand Mark + Vertical Editorial Stack (constrained to max-w-[38vw] on desktop) -->
+  <div class="hero-wordmark relative z-10 w-full md:max-w-[38vw] mx-auto px-6 text-center flex flex-col items-center">
+    <h1 style="font-family: 'Instrument Serif', serif; font-weight: 400; font-style: normal; color: #463527;" class="text-[clamp(3rem,7.2vw,6.5rem)] leading-none tracking-[0.02em] uppercase">
+      ARAEL
+    </h1>
+    <div class="hero-sub-stack flex flex-col items-center">
+      <div class="my-3 md:my-5 w-[1px] h-[24px] md:h-[36px] bg-[#2C2520]/30" aria-hidden="true"></div>
+      <p style="font-family: 'Roboto', sans-serif; color: rgba(44, 37, 32, 0.7);" class="text-[11px] tracking-[0.28em] uppercase font-medium">
+        DROP 01 &nbsp;•&nbsp; HERITAGE STREETWEAR
+      </p>
+      <a
+        href="#statement"
+        onclick="event.preventDefault(); document.getElementById('statement').scrollIntoView({behavior:'smooth'});"
+        style="font-family: 'Roboto', sans-serif; color: #2C2520;"
+        class="mt-3 md:mt-5 inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#2C2520]/25 hover:border-[#2C2520] hover:bg-[#2C2520] hover:text-[#F5F3EE] text-[10px] sm:text-[11px] tracking-[0.24em] uppercase font-medium transition-colors duration-200 cursor-pointer"
+      >
+        EXPLORE THE ARCHIVE ↓
+      </a>
+    </div>
+  </div>
+
+  <!-- Right Edge: Inverted Bengali Woman (flush top-right edge, 46vh mobile / 88vh-92vh desktop, zero clipping) -->
+  <img
+    src="assets/hero-bengali-woman.webp"
+    alt="Bengali woman in black and charcoal Bengal folk art brushstrokes"
+    class="hero-woman absolute top-0 right-0 -mr-1 h-[46vh] md:h-[88vh] lg:h-[92vh] max-h-full w-auto max-w-[44vw] md:max-w-none object-contain object-right-top origin-top-right pointer-events-none select-none z-0"
+  />
 
 </section>
 
-<!-- ============ EDITORIAL STATEMENT (WARM-EDITORIAL, SCROLL-HIGHLIGHTED MANIFESTO) ============ -->
-<section id="statement" class="relative surface-base pt-16 sm:pt-24 md:pt-32 pb-6 sm:pb-8 md:pb-10 px-5 sm:px-10 md:px-16 overflow-hidden select-none">
-  <div class="max-w-[1240px] mx-auto">
-    
-    <!-- Micro-Label -->
-    <div class="flex items-center gap-2.5 mb-6 sm:mb-8">
-      <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-sage)]"></span>
-      <span class="micro-label text-[var(--ink-muted)]">THE IDEA • DROP 01</span>
-    </div>
+<!-- ============ 300VH PINNED ZIPPER UNROLL WOODCUT SHOWCASE ============ -->
+<section id="statement" class="relative h-[300vh] border-t border-[#2C2520]/12" style="background-color: #F5F3EE;">
+  <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center px-3 sm:px-6 pt-14" style="background-color: #F5F3EE;">
 
-    <!-- Editorial Statement Text -->
-    <p id="statementText" class="display text-[clamp(28px,4.5vw,62px)] leading-[1.16] sm:leading-[1.12] tracking-[-0.035em] text-[#A8A49C] font-light max-w-5xl">
-      <span class="statement-phrase" data-phrase="0">Modern Indian streetwear</span>
-      <span class="inline-flex items-center justify-center align-middle mx-1.5 sm:mx-2.5 text-[var(--accent-sage)] statement-glyph" aria-hidden="true">
-        <!-- Minimal 4-point sparkle mark -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-[0.52em] h-[0.52em]">
-          <path d="M12 0L14.4 9.6L24 12L14.4 14.4L12 24L9.6 14.4L0 12L9.6 9.6L12 0Z"/>
-        </svg>
-      </span>
-      <span class="statement-phrase" data-phrase="1">made for how you actually live.</span>
-      <br class="hidden sm:inline">
-      <span class="statement-phrase" data-phrase="2">300 GSM fleece,</span>
-      <span class="inline-flex items-center justify-center align-middle mx-1.5 sm:mx-2.5 text-[var(--accent-sand)] statement-glyph" aria-hidden="true">
-        <!-- Subtle craft geometric circle mark -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="w-[0.5em] h-[0.5em]">
-          <circle cx="12" cy="12" r="7"/>
-          <path d="M12 2V22M2 12H22"/>
-        </svg>
-      </span>
-      <span class="statement-phrase" data-phrase="3">grounded in heritage,</span>
-      <span class="inline-flex items-center justify-center align-middle mx-1.5 sm:mx-2.5 text-[var(--accent-sage)] statement-glyph" aria-hidden="true">
-        <!-- Subtle heritage arch knot mark -->
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="w-[0.5em] h-[0.5em]">
-          <path d="M4 19V9a8 8 0 0 1 16 0v10"/>
-          <circle cx="12" cy="13.5" r="2.5"/>
-        </svg>
-      </span>
-      <span class="statement-phrase" data-phrase="4">without compromising on ease or form.</span>
-    </p>
-
-  </div>
-</section>
-
-<!-- ============ MULTI-ITEM SHOWCASE TRACK (CRISP, UNCLIPPED CARDS & CLEAN METRICS BENEATH) ============ -->
-<section id="showcase" class="pt-4 sm:pt-6 pb-20 sm:pb-28 px-4 sm:px-8 surface-base">
-  <div class="max-w-[1360px] mx-auto">
-    
-    <!-- Section Header Row -->
-    <div class="flex items-end justify-between gap-6 mb-8 sm:mb-10">
-      <div>
-        <h2 class="display text-[clamp(28px,4.5vw,52px)] leading-[0.96] text-[var(--ink-primary)]">
-          DROP 01
-        </h2>
-      </div>
-
-      <!-- Navigation Arrows for Track -->
-      <div class="hidden sm:flex items-center gap-2">
-        <button onclick="scrollShowcase(-1)" class="w-9 h-9 border border-[var(--border-subtle)] bg-[var(--surface-card)] flex items-center justify-center font-mono text-xs hover:bg-[var(--surface-muted)] transition cursor-pointer text-[var(--ink-primary)]" aria-label="Previous items">←</button>
-        <button onclick="scrollShowcase(1)" class="w-9 h-9 border border-[var(--border-subtle)] bg-[var(--surface-card)] flex items-center justify-center font-mono text-xs hover:bg-[var(--surface-muted)] transition cursor-pointer text-[var(--ink-primary)]" aria-label="Next items">→</button>
-      </div>
-    </div>
-
-    <!-- Horizontal Showcase Track (Unclipped, Smooth Horizontal Rhythm) -->
-    <div id="showcaseTrack" class="overflow-x-auto no-scrollbar scroll-smooth flex gap-6 sm:gap-8 pb-4 pt-1 snap-x snap-mandatory">
-      
-      <!-- Card 1: Crimson Carpet Festive Set -->
-      <div class="showcase-card w-[240px] sm:w-[280px] md:w-[300px] flex-none snap-start group">
-        <a href="products/crimson-carpet.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative">
-          <img loading="lazy" decoding="async" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Crimson Carpet Festive Set">
-        </a>
-        <div class="pt-3.5">
-          <div class="flex items-baseline justify-between gap-3">
-            <h4 class="display text-base sm:text-lg text-[var(--ink-primary)] leading-snug truncate">Crimson Carpet Festive Set</h4>
-            <span class="font-mono text-sm font-semibold text-[var(--ink-primary)] flex-none">₹2,199</span>
-          </div>
-          <p class="text-xs text-[var(--ink-secondary)] mt-1.5 leading-relaxed line-clamp-2">Deep crimson maroon with antique gold prayer-arch motifs. A statement colour with a relaxed, everyday silhouette.</p>
-          <a href="products/crimson-carpet.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
-            <span>VIEW THE SET</span>
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 2: Midnight Warli Cropped Zip Set -->
-      <div class="showcase-card w-[240px] sm:w-[280px] md:w-[300px] flex-none snap-start group">
-        <a href="products/midnight-warli.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative">
-          <img loading="lazy" decoding="async" src="designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Midnight Warli Cropped Zip Set">
-        </a>
-        <div class="pt-3.5">
-          <div class="flex items-baseline justify-between gap-3">
-            <h4 class="display text-base sm:text-lg text-[var(--ink-primary)] leading-snug truncate">Midnight Warli Cropped Zip Set</h4>
-            <span class="font-mono text-sm font-semibold text-[var(--ink-primary)] flex-none">₹2,299</span>
-          </div>
-          <p class="text-xs text-[var(--ink-secondary)] mt-1.5 leading-relaxed line-clamp-2">Washed charcoal, cream Warli-inspired motifs and a cropped zip silhouette. Built around the contrast between dark fabric and intricate detail.</p>
-          <a href="products/midnight-warli.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
-            <span>VIEW THE SET</span>
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 3: Ash Grey Warli Co-ord Set -->
-      <div class="showcase-card w-[240px] sm:w-[280px] md:w-[300px] flex-none snap-start group">
-        <a href="products/ash-grey-warli.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative">
-          <img loading="lazy" decoding="async" src="designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Ash Grey Warli Co-ord Set">
-        </a>
-        <div class="pt-3.5">
-          <div class="flex items-baseline justify-between gap-3">
-            <h4 class="display text-base sm:text-lg text-[var(--ink-primary)] leading-snug truncate">Ash Grey Warli Co-ord Set</h4>
-            <span class="font-mono text-sm font-semibold text-[var(--ink-primary)] flex-none">₹2,099</span>
-          </div>
-          <p class="text-xs text-[var(--ink-secondary)] mt-1.5 leading-relaxed line-clamp-2">Ash grey with folk-inspired detailing. A quieter colourway that lets the pattern do the talking.</p>
-          <a href="products/ash-grey-warli.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
-            <span>VIEW THE SET</span>
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 4: Raw Khaki Heritage Floral Set -->
-      <div class="showcase-card w-[240px] sm:w-[280px] md:w-[300px] flex-none snap-start group">
-        <a href="products/raw-khadi-heritage.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative">
-          <img loading="lazy" decoding="async" src="designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Raw Khaki Heritage Floral Set">
-        </a>
-        <div class="pt-3.5">
-          <div class="flex items-baseline justify-between gap-3">
-            <h4 class="display text-base sm:text-lg text-[var(--ink-primary)] leading-snug truncate">Raw Khaki Heritage Floral Set</h4>
-            <span class="font-mono text-sm font-semibold text-[var(--ink-primary)] flex-none">₹2,199</span>
-          </div>
-          <p class="text-xs text-[var(--ink-secondary)] mt-1.5 leading-relaxed line-clamp-2">Raw khaki tones with floral-inspired motifs. Earthy colour, relaxed proportions and a distinct visual identity.</p>
-          <a href="products/raw-khadi-heritage.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
-            <span>VIEW THE SET</span>
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 5: Sandstone Taupe Geometric Set -->
-      <div class="showcase-card w-[240px] sm:w-[280px] md:w-[300px] flex-none snap-start group">
-        <a href="products/sandstone-taupe.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative">
-          <img loading="lazy" decoding="async" src="designs/taupe/Taupe Embroidered Tracksuit Portrait.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Sandstone Taupe Geometric Set">
-        </a>
-        <div class="pt-3.5">
-          <div class="flex items-baseline justify-between gap-3">
-            <h4 class="display text-base sm:text-lg text-[var(--ink-primary)] leading-snug truncate">Sandstone Taupe Geometric Set</h4>
-            <span class="font-mono text-sm font-semibold text-[var(--ink-primary)] flex-none">₹2,149</span>
-          </div>
-          <p class="text-xs text-[var(--ink-secondary)] mt-1.5 leading-relaxed line-clamp-2">Muted taupe with geometric detailing. A neutral base with more going on up close.</p>
-          <a href="products/sandstone-taupe.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
-            <span>VIEW THE SET</span>
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 6: Noir Black Lotus Set -->
-      <div class="showcase-card w-[240px] sm:w-[280px] md:w-[300px] flex-none snap-start group">
-        <a href="products/noir-black-lotus.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative">
-          <img loading="lazy" decoding="async" src="designs/black/Black Embroidered Lotus Tracksuit.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Noir Black Lotus Set">
-        </a>
-        <div class="pt-3.5">
-          <div class="flex items-baseline justify-between gap-3">
-            <h4 class="display text-base sm:text-lg text-[var(--ink-primary)] leading-snug truncate">Noir Black Lotus Set</h4>
-            <span class="font-mono text-sm font-semibold text-[var(--ink-primary)] flex-none">₹2,299</span>
-          </div>
-          <p class="text-xs text-[var(--ink-secondary)] mt-1.5 leading-relaxed line-clamp-2">An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.</p>
-          <a href="products/noir-black-lotus.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
-            <span>VIEW THE SET</span>
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Card 7: Onyx & Slate Two-Tone Cargo Set -->
-      <div class="showcase-card w-[240px] sm:w-[280px] md:w-[300px] flex-none snap-start group">
-        <a href="products/two-tone-cargo.html" class="aspect-[9/16] block overflow-hidden surface-subtle border border-[var(--border-subtle)] relative">
-          <img loading="lazy" decoding="async" src="designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" alt="Onyx & Slate Two-Tone Cargo Set">
-        </a>
-        <div class="pt-3.5">
-          <div class="flex items-baseline justify-between gap-3">
-            <h4 class="display text-base sm:text-lg text-[var(--ink-primary)] leading-snug truncate">Onyx & Slate Two-Tone Cargo Set</h4>
-            <span class="font-mono text-sm font-semibold text-[var(--ink-primary)] flex-none">₹2,499</span>
-          </div>
-          <p class="text-xs text-[var(--ink-secondary)] mt-1.5 leading-relaxed line-clamp-2">Onyx and slate meet in a two-tone cargo silhouette. A more utility-driven direction for everyday wear.</p>
-          <a href="products/two-tone-cargo.html" class="mt-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--ink-primary)] hover:text-[var(--accent-sage)] transition flex items-center gap-1.5 cursor-pointer">
-            <span>VIEW THE SET</span>
-            <span>→</span>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ============ TEXTILE & CRAFT ATELIER ============ -->
-<section id="craft" class="py-24 sm:py-36 px-4 sm:px-8 surface-base">
-  <div class="max-w-[1360px] mx-auto">
-    
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20">
-      <div>
-        <span class="micro-label text-[var(--accent-sage)]">THE MATERIALS</span>
-        <h2 class="display text-[clamp(32px,5vw,60px)] leading-[0.96] text-[var(--ink-primary)] mt-2">
-          DESIGNED IN THE <span class="editorial-serif font-light text-[var(--ink-secondary)]">DETAILS</span>
-        </h2>
-      </div>
-      <p class="body-text text-sm sm:text-base text-[var(--ink-secondary)] max-w-md">
-        ARAEL brings Indian folk-inspired motifs into contemporary streetwear through pattern, colour and proportion.
+    <!-- Upper Statement (centered above slit, pushes smoothly off the top during Stage 2) -->
+    <div id="unrollHeading" class="absolute inset-x-4 bottom-[calc(50%+22px)] sm:bottom-[calc(50%+28px)] max-w-4xl mx-auto text-center will-change-transform pointer-events-none">
+      <p id="manifestoText" style="font-family: 'Rubik', sans-serif; line-height: 1.2;" class="text-[clamp(1.65rem,3.6vw,3.1rem)] font-normal tracking-[-0.02em]">
+        <span class="manifesto-word">Modern</span> <span class="manifesto-word">Indian</span> <span class="manifesto-word">Streetwear</span><br class="hidden sm:inline">
+        <span class="manifesto-word">Grounded</span> <span class="manifesto-word">in</span> <span class="manifesto-word">Heritage,</span> <span class="manifesto-word">Made</span> <span class="manifesto-word">for</span><br class="hidden sm:inline">
+        <span class="manifesto-word">How</span> <span class="manifesto-word">You</span> <span class="manifesto-word">Actually</span> <span class="manifesto-word">Live.</span>
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 sm:gap-10">
-      
-      <!-- Craft 1 -->
-      <div class="surface-card p-8 sm:p-10 border border-[var(--border-hairline)] shadow-sm">
-        <span class="font-mono text-xs font-bold text-[var(--accent-sage)] block mb-4">01 / FABRIC</span>
-        <h3 class="display text-2xl text-[var(--ink-primary)] mb-3">THE FABRIC</h3>
-        <p class="body-text text-sm text-[var(--ink-secondary)]">
-          A substantial fleece construction gives the garment its structure and weight. Check the individual product details for fabric composition and care information.
-        </p>
-        <div class="mt-6 pt-6 border-t border-[var(--border-hairline)] text-[11px] font-mono text-[var(--ink-muted)]">
-          FABRIC & FINISH
+    <!-- Tactile Garment Zipper Slit (18px -> 84vh, w-[94vw] max-w-[1600px]) -->
+    <div id="unrollSlit" class="relative flex-none w-[94vw] max-w-[1600px] border border-[#2C2520]" style="height: 18px; background-color: #F5F3EE;">
+      <!-- Inner clipped artwork + interlocking metallic zipper teeth -->
+      <div class="relative w-full h-full overflow-hidden">
+        <div id="zipperTrackTop" class="zipper-teeth-top"></div>
+        <div id="zipperTrackBottom" class="zipper-teeth-bottom"></div>
+
+        <!-- Monochrome Fort Lake Woodcut Artwork -->
+        <img
+          id="unrollArtwork"
+          src="assets/fort-woodcut.png"
+          alt="Monochrome Fort Lake Woodcut Landscape"
+          class="w-full h-full object-cover object-center select-none pointer-events-none"
+          style="clip-path: inset(0 0 0 100%);"
+        />
+
+        <!-- Center Overlay Label (Fades in once artwork reaches full 84vh height) -->
+        <div id="unrollOverlayCta" class="absolute inset-0 flex items-center justify-center z-30" style="opacity: 0; pointer-events: none;">
+          <a
+            href="#showcase"
+            onclick="event.preventDefault(); document.getElementById('showcase').scrollIntoView({behavior:'smooth'});"
+            class="font-mono text-[11px] uppercase tracking-[0.22em] font-medium px-6 py-3 border border-[#2C2520] bg-[#F5F3EE] text-[#2C2520] hover:bg-[#2C2520] hover:text-[#F5F3EE] transition-colors duration-200 cursor-pointer"
+          >
+            EXPLORE DROP 01 ↓
+          </a>
         </div>
       </div>
 
-      <!-- Craft 2 -->
-      <div class="surface-card p-8 sm:p-10 border border-[var(--border-hairline)] shadow-sm">
-        <span class="font-mono text-xs font-bold text-[var(--accent-sage)] block mb-4">02 / THE MOTIFS</span>
-        <h3 class="display text-2xl text-[var(--ink-primary)] mb-3">FOLK-INSPIRED PATTERNS</h3>
-        <p class="body-text text-sm text-[var(--ink-secondary)]">
-          Indian folk art and traditional decorative forms inform the patterns across selected ARAEL pieces. Each colourway interprets these references differently.
-        </p>
-        <div class="mt-6 pt-6 border-t border-[var(--border-hairline)] text-[11px] font-mono text-[var(--ink-muted)]">
-          PRINT & EMBROIDERY
-        </div>
+      <!-- Custom SVG Metal Zipper Slider & Pull Tab (Slides R->L 0% -> 40%) -->
+      <div id="zipperSlider" class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-40 pointer-events-none select-none" style="left: 100%; opacity: 1;">
+        <svg width="26" height="54" viewBox="0 0 26 54" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 2px 4px rgba(44,37,32,0.22));">
+          <!-- Slider Body -->
+          <rect x="4" y="2" width="18" height="20" rx="3" fill="#2C2520" stroke="#7A7066" stroke-width="1" />
+          <rect x="7" y="5" width="12" height="14" rx="1.5" fill="#1E1915" />
+          <!-- Brushed Metallic Bridge / Crown -->
+          <rect x="9.5" y="10" width="7" height="10" rx="2" fill="#463D36" stroke="#8F8478" stroke-width="0.8" />
+          <!-- Hanging Metal Pull Tab -->
+          <path d="M8 20 L18 20 L20 46 C20 49.5 17 52 13 52 C9 52 6 49.5 6 46 Z" fill="#2C2520" stroke="#8F8478" stroke-width="1" />
+          <line x1="9" y1="24" x2="17" y2="24" stroke="#7A7066" stroke-width="0.9" />
+          <!-- Pull Tab Cutout -->
+          <rect x="10.5" y="34" width="5" height="11" rx="2.5" fill="#F5F3EE" />
+        </svg>
       </div>
+    </div>
 
-      <!-- Craft 3 -->
-      <div class="surface-card p-8 sm:p-10 border border-[var(--border-hairline)] shadow-sm">
-        <span class="font-mono text-xs font-bold text-[var(--accent-sage)] block mb-4">03 / THE FIT</span>
-        <h3 class="display text-2xl text-[var(--ink-primary)] mb-3">RELAXED PROPORTIONS</h3>
-        <p class="body-text text-sm text-[var(--ink-secondary)]">
-          Relaxed silhouettes, considered proportions and room to move. Check each product's measurements for the exact fit and cut.
-        </p>
-        <div class="mt-6 pt-6 border-t border-[var(--border-hairline)] text-[11px] font-mono text-[var(--ink-muted)]">
-          CUT & PROPORTION
-        </div>
-      </div>
-
+    <!-- Lower Caption (centered below slit, pushes smoothly off the bottom during Stage 2) -->
+    <div id="unrollCaption" class="absolute inset-x-4 top-[calc(50%+46px)] sm:top-[calc(50%+54px)] max-w-xl mx-auto text-center will-change-transform pointer-events-none">
+      <p class="font-sans text-[14px] leading-relaxed text-[#2C2520]/75">
+        Born from royal Mewar architecture and Bengal folk craft—cut in heavyweight 300 GSM fleece for everyday movement.
+      </p>
     </div>
 
   </div>
 </section>
 
-<!-- ============ UPCOMING DROP 02 PREVIEW (CLEAN 50/50 SPLIT, ZERO PHOTO OVERLAY) ============ -->
-<section id="upcoming" class="py-24 sm:py-36 px-4 sm:px-8 text-[var(--ink-inverted)]" style="background-color: var(--surface-dark);">
+<!-- ============ DROP 01 (UNIFIED 3-COLUMN LOOKBOOK GRID) ============ -->
+<section id="showcase" class="border-t border-[#2C2520]/12 py-24 lg:py-32 px-6 sm:px-10 md:px-16" style="background-color: #F5F3EE;">
   <div class="max-w-[1360px] mx-auto">
-    
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-      
-      <!-- 50% Left: Clean Unclipped Media Card (Zero Text Overlays Inside Image Container) -->
-      <div class="relative overflow-hidden aspect-[4/5] bg-[var(--surface-dark-card)] border border-[var(--border-dark)] shadow-2xl">
-        <img loading="lazy" decoding="async" id="upcomingDropImg" src="designs/taupe/Taupe Embroidered Tracksuit Portrait.png" class="w-full h-full object-cover transition-opacity duration-300" alt="NEXT FROM ARAEL">
-      </div>
-
-      <!-- 50% Right: Narrative, Details, and Waitlist Action -->
-      <div class="flex flex-col justify-between">
-        <div>
-          <div class="flex items-center gap-3 mb-4">
-            <span class="w-2 h-2 rounded-full bg-[var(--accent-sage)]"></span>
-            <span class="micro-label text-[var(--accent-sage)]">DROP 02 / PREVIEW</span>
-          </div>
-
-          <h2 class="display text-[clamp(32px,5vw,56px)] leading-[0.96] text-[var(--ink-inverted)] mb-2">
-            COMING <span class="editorial-serif font-light text-[var(--ink-inverted-secondary)]">NEXT</span>
-          </h2>
-
-          <h3 id="upcomingTitle" class="display text-2xl uppercase text-[var(--ink-inverted)] mt-4">Neel Slate Indigo Set</h3>
-          <p id="upcomingMeta" class="text-xs font-mono text-[var(--accent-sand)] mt-1 uppercase tracking-wider">BRUSHED FLEECE • BOXY FIT</p>
-
-          <p class="text-sm sm:text-base text-[var(--ink-inverted-secondary)] leading-relaxed mt-4 max-w-lg">
-            Indigo tones meet temple-inspired borders in the next ARAEL collection. A darker palette, familiar references and a different silhouette.
-          </p>
-
-          <!-- Preview Switcher -->
-          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-[var(--border-dark)]">
-            <span class="text-xs font-mono text-[var(--ink-inverted-secondary)]">EXPLORE THE PREVIEW</span>
-            <div class="flex items-center gap-1.5">
-              <button onclick="changeUpcomingDrop(-1)" class="w-8 h-8 flex items-center justify-center transition hover:bg-white/10 border border-[var(--border-dark)] font-mono text-xs cursor-pointer bg-[var(--surface-dark-card)] text-[var(--ink-inverted)]" aria-label="Previous preview">←</button>
-              <button onclick="changeUpcomingDrop(1)" class="w-8 h-8 flex items-center justify-center transition hover:bg-white/10 border border-[var(--border-dark)] font-mono text-xs cursor-pointer bg-[var(--surface-dark-card)] text-[var(--ink-inverted)]" aria-label="Next preview">→</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-8">
-          <button onclick="notifyUpcoming()" class="px-7 py-3.5 text-xs font-mono font-bold tracking-[0.2em] uppercase transition hover:brightness-110 flex items-center gap-2 shadow-xl cursor-pointer bg-[var(--accent-sage)] text-[var(--surface-dark)]">
-            <span>GET DROP 02 UPDATES</span>
-            <span class="text-sm leading-none">↗</span>
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ YOUR TAKE (CUSTOMER FEEDBACK INVITATION) ============ -->
-<section id="reviews" class="py-24 sm:py-36 px-4 sm:px-8 surface-subtle border-t border-b border-[var(--border-hairline)]">
-  <div class="max-w-[1360px] mx-auto">
-    
-    <div class="mb-12 sm:mb-16">
-      <p class="micro-label text-[var(--accent-sage)]">YOUR TAKE</p>
-      <h2 class="display text-[clamp(32px,5vw,60px)] leading-[0.96] text-[var(--ink-primary)] mt-1.5">
-        YOUR <span class="editorial-serif font-light text-[var(--ink-secondary)]">TAKE</span>
+    <div id="drop01Header" class="drop01-header-reveal mb-14 lg:mb-20 text-center max-w-[1360px] mx-auto px-4 sm:px-6">
+      <h2 style="font-family: 'Rubik', sans-serif; color: #2C2520; line-height: 1.1;" class="text-[clamp(1.35rem,3.6vw,3.35rem)] font-bold tracking-[-0.02em] sm:whitespace-nowrap">
+        When Tradition Meets <span class="whitespace-nowrap">Gen-Z</span>
       </h2>
+      <p style="font-family: 'Inter', sans-serif; color: rgba(44, 37, 32, 0.7);" class="mt-3 lg:mt-4 text-[clamp(1rem,1.4vw,1.25rem)] font-normal">
+        This is what you need.
+      </p>
     </div>
 
-    <!-- Clean Editorial Block -->
-    <div class="surface-card p-8 sm:p-14 lg:p-16 border border-[var(--border-subtle)] shadow-sm max-w-2xl">
-      <p class="body-text text-base sm:text-lg text-[var(--ink-secondary)] leading-relaxed mb-8">
-        Bought a set? Tell us how it fits and feels.
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- 01: Crimson Carpet Festive Set -->
+      <a href="products/crimson-carpet.html" class="group block">
+        <div class="aspect-[3/4] w-full overflow-hidden">
+          <img loading="lazy" decoding="async" src="designs/maroon/Maroon Patchwork Bohemian Tracksuit Portrait.png" alt="Crimson Carpet Festive Set" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+        </div>
+        <div class="mt-4 flex items-baseline justify-between gap-3 text-[#2C2520]">
+          <span class="font-sans text-[13px] font-medium tracking-[0.02em] truncate group-hover:underline underline-offset-4">Crimson Carpet Festive Set</span>
+          <span class="font-mono text-[12px] uppercase tracking-[0.14em] flex items-center gap-3 flex-none">
+            <span class="hidden sm:inline opacity-0 group-hover:opacity-100 underline underline-offset-4 transition-opacity duration-200 text-[11px]">VIEW SET</span>
+            <span>₹2,199</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- 02: Midnight Warli Cropped Zip Set -->
+      <a href="products/midnight-warli.html" class="group block">
+        <div class="aspect-[3/4] w-full overflow-hidden">
+          <img loading="lazy" decoding="async" src="designs/midnight-navy/Model_posing_in_streetwear_98dda641-clean.png" alt="Midnight Warli Cropped Zip Set" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+        </div>
+        <div class="mt-4 flex items-baseline justify-between gap-3 text-[#2C2520]">
+          <span class="font-sans text-[13px] font-medium tracking-[0.02em] truncate group-hover:underline underline-offset-4">Midnight Warli Cropped Zip Set</span>
+          <span class="font-mono text-[12px] uppercase tracking-[0.14em] flex items-center gap-3 flex-none">
+            <span class="hidden sm:inline opacity-0 group-hover:opacity-100 underline underline-offset-4 transition-opacity duration-200 text-[11px]">VIEW SET</span>
+            <span>₹2,299</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- 03: Ash Grey Warli Co-ord Set -->
+      <a href="products/ash-grey-warli.html" class="group block">
+        <div class="aspect-[3/4] w-full overflow-hidden">
+          <img loading="lazy" decoding="async" src="designs/ash-grey/Young_person_posing_in_streetwear_eabd19ed-clean.png" alt="Ash Grey Warli Co-ord Set" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+        </div>
+        <div class="mt-4 flex items-baseline justify-between gap-3 text-[#2C2520]">
+          <span class="font-sans text-[13px] font-medium tracking-[0.02em] truncate group-hover:underline underline-offset-4">Ash Grey Warli Co-ord Set</span>
+          <span class="font-mono text-[12px] uppercase tracking-[0.14em] flex items-center gap-3 flex-none">
+            <span class="hidden sm:inline opacity-0 group-hover:opacity-100 underline underline-offset-4 transition-opacity duration-200 text-[11px]">VIEW SET</span>
+            <span>₹2,099</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- 04: Raw Khaki Heritage Floral Set -->
+      <a href="products/raw-khadi-heritage.html" class="group block">
+        <div class="aspect-[3/4] w-full overflow-hidden">
+          <img loading="lazy" decoding="async" src="designs/raw-khadi/Model_wearing_streetwear_pose_2ced5da9-clean.png" alt="Raw Khaki Heritage Floral Set" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+        </div>
+        <div class="mt-4 flex items-baseline justify-between gap-3 text-[#2C2520]">
+          <span class="font-sans text-[13px] font-medium tracking-[0.02em] truncate group-hover:underline underline-offset-4">Raw Khaki Heritage Floral Set</span>
+          <span class="font-mono text-[12px] uppercase tracking-[0.14em] flex items-center gap-3 flex-none">
+            <span class="hidden sm:inline opacity-0 group-hover:opacity-100 underline underline-offset-4 transition-opacity duration-200 text-[11px]">VIEW SET</span>
+            <span>₹2,199</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- 05: Sandstone Taupe Geometric Set -->
+      <a href="products/sandstone-taupe.html" class="group block">
+        <div class="aspect-[3/4] w-full overflow-hidden">
+          <img loading="lazy" decoding="async" src="designs/taupe/Taupe Embroidered Tracksuit Portrait.png" alt="Sandstone Taupe Geometric Set" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+        </div>
+        <div class="mt-4 flex items-baseline justify-between gap-3 text-[#2C2520]">
+          <span class="font-sans text-[13px] font-medium tracking-[0.02em] truncate group-hover:underline underline-offset-4">Sandstone Taupe Geometric Set</span>
+          <span class="font-mono text-[12px] uppercase tracking-[0.14em] flex items-center gap-3 flex-none">
+            <span class="hidden sm:inline opacity-0 group-hover:opacity-100 underline underline-offset-4 transition-opacity duration-200 text-[11px]">VIEW SET</span>
+            <span>₹2,149</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- 06: Noir Black Lotus Set -->
+      <a href="products/noir-black-lotus.html" class="group block">
+        <div class="aspect-[3/4] w-full overflow-hidden">
+          <img loading="lazy" decoding="async" src="designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" alt="Noir Black Lotus Set" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+        </div>
+        <div class="mt-4 flex items-baseline justify-between gap-3 text-[#2C2520]">
+          <span class="font-sans text-[13px] font-medium tracking-[0.02em] truncate group-hover:underline underline-offset-4">Noir Black Lotus Set</span>
+          <span class="font-mono text-[12px] uppercase tracking-[0.14em] flex items-center gap-3 flex-none">
+            <span class="hidden sm:inline opacity-0 group-hover:opacity-100 underline underline-offset-4 transition-opacity duration-200 text-[11px]">VIEW SET</span>
+            <span>₹2,299</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- 07: Onyx & Slate Two-Tone Cargo Set -->
+      <a href="products/two-tone-cargo.html" class="group block">
+        <div class="aspect-[3/4] w-full overflow-hidden">
+          <img loading="lazy" decoding="async" src="designs/two-tone-black-grey/Young_model_posing_in_streetwear_b0c1d276-clean.png" alt="Onyx & Slate Two-Tone Cargo Set" class="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+        </div>
+        <div class="mt-4 flex items-baseline justify-between gap-3 text-[#2C2520]">
+          <span class="font-sans text-[13px] font-medium tracking-[0.02em] truncate group-hover:underline underline-offset-4">Onyx &amp; Slate Two-Tone Cargo Set</span>
+          <span class="font-mono text-[12px] uppercase tracking-[0.14em] flex items-center gap-3 flex-none">
+            <span class="hidden sm:inline opacity-0 group-hover:opacity-100 underline underline-offset-4 transition-opacity duration-200 text-[11px]">VIEW SET</span>
+            <span>₹2,499</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ============ 3-PART OUR STORY SECTION (BETWEEN DROP 01 & NEWSLETTER) ============ -->
+    <section id="ourStory" class="mt-24 lg:mt-32 pt-24 lg:pt-32 border-t border-[#2C2520]/12">
+      <div class="story-reveal mb-16 lg:mb-24 text-center px-6">
+        <h2 style="font-family: 'Rubik', sans-serif; color: #2C2520;" class="text-[clamp(2.5rem,5vw,4.5rem)] font-bold tracking-[-0.02em] leading-none uppercase">
+          OUR STORY
+        </h2>
+      </div>
+
+      <div class="space-y-16 md:space-y-24 lg:space-y-32 max-w-6xl mx-auto">
+        <!-- Beat 01: Text Left, Image Right -->
+        <article class="story-reveal relative md:grid md:grid-cols-2 md:gap-12 lg:gap-16 md:items-center">
+          <div class="absolute bottom-6 left-5 right-5 z-20 md:static md:z-auto">
+            <span class="block font-mono text-[11px] uppercase tracking-[0.2em] text-[#F5F3EE]/70 md:text-[#2C2520]/50 mb-3 md:mb-4">01</span>
+            <p style="font-family: 'Rubik', sans-serif;" class="text-[clamp(1.35rem,2.5vw,2.25rem)] font-medium leading-[1.25] text-[#F5F3EE] md:text-[#2C2520]">
+              While the whole world moves toward Western trends, taking pride in our own history has nothing wrong with it.
+            </p>
+          </div>
+          <div class="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden">
+            <img loading="lazy" decoding="async" src="assets/story-01.png" alt="ARAEL Heritage Streetwear Woodcut Illustration 01" class="w-full h-full object-cover object-center" />
+            <div class="md:hidden pointer-events-none absolute inset-x-0 bottom-0 h-[62%]" style="background: linear-gradient(to top, rgba(26, 23, 21, 0.88) 0%, rgba(26, 23, 21, 0.45) 55%, transparent 100%);"></div>
+          </div>
+        </article>
+
+        <!-- Beat 02: Image Left, Text Right (Reversed on Desktop) -->
+        <article class="story-reveal relative md:grid md:grid-cols-2 md:gap-12 lg:gap-16 md:items-center">
+          <div class="absolute bottom-6 left-5 right-5 z-20 md:static md:z-auto md:order-2">
+            <span class="block font-mono text-[11px] uppercase tracking-[0.2em] text-[#F5F3EE]/70 md:text-[#2C2520]/50 mb-3 md:mb-4">02</span>
+            <p style="font-family: 'Rubik', sans-serif;" class="text-[clamp(1.35rem,2.5vw,2.25rem)] font-medium leading-[1.25] text-[#F5F3EE] md:text-[#2C2520]">
+              Seeing intricate designs from sarees and kurtas reimagined onto heavyweight hoodies just felt right.
+            </p>
+          </div>
+          <div class="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden md:order-1">
+            <img loading="lazy" decoding="async" src="assets/story-02.png" alt="ARAEL Heritage Hoodie Sleeve Woodcut Illustration 02" class="w-full h-full object-cover object-center" />
+            <div class="md:hidden pointer-events-none absolute inset-x-0 bottom-0 h-[62%]" style="background: linear-gradient(to top, rgba(26, 23, 21, 0.88) 0%, rgba(26, 23, 21, 0.45) 55%, transparent 100%);"></div>
+          </div>
+        </article>
+
+        <!-- Beat 03: Text Left, Image Right -->
+        <article class="story-reveal relative md:grid md:grid-cols-2 md:gap-12 lg:gap-16 md:items-center">
+          <div class="absolute bottom-6 left-5 right-5 z-20 md:static md:z-auto">
+            <span class="block font-mono text-[11px] uppercase tracking-[0.2em] text-[#F5F3EE]/70 md:text-[#2C2520]/50 mb-3 md:mb-4">03</span>
+            <p style="font-family: 'Rubik', sans-serif;" class="text-[clamp(1.35rem,2.5vw,2.25rem)] font-medium leading-[1.25] text-[#F5F3EE] md:text-[#2C2520]">
+              If I can bring that heritage to modern streetwear, then why not?
+            </p>
+          </div>
+          <div class="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden">
+            <img loading="lazy" decoding="async" src="assets/story-03.png" alt="ARAEL Royal Arch Woodcut Illustration 03" class="w-full h-full object-cover object-center" />
+            <div class="md:hidden pointer-events-none absolute inset-x-0 bottom-0 h-[62%]" style="background: linear-gradient(to top, rgba(26, 23, 21, 0.88) 0%, rgba(26, 23, 21, 0.45) 55%, transparent 100%);"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Minimalist Newsletter Signup Block -->
+    <div id="newsletterBlock" class="mt-24 lg:mt-32 pt-16 border-t border-[#2C2520]/12 text-center max-w-xl mx-auto">
+      <h3 style="font-family: 'Rubik', sans-serif; color: #2C2520;" class="text-[clamp(1.5rem,2.6vw,2.25rem)] font-semibold tracking-[-0.01em] uppercase leading-tight">
+        MORE IS ON THE WAY.
+      </h3>
+      <p style="font-family: 'Inter', sans-serif; color: rgba(44, 37, 32, 0.7);" class="mt-2 text-[14px] sm:text-[15px] font-normal">
+        Subscribe to get our fastest updates.
       </p>
 
-      <button onclick="openModal('conciergeModal')" class="btn-primary px-8 py-4 text-xs font-mono font-bold tracking-[0.2em] uppercase cursor-pointer">
-        SHARE YOUR EXPERIENCE →
-      </button>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============ DROP RADAR / JOURNAL ============ -->
-<section id="newsletter" class="py-20 sm:py-28 px-4 sm:px-8 surface-base">
-  <div class="max-w-[1360px] mx-auto">
-    <div class="surface-card p-8 sm:p-14 border border-[var(--border-subtle)] flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
-      <div class="max-w-md">
-        <p class="micro-label text-[var(--accent-sage)]">FROM ARAEL</p>
-        <h2 class="display text-3xl sm:text-4xl text-[var(--ink-primary)] mt-1">
-          NOTES FROM THE NEXT DROP
-        </h2>
-        <p class="body-text text-sm mt-2 text-[var(--ink-secondary)]">
-          New collections, restocks and occasional updates from ARAEL. Sent only when there's something worth sharing.
-        </p>
-      </div>
-
-      <div class="flex items-center gap-2.5 w-full md:w-auto">
-        <div class="border border-[var(--border-subtle)] flex items-center px-4 py-3 flex-1 md:w-72 bg-[var(--surface-base)]">
-          <input type="email" id="newsletterEmail" placeholder="YOUR EMAIL ADDRESS" class="bg-transparent outline-none text-xs font-mono w-full text-[var(--ink-primary)]" onkeydown="if(event.key==='Enter')subscribeNewsletter()">
-        </div>
-        <button onclick="subscribeNewsletter()" class="btn-primary px-6 py-3 text-xs font-mono font-bold tracking-[0.2em] uppercase cursor-pointer whitespace-nowrap">
-          SIGN ME UP
+      <form id="newsletterForm" onsubmit="event.preventDefault(); subscribeNewsletter();" class="mt-8 max-w-md mx-auto flex items-center gap-3 border-b border-[#2C2520] pb-2">
+        <input
+          id="newsletterEmail"
+          type="email"
+          required
+          placeholder="ENTER YOUR EMAIL"
+          aria-label="Email address"
+          class="bg-transparent font-mono text-[12px] tracking-[0.15em] text-[#2C2520] placeholder:text-[#2C2520]/45 focus:outline-none flex-1 min-w-0"
+        />
+        <button
+          type="submit"
+          class="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-[#2C2520] hover:opacity-60 transition-opacity cursor-pointer flex-none"
+        >
+          SUBSCRIBE →
         </button>
-      </div>
+      </form>
+
+      <p id="newsletterStatus" class="mt-4 min-h-[18px] font-mono text-[11px] uppercase tracking-[0.18em] text-[#2C2520] transition-opacity duration-300" style="opacity: 0;" aria-live="polite"></p>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- ============ ARCHITECTURAL FOOTER ============ -->
-<footer class="pt-20 pb-12 px-4 sm:px-8 text-[var(--ink-inverted)]" style="background-color: var(--surface-dark);">
+<!-- ============ LUXURY EDITORIAL FOOTER ============ -->
+<footer class="pt-20 lg:pt-28 pb-12 px-6 sm:px-10 md:px-16 text-[#F5F3EE]" style="background-color: #1A1715;">
   <div class="max-w-[1360px] mx-auto">
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 sm:gap-12 pb-16 border-b border-[var(--border-dark)]">
-      
-      <!-- Col 1: Shop -->
-      <div>
-        <h4 class="micro-label text-[var(--accent-sage)] mb-4">SHOP</h4>
-        <ul class="space-y-2.5 text-xs font-mono text-[var(--ink-inverted-secondary)]">
-          <li><a href="#showcase" class="hover:text-[var(--ink-inverted)] transition">DROP 01</a></li>
-          <li><a href="#showcase" class="hover:text-[var(--ink-inverted)] transition">ALL SETS</a></li>
-          <li><a href="#showcase" class="hover:text-[var(--ink-inverted)] transition">CRIMSON CARPET</a></li>
-          <li><a href="#showcase" class="hover:text-[var(--ink-inverted)] transition">MIDNIGHT WARLI</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 2: Design Details -->
-      <div>
-        <h4 class="micro-label text-[var(--accent-sage)] mb-4">DESIGN DETAILS</h4>
-        <ul class="space-y-2.5 text-xs font-mono text-[var(--ink-inverted-secondary)]">
-          <li><a href="#craft" class="hover:text-[var(--ink-inverted)] transition">FABRIC & WEIGHT</a></li>
-          <li><a href="#craft" class="hover:text-[var(--ink-inverted)] transition">FOLK-INSPIRED MOTIFS</a></li>
-          <li><a href="#craft" class="hover:text-[var(--ink-inverted)] transition">LOTUS DETAILS</a></li>
-          <li><a href="#craft" class="hover:text-[var(--ink-inverted)] transition">FIT & SIZING</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Customer Care -->
-      <div>
-        <h4 class="micro-label text-[var(--accent-sage)] mb-4">CUSTOMER CARE</h4>
-        <ul class="space-y-2.5 text-xs font-mono text-[var(--ink-inverted-secondary)]">
-          <li><button onclick="openModal('sizeGuideModal')" class="hover:text-[var(--ink-inverted)] transition cursor-pointer text-left">SIZE GUIDE</button></li>
-          <li><button onclick="openModal('policyShippingModal')" class="hover:text-[var(--ink-inverted)] transition cursor-pointer text-left">SHIPPING & PAYMENT</button></li>
-          <li><button onclick="openModal('policyExchangeModal')" class="hover:text-[var(--ink-inverted)] transition cursor-pointer text-left">EXCHANGE POLICY</button></li>
-          <li><button onclick="openModal('conciergeModal')" class="hover:text-[var(--ink-inverted)] transition cursor-pointer text-left">CONTACT ARAEL</button></li>
-        </ul>
-      </div>
-
-      <!-- Col 4: ARAEL -->
-      <div>
-        <h4 class="micro-label text-[var(--accent-sage)] mb-4">ARAEL</h4>
-        <ul class="space-y-2.5 text-xs font-mono text-[var(--ink-inverted-secondary)]">
-          <li><button onclick="openModal('atelierStoryModal')" class="hover:text-[var(--ink-inverted)] transition cursor-pointer text-left">OUR STORY</button></li>
-          <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink-inverted)] transition">FOLLOW @ARAEL.ROOTS</a></li>
-          <li><button onclick="openModal('conciergeModal')" class="hover:text-[var(--ink-inverted)] transition cursor-pointer text-left">CONTACT & COLLABORATIONS</button></li>
-          <li><button onclick="openModal('legalPrivacyModal')" class="hover:text-[var(--ink-inverted)] transition cursor-pointer text-left">Privacy & Terms</button></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <!-- Atelier Watermark (At bottom of footer in subtle tone) -->
-    <div class="py-12 overflow-hidden border-b border-[var(--border-dark)]">
-      <div class="display text-[clamp(48px,14vw,180px)] leading-[0.8] tracking-[-0.04em] whitespace-nowrap text-[rgba(248,246,241,0.06)] select-none">
+    <!-- Upper Half: Oversized Full-Width Instrument Serif Wordmark + Brand Sign-Off -->
+    <div class="pb-14 lg:pb-20">
+      <div style="font-family: 'Instrument Serif', serif; font-weight: 400; color: #F5F3EE;" class="text-[clamp(4.5rem,12vw,11rem)] leading-[0.88] tracking-[0.02em] uppercase select-none">
         ARAEL
       </div>
+      <p class="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-[#F5F3EE]/65 font-normal">
+        ROOTED IN INDIAN HERITAGE. ENGINEERED FOR MODERN STREETWEAR.
+      </p>
     </div>
 
-    <!-- Bottom Legal Bar -->
-    <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs font-mono text-[var(--ink-inverted-secondary)]">
-      <p>© 2026 ARAEL. ROOTED IN CULTURE. MADE FOR NOW.</p>
-      <div class="flex gap-6 mt-4 md:mt-0">
-        <button onclick="openModal('legalPrivacyModal')" class="hover:text-[var(--ink-inverted)] cursor-pointer">Privacy Policy</button>
-        <button onclick="openModal('legalTermsModal')" class="hover:text-[var(--ink-inverted)] cursor-pointer">Terms of Service</button>
-        <button onclick="openModal('policyShippingModal')" class="hover:text-[var(--ink-inverted)] cursor-pointer">Shipping Terms</button>
+    <!-- Bottom Bar: 3 Balanced Columns Below 1px Hairline -->
+    <div class="pt-10 border-t border-[#F5F3EE]/[0.14] grid grid-cols-1 sm:grid-cols-3 gap-10 font-mono text-[11px] uppercase tracking-[0.18em] text-[#F5F3EE]/75">
+      <!-- Column 1: Navigation -->
+      <div>
+        <div class="text-[#F5F3EE]/40 mb-4">NAVIGATION</div>
+        <ul class="space-y-2.5">
+          <li><a href="#statement" class="hover:text-[#F5F3EE] transition-colors">THE IDEA</a></li>
+          <li><a href="#showcase" class="hover:text-[#F5F3EE] transition-colors">DROP 01</a></li>
+          <li><button onclick="openModal('sizeGuideModal')" class="hover:text-[#F5F3EE] transition-colors cursor-pointer uppercase text-left">SIZE GUIDE</button></li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Policies -->
+      <div>
+        <div class="text-[#F5F3EE]/40 mb-4">POLICIES</div>
+        <ul class="space-y-2.5">
+          <li><button onclick="openModal('policyShippingModal')" class="hover:text-[#F5F3EE] transition-colors cursor-pointer uppercase text-left">SHIPPING</button></li>
+          <li><button onclick="openModal('policyExchangeModal')" class="hover:text-[#F5F3EE] transition-colors cursor-pointer uppercase text-left">EXCHANGE</button></li>
+          <li><button onclick="openModal('legalPrivacyModal')" class="hover:text-[#F5F3EE] transition-colors cursor-pointer uppercase text-left">PRIVACY</button></li>
+          <li><button onclick="openModal('legalTermsModal')" class="hover:text-[#F5F3EE] transition-colors cursor-pointer uppercase text-left">TERMS</button></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact & Socials -->
+      <div>
+        <div class="text-[#F5F3EE]/40 mb-4">CONTACT &amp; SOCIALS</div>
+        <ul class="space-y-2.5">
+          <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#F5F3EE] transition-colors">INSTAGRAM</a></li>
+          <li><button onclick="openModal('conciergeModal')" class="hover:text-[#F5F3EE] transition-colors cursor-pointer uppercase text-left">CONTACT</button></li>
+          <li class="pt-2 text-[#F5F3EE]/50">© 2026 ARAEL. ALL RIGHTS RESERVED.</li>
+        </ul>
       </div>
     </div>
-
   </div>
 </footer>
+
+<!-- ============ HIDDEN SCROLL-PAST-FOOTER EASTER EGG ============ -->
+<div id="footerEasterEgg" aria-hidden="true">
+  <div class="py-10 px-6 text-center">
+    <p style="font-family: 'Inter', sans-serif; color: #2C2520;" class="text-[15px] sm:text-[16px] font-medium">
+      brother go buy smth from my website why u scrolling past website ;-;
+    </p>
+    <button
+      type="button"
+      onclick="collapseFooterEasterEggAndScroll()"
+      class="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-[#2C2520] underline underline-offset-4 hover:opacity-60 transition-opacity cursor-pointer"
+    >
+      TAKE ME BACK TO DROP 01 ↑
+    </button>
+  </div>
+</div>
 
 <!-- ============ HERO QUICK-BUY INSPECTION DRAWER ============ -->
 <div id="heroQuickBuyModal" class="fixed inset-0 z-[120] hidden justify-end items-stretch" style="background:rgba(25,24,22,0.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)">
@@ -1585,16 +1865,29 @@
 
   // Product Details moved to dedicated individual product pages
 
-  // Newsletter Subscription
+  // Newsletter Subscription (persists to localStorage 'arael_subscribers')
   function subscribeNewsletter() {
     const input = document.getElementById('newsletterEmail');
-    const email = (input ? input.value : '').trim();
+    const status = document.getElementById('newsletterStatus');
+    const email = (input ? input.value : '').trim().toLowerCase();
     const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!valid) {
-      showToast('Please enter a valid email address');
+      if (status) {
+        status.textContent = 'PLEASE ENTER A VALID EMAIL ADDRESS.';
+        status.style.opacity = '1';
+      }
       return;
     }
-    showToast('Subscribed. You will receive notes from the next drop.');
+    try {
+      const existing = JSON.parse(localStorage.getItem('arael_subscribers') || '[]');
+      const list = Array.isArray(existing) ? existing : [];
+      if (!list.includes(email)) list.push(email);
+      localStorage.setItem('arael_subscribers', JSON.stringify(list));
+    } catch (e) {}
+    if (status) {
+      status.textContent = "YOU'RE ON THE LIST. WE'LL NOTIFY YOU FIRST.";
+      status.style.opacity = '1';
+    }
     if (input) input.value = '';
   }
 
@@ -1703,98 +1996,221 @@
     });
   }
 
-  // Editorial Statement Scroll-Highlighted Engine (Option 3 Manifesto)
+  // Two-Stage Scroll-Scrubbed 300vh Zipper Unroll + Vertical 84vh Expansion + Word Fill
   function initEditorialStatement() {
-    if (!window.gsap || !window.ScrollTrigger) return;
-    gsap.registerPlugin(ScrollTrigger);
-
     const section = document.getElementById('statement');
-    if (!section) return;
+    const words = section ? Array.from(section.querySelectorAll('.manifesto-word')) : [];
+    const slit = document.getElementById('unrollSlit');
+    const artwork = document.getElementById('unrollArtwork');
+    const slider = document.getElementById('zipperSlider');
+    const heading = document.getElementById('unrollHeading');
+    const caption = document.getElementById('unrollCaption');
+    const trackTop = document.getElementById('zipperTrackTop');
+    const trackBot = document.getElementById('zipperTrackBottom');
+    const cta = document.getElementById('unrollOverlayCta');
+    if (!section || !slit || !artwork) return;
 
-    const phrases = section.querySelectorAll('.statement-phrase');
-    const glyphs = section.querySelectorAll('.statement-glyph');
-    if (!phrases.length) return;
+    let rafId = null;
 
-    // Set initial colors: phrase 0 active (#141413), remainder muted (#A8A49C)
-    phrases.forEach((phrase, idx) => {
-      phrase.style.color = idx === 0 ? '#141413' : '#A8A49C';
-    });
+    function updateUnroll() {
+      rafId = null;
+      const vh = window.innerHeight || 800;
+      const rect = section.getBoundingClientRect();
+      // Sticky travel across 300vh - 100vh = 200vh
+      const travel = Math.max(1, rect.height - vh);
+      const p = Math.min(1, Math.max(0, -rect.top / travel));
 
-    ScrollTrigger.create({
-      id: 'statementScrollTrigger',
-      trigger: '#statement',
-      start: 'top 75%',
-      end: 'bottom 20%',
-      scrub: 0.35,
-      onUpdate: (self) => {
-        const p = self.progress; // 0 to 1
-        const numPhrases = phrases.length;
-        const activeThreshold = p * (numPhrases + 0.5);
+      // 1. Progressive Manifesto Word Ink Fill (0% -> 35% of pinned travel, starting slightly as section enters)
+      const wordRaw = Math.min(1, Math.max(0, (vh * 0.25 - rect.top) / (travel * 0.38 + vh * 0.25)));
+      const litFloat = wordRaw * words.length;
+      words.forEach((word, idx) => {
+        const t = Math.min(1, Math.max(0, litFloat - idx));
+        const alpha = 0.2 + 0.8 * t;
+        word.style.color = alpha >= 0.995 ? '#2C2520' : `rgba(44, 37, 32, ${alpha.toFixed(3)})`;
+      });
 
-        phrases.forEach((phrase, idx) => {
-          if (idx <= activeThreshold || p > 0.94) {
-            phrase.style.color = '#141413';
-          } else {
-            phrase.style.color = '#A8A49C';
-          }
-        });
+      // 2. Stage 1: Horizontal Zipper Slider & Reveal R->L (0% -> 40% scroll progress)
+      const s1 = Math.min(1, Math.max(0, p / 0.40));
+      const insetLeft = (1 - s1) * 100;
+      artwork.style.clipPath = `inset(0 0 0 ${insetLeft.toFixed(2)}%)`;
 
-        // Glyphs subtly rotate and pulse without changing line-height
-        glyphs.forEach((glyph, gIdx) => {
-          const rot = p * 180 * (gIdx % 2 === 0 ? 1 : -1);
-          const sc = 0.95 + Math.sin(p * Math.PI * 2 + gIdx) * 0.15;
-          glyph.style.transform = `rotate(${rot}deg) scale(${sc})`;
-          glyph.style.opacity = p > 0.1 ? '1' : '0.45';
-        });
+      if (slider) {
+        slider.style.left = `${insetLeft.toFixed(2)}%`;
+        const sliderFade = p <= 0.38 ? 1 : Math.max(0, 1 - (p - 0.38) / 0.06);
+        const swing = Math.sin(s1 * Math.PI) * -6;
+        slider.style.opacity = sliderFade.toFixed(3);
+        slider.style.transform = `translate(-50%, -50%) rotate(${swing.toFixed(2)}deg)`;
       }
+
+      // 3. Stage 2: Vertical Split & Expansion 18px -> 84vh (40% -> 90% scroll progress)
+      const s2 = Math.min(1, Math.max(0, (p - 0.40) / 0.50));
+      const maxSlitH = vh * 0.84;
+      const currentH = 18 + (maxSlitH - 18) * s2;
+      slit.style.height = `${currentH.toFixed(1)}px`;
+
+      // Keep subtle zipper teeth visible along upper & lower borders as they split apart
+      const teethOpacity = s2 < 0.85 ? 1 : Math.max(0.25, 1 - (s2 - 0.85) / 0.15);
+      if (trackTop) trackTop.style.opacity = teethOpacity.toFixed(3);
+      if (trackBot) trackBot.style.opacity = teethOpacity.toFixed(3);
+
+      // Smoothly push Rubik heading off top & Inter caption off bottom
+      if (heading) {
+        heading.style.transform = `translateY(${(-s2 * 220).toFixed(1)}px)`;
+        heading.style.opacity = Math.max(0, 1 - s2 * 1.6).toFixed(3);
+      }
+      if (caption) {
+        caption.style.transform = `translateY(${(s2 * 220).toFixed(1)}px)`;
+        caption.style.opacity = Math.max(0, 1 - s2 * 1.6).toFixed(3);
+      }
+
+      // 4. Center Overlay CTA fades in cleanly once artwork reaches full 84vh height (84% -> 96%)
+      if (cta) {
+        const s3 = Math.min(1, Math.max(0, (p - 0.84) / 0.12));
+        cta.style.opacity = s3.toFixed(3);
+        cta.style.pointerEvents = s3 > 0.5 ? 'auto' : 'none';
+      }
+    }
+
+    function onScrollOrResize() {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(updateUnroll);
+      }
+    }
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
+    updateUnroll();
+
+    // Drop 01 Header & Our Story Sequential Scroll Fade-Up Reveals
+    const revealEls = document.querySelectorAll('#drop01Header, #ourStory .story-reveal');
+    if (revealEls.length) {
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        revealEls.forEach((el) => obs.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
+    }
+  }
+
+  // Hidden Scroll-Past-Footer Easter Egg Controller
+  let _footerOverscrollTension = 0;
+  function revealFooterEasterEgg() {
+    const el = document.getElementById('footerEasterEgg');
+    if (!el || el.classList.contains('is-revealed')) return;
+    el.classList.add('is-revealed');
+    el.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
   }
+  function collapseFooterEasterEggAndScroll() {
+    const el = document.getElementById('footerEasterEgg');
+    _footerOverscrollTension = 0;
+    if (el) {
+      el.classList.remove('is-revealed');
+      el.setAttribute('aria-hidden', 'true');
+    }
+    const showcase = document.getElementById('showcase');
+    if (showcase) showcase.scrollIntoView({ behavior: 'smooth' });
+  }
+  (function initFooterEasterEgg() {
+    const THRESHOLD = 250;
+    let lastTouchY = null;
+
+    function isAtPageBottom() {
+      return window.innerHeight + window.scrollY >= document.body.offsetHeight - 4;
+    }
+
+    window.addEventListener('wheel', (e) => {
+      const el = document.getElementById('footerEasterEgg');
+      if (!el || el.classList.contains('is-revealed')) return;
+      if (isAtPageBottom() && e.deltaY > 0) {
+        _footerOverscrollTension += e.deltaY;
+        if (_footerOverscrollTension >= THRESHOLD) {
+          revealFooterEasterEgg();
+        }
+      } else if (e.deltaY < 0) {
+        _footerOverscrollTension = Math.max(0, _footerOverscrollTension + e.deltaY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length) lastTouchY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      const el = document.getElementById('footerEasterEgg');
+      if (!el || el.classList.contains('is-revealed') || !e.touches || !e.touches.length || lastTouchY === null) return;
+      const currentY = e.touches[0].clientY;
+      const deltaY = lastTouchY - currentY;
+      lastTouchY = currentY;
+      if (isAtPageBottom() && deltaY > 0) {
+        _footerOverscrollTension += deltaY * 1.6;
+        if (_footerOverscrollTension >= THRESHOLD) {
+          revealFooterEasterEgg();
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener('scroll', () => {
+      const el = document.getElementById('footerEasterEgg');
+      if (!el || !el.classList.contains('is-revealed')) return;
+      if (window.innerHeight + window.scrollY < document.body.offsetHeight - 220) {
+        el.classList.remove('is-revealed');
+        el.setAttribute('aria-hidden', 'true');
+        _footerOverscrollTension = 0;
+      }
+    }, { passive: true });
+  })();
 
   // Safe fallbacks
   function openActiveOutfitDrawer() { openHeroModal(0); }
   function jumpToOutfit(idx) { openHeroModal(idx || 0); }
   function updateMorphHud() {}
 
+  // 5.0-Second Luxury Editorial 3-Act Film Title Sequence Preloader -> Single Shared ARAEL Glide
+  (function initAraelPreloader() {
+    const preloader = document.getElementById('preloader');
+    const hero = document.getElementById('hero');
+    if (!preloader) return;
+
+    // Lock scroll while the 3-act title sequence plays
+    const prevOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = 'hidden';
+
+    // 4.05s: crossfade from "WE PRESENT TO YOU" into the single shared #hero ARAEL + crest gliding up
+    setTimeout(() => {
+      if (hero) {
+        hero.classList.remove('is-pre-converge');
+        hero.classList.add('is-converging');
+      }
+    }, 4050);
+
+    // 4.8s: gentle fade of loader backdrop while shared ARAEL & crest are already settled
+    setTimeout(() => {
+      preloader.classList.add('is-fading-out');
+    }, 4800);
+
+    // 5.05s: unmount loader completely from DOM and restore scroll
+    setTimeout(() => {
+      document.documentElement.style.overflow = prevOverflow || '';
+      preloader.remove();
+    }, 5050);
+  })();
+
   // Page Load
   window.addEventListener('load', () => {
     araelUpdateBadge();
     updateHeaderTheme();
-
-    // Hero video: play once and pause cleanly at the final frame (no loop)
-    const heroVid = document.getElementById('heroVideo');
-    if (heroVid) {
-      heroVid.loop = false;
-      heroVid.addEventListener('ended', () => {
-        heroVid.pause();
-      });
-
-      const playPromise = heroVid.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // Autoplay deferred or restricted; WebP poster displays cleanly
-        });
-      }
-    }
-
-    const p = document.getElementById('preloader');
-    if (p) {
-      if (window.gsap) {
-        gsap.to(p, {
-          opacity: 0,
-          duration: 0.4,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            p.classList.add('hide');
-            initEditorialStatement();
-          }
-        });
-      } else {
-        p.classList.add('hide');
-        initEditorialStatement();
-      }
-    } else {
-      initEditorialStatement();
-    }
+    initEditorialStatement();
   });
 </script>
 </body>

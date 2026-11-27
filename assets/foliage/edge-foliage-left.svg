@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 900" fill="none">
+  <!-- Kalighat Patachitra Left-Edge Layered Foliage — Transparent Background -->
+  <!-- Palette: Deep Forest Black-Brown (#1C1814), Dark Charcoal (#3B3732), Cream Highlights (#F5F3EE) -->
+
+  <!-- BACK PARALLAX LAYER: Charcoal Shadow Fronds & Leaves -->
+  <g fill="#3B3732">
+    <path d="M-10 120 C75 110 165 148 228 218 C242 234 228 258 206 248 C142 218 76 198 -10 212 Z" />
+    <path d="M-10 310 C95 280 210 312 292 388 C312 406 298 438 272 428 C186 394 94 388 -10 412 Z" />
+    <path d="M-10 510 C110 468 242 496 346 576 C368 594 356 626 328 618 C222 586 106 592 -10 628 Z" />
+    <path d="M-10 700 C130 658 265 692 372 786 C394 806 382 838 352 832 C238 808 118 824 -10 868 Z" />
+    <!-- Vertical shadow stem -->
+    <path d="M36 908 C52 720 44 510 62 310 C72 200 54 90 44 -10 L18 -10 C28 95 44 205 34 315 C18 515 24 725 10 908 Z" />
+  </g>
+
+  <!-- FOREGROUND LAYER: Bold Kalighat Ink Foliage, Ferns & Lotus Blooms -->
+  <g fill="#1C1814">
+    <!-- Upper left sweeping fern frond -->
+    <path d="M-10 42 C68 62 142 114 188 182 C198 196 182 212 166 202 C108 164 48 134 -10 126 Z" />
+    <path d="M44 74 C76 42 114 24 152 20 C136 52 108 78 74 92 Z" />
+    <path d="M98 108 C134 78 176 64 214 66 C194 96 162 118 124 128 Z" />
+
+    <!-- Mid-upper Kalighat Lotus Blossom (at x=145, y=285) -->
+    <path d="M145 224 C172 256 176 298 145 332 C114 298 118 256 145 224 Z" />
+    <path d="M126 244 C94 258 80 292 98 324 C118 308 126 278 126 244 Z" />
+    <path d="M164 244 C196 258 210 292 192 324 C172 308 164 278 164 244 Z" />
+    <path d="M138 326 C118 388 92 454 64 518 L46 512 C74 448 102 382 122 322 Z" />
+
+    <!-- Mid-section broad tropical folk leaves -->
+    <path d="M-10 385 C96 368 204 402 282 478 C298 494 282 522 258 512 C172 474 82 464 -10 488 Z" />
+    <path d="M-10 555 C118 524 252 558 354 642 C374 658 358 690 330 680 C222 640 104 642 -10 676 Z" />
+
+    <!-- Lower-left dense base leaves & lotus bud -->
+    <path d="M-10 735 C124 696 266 728 382 818 C402 834 392 868 362 864 C244 848 118 864 -10 908 Z" />
+    <path d="M18 908 C54 812 96 724 148 648 C162 628 186 642 174 666 C132 746 94 828 62 908 Z" />
+
+    <!-- Lower-right arching lotus bud on slender stem -->
+    <path d="M210 908 C236 826 276 754 328 698 L342 710 C292 766 256 834 232 908 Z" />
+    <path d="M336 664 C362 684 374 714 352 742 C328 724 320 692 336 664 Z" />
+  </g>
+
+  <!-- CREAM HIGHLIGHTS: Bold Folk Veins, Midribs & Petal Detailing -->
+  <g stroke="#F5F3EE" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Fern frond ribs -->
+    <path d="M6 78 C66 102 124 138 174 188" stroke-width="3.2" />
+    <path d="M64 78 C92 56 118 40 140 32" stroke-width="2.4" />
+    <path d="M116 114 C146 92 176 80 200 76" stroke-width="2.4" />
+    <!-- Lotus blossom inner strokes -->
+    <path d="M145 244 C152 270 152 296 145 318" stroke-width="2.8" />
+    <path d="M118 262 C104 276 100 296 104 312" stroke-width="2.4" />
+    <path d="M172 262 C186 276 190 296 186 312" stroke-width="2.4" />
+    <!-- Broad leaf midribs & side veins -->
+    <path d="M4 432 C98 422 186 446 266 496" stroke-width="3.8" />
+    <path d="M98 428 C126 410 156 402 184 402" stroke-width="2.4" />
+    <path d="M148 440 C176 424 204 422 232 428" stroke-width="2.4" />
+
+    <path d="M4 608 C118 590 232 612 334 662" stroke-width="4" />
+    <path d="M112 598 C144 578 178 570 212 572" stroke-width="2.6" />
+    <path d="M184 608 C214 592 246 592 278 602" stroke-width="2.6" />
+
+    <path d="M12 798 C134 776 254 794 362 842" stroke-width="4.2" />
+    <path d="M338 682 C348 700 350 718 344 732" stroke-width="2.4" />
+  </g>
+</svg>

@@ -7,11 +7,25 @@
 <meta name="description" content="An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,300;1,6..72,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          heading: ['Rubik', 'sans-serif'],
+          mono: ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        }
+      }
+    }
+  };
+</script>
 <script src="../products-data.js"></script>
 <style>
   :root {
+    --font-mono: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
     --surface-base: #F8F6F1;
     --surface-card: #FFFFFF;
     --surface-subtle: #F2EFE8;
@@ -29,31 +43,32 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--surface-base);
     color: var(--ink-primary);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
   .display {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
     letter-spacing: -0.035em;
     font-weight: 500;
   }
   .editorial-serif {
-    font-family: 'Newsreader', Georgia, serif;
+    font-family: 'Rubik', sans-serif;
     font-style: italic;
     font-weight: 400;
   }
+  .font-mono { font-family: var(--font-mono) !important; }
   .micro-label {
-    font-family: 'Space Grotesk', monospace;
+    font-family: 'Rubik', sans-serif;
     font-size: 10px;
     letter-spacing: 0.24em;
     text-transform: uppercase;
     font-weight: 600;
   }
   .body-text {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
     color: var(--ink-secondary);
     line-height: 1.68;
   }
@@ -76,7 +91,7 @@
 <!-- ============ FIXED MINIMAL EDITORIAL HEADER ============ -->
 <header id="header" class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-3.5 sm:py-4 bg-[rgba(247,245,240,0.95)] backdrop-blur-md border-b border-[var(--border-hairline)] shadow-sm">
   <div class="max-w-[1360px] mx-auto flex items-center justify-between gap-4">
-    <a href="../index.html" class="display text-xl sm:text-2xl tracking-[-0.04em] font-medium hover:opacity-85 transition">
+    <a href="../index.html" style="font-family: 'Instrument Serif', serif; font-weight: 400;" class="text-[24px] tracking-[0.04em] leading-none uppercase hover:opacity-85 transition">
       ARAEL
     </a>
     <nav class="hidden md:flex items-center gap-7 text-[12px] font-medium text-[var(--ink-secondary)]">
@@ -124,7 +139,7 @@
       
       <!-- Main Photo Viewport: 9:16 vertical ratio ensures hoodie and pants are 100% visible without cutoffs -->
       <div id="mainImageWrap" class="w-full max-w-[460px] mx-auto aspect-[9/16] max-h-[820px] bg-[var(--surface-subtle)] border border-[var(--border-hairline)] relative overflow-hidden group cursor-crosshair flex items-center justify-center mb-4">
-        <img id="mainProductImg" src="../designs/black/Black Embroidered Lotus Tracksuit.png" alt="Noir Black Lotus Set - Full Look" class="w-full h-full object-contain transition-transform duration-200">
+        <img id="mainProductImg" src="../designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-contain transition-transform duration-200">
       </div>
 
       <!-- Angle & Thumbnails Row -->
@@ -136,10 +151,10 @@
       <div class="flex gap-2.5 overflow-x-auto pb-2 no-scrollbar items-center">
         
         <button type="button" onclick="selectProductImage(0)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--ink-primary)] shadow-[0_0_0_1.5px_var(--ink-primary)] bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="0">
-          <img src="../designs/black/Black Embroidered Lotus Tracksuit.png" alt="Noir Black Lotus Set - Full Look" class="w-full h-full object-cover">
+          <img src="../designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-cover">
         </button>
         <button type="button" onclick="selectProductImage(1)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--border-subtle)] opacity-60 hover:opacity-100 bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="1">
-          <img src="../designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-cover">
+          <img src="../designs/black/Black Embroidered Lotus Tracksuit.png" alt="Noir Black Lotus Set - Back View" class="w-full h-full object-cover">
         </button>
         <button type="button" onclick="selectProductImage(2)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--border-subtle)] opacity-60 hover:opacity-100 bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="2">
           <img src="../designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png" alt="Noir Black Lotus Set - Zipper Detail" class="w-full h-full object-cover">
@@ -364,7 +379,7 @@
 <!-- ============ FOOTER ============ -->
 <footer class="border-t border-[var(--border-hairline)] surface-card py-16 px-4 sm:px-8 mt-12">
   <div class="max-w-[1360px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-mono text-[var(--ink-muted)]">
-    <div class="display text-xl text-[var(--ink-primary)]">ARAEL</div>
+    <div style="font-family: 'Instrument Serif', serif; font-weight: 400;" class="text-2xl tracking-[0.02em] text-[var(--ink-primary)]">ARAEL</div>
     <div>© 2026 ARAEL. ROOTED IN CULTURE. MADE FOR NOW.</div>
     <div class="flex gap-6 uppercase tracking-wider">
       <a href="../index.html#showcase" class="hover:text-[var(--ink-primary)]">DROP 01</a>
@@ -433,7 +448,7 @@
 </div>
 
 <script>
-  const CURRENT_PRODUCT = {'id': 'noir-black-lotus', 'slug': 'noir-black-lotus', 'name': 'Noir Black Lotus Set', 'tag': 'NOIR BLACK / LOTUS MOTIF', 'price': 2299, 'priceStr': '₹2,299', 'desc': 'An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.', 'material': '300 GSM 100% Combed Heavyweight Cotton Fleece', 'artwork': 'Sacred Lotus Flower Back & Chest High-Definition Embroidery', 'fit': 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser', 'wash': 'Cold Gentle Machine Wash / Dry in Shade', 'sizes': ['XS', 'S', 'M', 'L', 'XL'], 'heroImg': 'designs/black/Black Embroidered Lotus Tracksuit.png', 'images': [{'src': 'designs/black/Black Embroidered Lotus Tracksuit.png', 'label': 'FULL LOOK', 'alt': 'Noir Black Lotus Set - Full Look'}, {'src': 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', 'label': 'FRONT VIEW', 'alt': 'Noir Black Lotus Set - Front View'}, {'src': 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', 'label': 'CLOSE-UP', 'alt': 'Noir Black Lotus Set - Zipper Detail'}]};
+  const CURRENT_PRODUCT = {'id': 'noir-black-lotus', 'slug': 'noir-black-lotus', 'name': 'Noir Black Lotus Set', 'tag': 'NOIR BLACK / LOTUS MOTIF', 'price': 2299, 'priceStr': '₹2,299', 'desc': 'An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.', 'material': '300 GSM 100% Combed Heavyweight Cotton Fleece', 'artwork': 'Sacred Lotus Flower Back & Chest High-Definition Embroidery', 'fit': 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser', 'wash': 'Cold Gentle Machine Wash / Dry in Shade', 'sizes': ['XS', 'S', 'M', 'L', 'XL'], 'heroImg': 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', 'images': [{'src': 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', 'label': 'FRONT VIEW', 'alt': 'Noir Black Lotus Set - Front View'}, {'src': 'designs/black/Black Embroidered Lotus Tracksuit.png', 'label': 'BACK VIEW', 'alt': 'Noir Black Lotus Set - Back View'}, {'src': 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', 'label': 'CLOSE-UP', 'alt': 'Noir Black Lotus Set - Zipper Detail'}]};
   let selectedSize = 'M';
   let currentQty = 1;
   let activeImageIndex = 0;

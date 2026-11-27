@@ -119,10 +119,10 @@ const ARAEL_PRODUCTS = [
     fit: 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser',
     wash: 'Cold Gentle Machine Wash / Dry in Shade',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    heroImg: 'designs/black/Black Embroidered Lotus Tracksuit.png',
+    heroImg: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png',
     images: [
-      { src: 'designs/black/Black Embroidered Lotus Tracksuit.png', label: 'FULL LOOK', alt: 'Noir Black Lotus Set - Full Look' },
       { src: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', label: 'FRONT VIEW', alt: 'Noir Black Lotus Set - Front View' },
+      { src: 'designs/black/Black Embroidered Lotus Tracksuit.png', label: 'BACK VIEW', alt: 'Noir Black Lotus Set - Back View' },
       { src: 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', label: 'CLOSE-UP', alt: 'Noir Black Lotus Set - Zipper Detail' }
     ]
   },
@@ -266,3 +266,110 @@ function araelRenderCartDrawer() {
   container.innerHTML = html;
   if (subtotalEl) subtotalEl.textContent = '₹' + subtotal.toLocaleString('en-IN');
 }
+
+// 5-Click Logo Archive Stamp Easter Egg (Global across index, product, and products/*)
+(function initAraelLogoArchiveStamp() {
+  let clickTimes = [];
+  let hideTimer = null;
+  let copyTimer = null;
+
+  function dismissArchiveBanner() {
+    const banner = document.getElementById('araelArchiveStamp');
+    if (!banner) return;
+    banner.style.opacity = '0';
+    banner.style.transform = 'translate(-50%, -18px)';
+    banner.style.pointerEvents = 'none';
+    clearTimeout(hideTimer);
+  }
+
+  function showArchiveBanner() {
+    let banner = document.getElementById('araelArchiveStamp');
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'araelArchiveStamp';
+      banner.setAttribute('role', 'status');
+      banner.setAttribute('aria-live', 'polite');
+      banner.style.cssText = [
+        'position:fixed',
+        'top:16px',
+        'left:50%',
+        'transform:translate(-50%, -18px)',
+        'opacity:0',
+        'z-index:10000',
+        'background-color:#1A1715',
+        'color:#F5F3EE',
+        'border:1px solid rgba(245, 243, 238, 0.18)',
+        'box-shadow:0 12px 32px rgba(26, 23, 21, 0.24)',
+        'padding:14px 24px',
+        'max-width:92vw',
+        'transition:opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), transform 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
+        'pointer-events:none'
+      ].join(';');
+
+      banner.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;font-family:'Roboto',sans-serif;font-size:11px;line-height:1.5;text-transform:uppercase;letter-spacing:0.18em;color:#F5F3EE;">
+          <span>ARCHIVAL ACCESS UNLOCKED — USE CODE 'HERITAGE10' AT CHECKOUT FOR 10% OFF DROP 01.</span>
+          <button type="button" id="araelCopyCodeBtn" style="font-family:'Roboto',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.2em;text-decoration:underline;text-underline-offset:4px;color:#F5F3EE;background:none;border:none;padding:0;cursor:pointer;transition:opacity 0.2s ease;">COPY</button>
+          <button type="button" id="araelDismissStampBtn" aria-label="Dismiss" style="font-family:'Roboto',sans-serif;font-size:15px;line-height:1;color:rgba(245,243,238,0.65);background:none;border:none;padding:0 2px;cursor:pointer;transition:opacity 0.2s ease;">×</button>
+        </div>
+      `;
+      document.body.appendChild(banner);
+
+      const copyBtn = document.getElementById('araelCopyCodeBtn');
+      const dismissBtn = document.getElementById('araelDismissStampBtn');
+      if (copyBtn) {
+        copyBtn.addEventListener('mouseenter', () => { copyBtn.style.opacity = '0.7'; });
+        copyBtn.addEventListener('mouseleave', () => { copyBtn.style.opacity = '1'; });
+        copyBtn.addEventListener('click', () => {
+          const done = () => {
+            copyBtn.textContent = 'COPIED ✓';
+            clearTimeout(copyTimer);
+            copyTimer = setTimeout(() => { copyBtn.textContent = 'COPY'; }, 2000);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText('HERITAGE10').then(done).catch(done);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = 'HERITAGE10';
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            ta.remove();
+            done();
+          }
+        });
+      }
+      if (dismissBtn) {
+        dismissBtn.addEventListener('mouseenter', () => { dismissBtn.style.opacity = '1'; });
+        dismissBtn.addEventListener('mouseleave', () => { dismissBtn.style.opacity = '0.65'; });
+        dismissBtn.addEventListener('click', dismissArchiveBanner);
+      }
+    }
+
+    requestAnimationFrame(() => {
+      banner.style.opacity = '1';
+      banner.style.transform = 'translate(-50%, 0)';
+      banner.style.pointerEvents = 'auto';
+    });
+
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(dismissArchiveBanner, 10000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('#header a.nav-logo') || document.querySelector('#header a');
+    if (!logo) return;
+    logo.addEventListener('click', (e) => {
+      const now = Date.now();
+      clickTimes = clickTimes.filter((t) => now - t <= 2500);
+      clickTimes.push(now);
+      if (clickTimes.length >= 5) {
+        e.preventDefault();
+        clickTimes = [];
+        showArchiveBanner();
+      }
+    });
+  });
+})();

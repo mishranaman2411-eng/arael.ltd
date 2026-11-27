@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 900" fill="none">
+  <!-- Kalighat Patachitra Right-Edge Layered Foliage — Transparent Background -->
+  <!-- Palette: Deep Forest Black-Brown (#1C1814), Dark Charcoal (#3B3732), Cream Highlights (#F5F3EE) -->
+
+  <!-- BACK PARALLAX LAYER: Charcoal Shadow Vines & Cascading Foliage -->
+  <g fill="#3B3732">
+    <path d="M530 60 C430 68 334 114 268 192 C252 212 270 238 294 226 C362 192 442 174 530 186 Z" />
+    <path d="M530 270 C414 248 296 286 212 372 C194 390 212 422 240 412 C328 378 426 370 530 392 Z" />
+    <path d="M530 480 C412 446 284 480 184 568 C164 586 180 620 208 612 C310 582 420 588 530 624 Z" />
+    <path d="M530 690 C404 652 274 686 168 784 C148 802 164 836 194 830 C302 806 418 820 530 864 Z" />
+    <!-- Right vertical cascading shadow stem -->
+    <path d="M472 -10 C454 190 468 410 448 620 C438 725 456 818 468 908 L496 908 C484 812 468 718 478 614 C496 404 484 184 498 -10 Z" />
+  </g>
+
+  <!-- FOREGROUND LAYER: Bold Kalighat Ink Vines, Rosettes & Tropical Fronds -->
+  <g fill="#1C1814">
+    <!-- Top-right lush cascading vine -->
+    <path d="M530 0 L318 0 C342 54 382 104 438 142 C474 166 504 180 530 188 Z" />
+    <path d="M412 -10 C392 98 354 212 324 318 C316 346 338 358 352 336 C394 268 432 142 446 -10 Z" />
+
+    <!-- Folk Rosette / Sun-Flower Motif at x=356, y=220 -->
+    <g transform="translate(356 220)">
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" />
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" transform="rotate(45)" />
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" transform="rotate(90)" />
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" transform="rotate(135)" />
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" transform="rotate(180)" />
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" transform="rotate(225)" />
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" transform="rotate(270)" />
+      <path d="M0 -54 C14 -32 16 -14 0 0 C-16 -14 -14 -32 0 -54 Z" transform="rotate(315)" />
+      <circle cx="0" cy="0" r="16" />
+    </g>
+
+    <!-- Mid-right sweeping fern & broad leaf cluster -->
+    <path d="M530 342 C416 322 304 358 224 438 C208 454 226 484 252 472 C340 432 434 422 530 446 Z" />
+    <path d="M530 520 C398 488 264 524 164 612 C144 630 162 664 192 652 C298 612 416 614 530 648 Z" />
+
+    <!-- Lower-right curling vine & broad base leaves -->
+    <path d="M530 718 C396 680 256 716 144 812 C124 830 138 866 168 860 C286 842 410 858 530 906 Z" />
+    <path d="M498 908 C462 812 422 722 368 646 C354 626 330 640 342 664 C386 744 424 826 456 908 Z" />
+  </g>
+
+  <!-- CREAM HIGHLIGHTS: Bold Folk Veins, Rosette Rings & Leaf Midribs -->
+  <g stroke="#F5F3EE" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Rosette cream center & petal veins -->
+    <circle cx="356" cy="220" r="9.5" stroke-width="3" />
+    <circle cx="356" cy="220" r="3.5" fill="#F5F3EE" stroke="none" />
+    <!-- Top-right leaf veins -->
+    <path d="M510 132 C456 102 406 62 366 14" stroke-width="3.4" />
+    <path d="M424 18 C406 116 376 218 340 314" stroke-width="3" />
+    <!-- Mid-right leaf midribs -->
+    <path d="M514 394 C418 384 328 408 242 458" stroke-width="3.8" />
+    <path d="M418 388 C390 370 360 362 332 364" stroke-width="2.4" />
+    <path d="M368 400 C340 384 312 384 284 392" stroke-width="2.4" />
+
+    <path d="M514 584 C400 564 286 588 184 636" stroke-width="4" />
+    <path d="M404 574 C372 554 338 546 304 548" stroke-width="2.6" />
+    <path d="M332 584 C302 568 270 568 238 578" stroke-width="2.6" />
+
+    <path d="M508 794 C386 772 268 790 162 840" stroke-width="4.2" />
+  </g>
+</svg>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" fill="none">
+  <!-- Kalighat Patachitra Dense Base Foliage Cluster — Transparent Background -->
+  <!-- Palette: Deep Forest Black-Brown (#1C1814), Dark Charcoal (#3B3732), Cream Highlights (#F5F3EE) -->
+
+  <!-- BACK PARALLAX LAYER: Soft Charcoal Shadow Foliage & Lotus Silhouettes -->
+  <g fill="#3B3732">
+    <path d="M24 368 C48 258 118 168 206 122 C226 112 246 132 232 152 C182 222 154 294 146 368 Z" />
+    <path d="M210 368 C242 232 328 118 446 68 C468 58 486 82 470 104 C408 184 374 274 366 368 Z" />
+    <path d="M560 368 C552 244 582 126 638 36 C652 14 682 24 674 52 C650 152 644 260 658 368 Z" />
+    <path d="M770 368 C826 248 914 156 1018 112 C1040 102 1058 126 1042 146 C978 216 934 290 918 368 Z" />
+    <path d="M970 368 C1008 268 1078 192 1168 158 C1188 150 1204 174 1188 194 C1132 248 1098 308 1086 368 Z" />
+  </g>
+
+  <!-- FOREGROUND LAYER: Dense Kalighat Leaves, Ferns & Sacred Lotus Blooms -->
+  <g fill="#1C1814">
+    <!-- Far-left fern cluster -->
+    <path d="M-8 368 L-8 238 C54 248 114 288 154 368 Z" />
+    <path d="M98 368 C108 278 152 198 224 146 C242 132 260 154 244 172 C196 232 174 298 168 368 Z" />
+
+    <!-- Left-center Sacred Lotus Bloom (at x=340, y=150) -->
+    <path d="M340 82 C366 116 370 158 340 192 C310 158 314 116 340 82 Z" />
+    <path d="M318 102 C284 118 272 154 292 186 C312 168 318 136 318 102 Z" />
+    <path d="M362 102 C396 118 408 154 388 186 C368 168 362 136 362 102 Z" />
+    <path d="M332 188 C326 248 318 308 308 368 L330 368 C338 308 344 248 350 188 Z" />
+
+    <!-- Center lush broad leaves & fern arch -->
+    <path d="M388 368 C416 266 484 188 576 154 C596 146 612 172 592 188 C524 240 486 302 474 368 Z" />
+    <path d="M518 368 C528 248 564 138 628 54 C644 34 670 48 658 72 C618 162 598 264 598 368 Z" />
+    <path d="M622 368 C652 272 714 198 798 164 C818 156 832 182 814 198 C754 248 720 306 708 368 Z" />
+
+    <!-- Right-center Sacred Lotus Bloom (at x=872, y=170) -->
+    <path d="M872 104 C896 136 900 176 872 208 C844 176 848 136 872 104 Z" />
+    <path d="M852 124 C820 138 808 172 826 202 C846 186 852 156 852 124 Z" />
+    <path d="M892 124 C924 138 936 172 918 202 C898 186 892 156 892 124 Z" />
+    <path d="M864 204 C858 258 850 314 842 368 L862 368 C870 314 876 258 882 204 Z" />
+
+    <!-- Far-right arching foliage -->
+    <path d="M908 368 C942 268 1012 194 1104 160 C1124 152 1138 178 1118 194 C1052 246 1012 306 998 368 Z" />
+    <path d="M1046 368 C1086 292 1142 242 1208 228 L1208 368 Z" />
+  </g>
+
+  <!-- CREAM HIGHLIGHTS: Bold Folk Veins, Lotus Petal Ribs & Base Accents -->
+  <g stroke="#F5F3EE" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left leaves -->
+    <path d="M14 276 C62 296 98 326 124 360" stroke-width="3.2" />
+    <path d="M138 356 C154 282 184 218 228 166" stroke-width="3.2" />
+    <!-- Left lotus inner lines -->
+    <path d="M340 104 C346 130 346 156 340 178" stroke-width="2.8" />
+    <path d="M312 122 C298 136 294 156 298 174" stroke-width="2.2" />
+    <path d="M368 122 C382 136 386 156 382 174" stroke-width="2.2" />
+    <!-- Center leaves -->
+    <path d="M432 356 C462 282 508 222 574 176" stroke-width="3.6" />
+    <path d="M562 356 C572 252 598 158 642 74" stroke-width="3.8" />
+    <path d="M666 356 C694 284 738 226 798 184" stroke-width="3.6" />
+    <!-- Right lotus inner lines -->
+    <path d="M872 126 C878 150 878 174 872 194" stroke-width="2.6" />
+    <path d="M844 142 C830 156 826 174 830 190" stroke-width="2.2" />
+    <path d="M900 142 C914 156 918 174 914 190" stroke-width="2.2" />
+    <!-- Right leaves -->
+    <path d="M954 356 C986 282 1034 222 1098 180" stroke-width="3.6" />
+    <path d="M1088 358 C1122 308 1158 274 1196 258" stroke-width="3.2" />
+  </g>
+</svg>

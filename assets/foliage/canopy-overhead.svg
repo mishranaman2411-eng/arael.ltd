@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" fill="none">
+  <!-- Kalighat Patachitra Overhead Forest Canopy — Transparent Background -->
+  <!-- Palette: Deep Forest Black-Brown (#1C1814), Dark Charcoal (#3B3732), Cream Highlights (#F5F3EE) -->
+
+  <!-- BACK PARALLAX LAYER: Soft Charcoal Shadow Canopy & Hanging Silhouettes -->
+  <g fill="#3B3732">
+    <!-- Left-back broad canopy leaf cluster -->
+    <path d="M-10 -10 C90 -10 190 40 250 120 C270 148 258 175 232 168 C175 154 115 112 68 62 C44 108 18 158 -10 190 Z" />
+    <path d="M210 -10 C285 28 345 92 385 162 C398 184 378 202 356 188 C306 154 265 104 228 48 Z" />
+    <!-- Mid-left hanging vine shadow -->
+    <path d="M460 -10 C475 58 452 135 478 212 C492 254 470 295 452 325 C442 292 456 248 446 205 C430 132 448 56 436 -10 Z" />
+    <path d="M468 95 C495 108 525 130 532 158 C508 156 486 142 468 122 Z" />
+    <path d="M460 175 C428 192 405 218 402 248 C428 242 448 220 460 198 Z" />
+    <!-- Center-right shadow palm & fern drape -->
+    <path d="M980 -10 C1030 48 1068 118 1095 192 C1105 218 1082 232 1064 214 C1018 168 982 108 948 38 Z" />
+    <path d="M1140 -10 C1120 62 1095 142 1118 226 C1126 254 1106 278 1092 260 C1068 218 1074 134 1098 -10 Z" />
+    <!-- Far-right back foliage mass -->
+    <path d="M1320 -10 C1380 42 1460 95 1545 112 C1575 118 1605 110 1615 95 L1615 -10 Z" />
+    <path d="M1410 45 C1445 108 1468 175 1455 242 C1430 218 1408 168 1390 105 Z" />
+  </g>
+
+  <!-- MID/FORE PARALLAX LAYER: Bold Kalighat Ink Leaves, Ferns & Hanging Vines -->
+  <g fill="#1C1814">
+    <!-- Far-left expressive drooping leaves -->
+    <path d="M-8 -8 L215 -8 C195 36 162 82 115 118 C68 154 22 178 -8 198 Z" />
+    <path d="M42 75 C98 118 138 178 154 246 C158 265 138 274 126 258 C88 210 52 152 18 96 Z" />
+    <path d="M128 28 C205 56 268 112 314 184 C324 200 308 214 292 204 C228 164 176 112 128 54 Z" />
+
+    <!-- Hanging Vine 1 (Left-Center, cascading to y=385) -->
+    <path d="M312 -8 C326 68 296 144 316 222 C332 284 304 342 286 388 C278 378 286 348 296 314 C312 258 288 195 282 128 C276 76 292 28 288 -8 Z" />
+    <!-- Vine 1 bold Kalighat leaves -->
+    <path d="M306 62 C264 68 228 96 218 134 C256 132 288 110 306 82 Z" />
+    <path d="M312 132 C354 140 388 168 394 206 C356 202 326 178 310 152 Z" />
+    <path d="M314 218 C272 228 242 258 236 294 C272 288 298 264 314 238 Z" />
+    <path d="M304 294 C338 308 360 334 358 364 C330 356 312 336 300 314 Z" />
+
+    <!-- Center-left arching fern frond -->
+    <path d="M535 -8 C562 46 602 98 658 142 C674 155 662 172 644 162 C584 126 538 72 504 -8 Z" />
+    <path d="M558 38 C525 56 498 86 488 118 C518 106 544 82 566 56 Z" />
+    <path d="M592 78 C558 98 534 128 526 158 C556 146 582 122 602 94 Z" />
+    <path d="M626 112 C598 134 580 162 576 188 C602 176 622 152 636 128 Z" />
+
+    <!-- Center lush cluster & lotus flower drape -->
+    <path d="M740 -8 C760 44 795 92 842 128 C856 138 846 156 828 148 C778 124 736 74 708 -8 Z" />
+    <path d="M862 -8 C848 52 828 116 838 184 C842 212 820 228 806 208 C786 168 796 86 822 -8 Z" />
+    <!-- Folk Lotus Blossom hanging at x=780, y=135 -->
+    <path d="M780 112 C798 134 804 164 780 192 C756 164 762 134 780 112 Z" />
+    <path d="M766 122 C740 132 728 158 742 182 C758 168 764 146 766 122 Z" />
+    <path d="M794 122 C820 132 832 158 818 182 C802 168 796 146 794 122 Z" />
+
+    <!-- Hanging Vine 2 (Right-Center, cascading to y=360) -->
+    <path d="M1238 -8 C1222 72 1254 152 1230 232 C1214 286 1236 336 1254 374 C1262 362 1252 334 1244 302 C1232 248 1262 184 1266 118 C1270 68 1256 26 1262 -8 Z" />
+    <path d="M1242 54 C1284 62 1318 88 1328 124 C1292 122 1262 102 1242 74 Z" />
+    <path d="M1238 128 C1196 138 1164 168 1158 206 C1196 202 1226 176 1240 148 Z" />
+    <path d="M1234 212 C1276 224 1304 256 1308 292 C1272 284 1248 258 1232 232 Z" />
+    <path d="M1238 286 C1208 302 1190 328 1192 356 C1218 346 1234 326 1242 304 Z" />
+
+    <!-- Far-right dense jungle leaves & fern cascade -->
+    <path d="M1380 -8 L1608 -8 L1608 228 C1565 196 1522 158 1488 114 C1448 64 1408 26 1380 -8 Z" />
+    <path d="M1502 68 C1448 108 1406 168 1392 238 C1388 256 1408 266 1420 248 C1458 196 1492 142 1528 88 Z" />
+    <path d="M1564 134 C1526 184 1502 246 1496 312 C1494 330 1516 336 1526 318 C1556 264 1578 204 1598 148 Z" />
+  </g>
+
+  <!-- CREAM HIGHLIGHTS: Hand-Painted Folk Veins, Midribs & Petal Accents -->
+  <g stroke="#F5F3EE" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Left canopy veins -->
+    <path d="M18 12 C72 56 112 104 140 152" stroke-width="3.5" />
+    <path d="M46 98 C82 146 112 194 134 240" stroke-width="3" />
+    <path d="M152 54 C202 88 252 134 294 188" stroke-width="3.2" />
+    <!-- Vine 1 leaf veins -->
+    <path d="M294 74 C266 86 244 102 230 124" stroke-width="2.6" />
+    <path d="M322 146 C350 158 370 176 382 196" stroke-width="2.6" />
+    <path d="M304 232 C278 244 258 262 246 284" stroke-width="2.6" />
+    <!-- Center lotus cream petal inner ribs -->
+    <path d="M780 128 C786 146 786 164 780 180" stroke-width="2.4" />
+    <path d="M760 134 C748 144 744 158 746 172" stroke-width="2.2" />
+    <path d="M800 134 C812 144 816 158 814 172" stroke-width="2.2" />
+    <!-- Vine 2 leaf veins -->
+    <path d="M1254 68 C1282 78 1304 94 1316 114" stroke-width="2.6" />
+    <path d="M1228 142 C1200 154 1180 174 1168 196" stroke-width="2.6" />
+    <path d="M1244 226 C1270 238 1288 256 1298 280" stroke-width="2.6" />
+    <!-- Right canopy veins -->
+    <path d="M1516 86 C1468 128 1432 178 1406 232" stroke-width="3.2" />
+    <path d="M1578 156 C1546 204 1522 256 1510 306" stroke-width="3" />
+    <path d="M1445 24 C1488 64 1536 102 1588 134" stroke-width="3.5" />
+  </g>
+</svg>
