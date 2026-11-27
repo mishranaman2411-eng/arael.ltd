@@ -119,10 +119,10 @@ const ARAEL_PRODUCTS = [
     fit: 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser',
     wash: 'Cold Gentle Machine Wash / Dry in Shade',
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    heroImg: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png',
+    heroImg: 'assets/black-hoodie-front.jpg',
     images: [
-      { src: 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', label: 'FRONT VIEW', alt: 'Noir Black Lotus Set - Front View' },
-      { src: 'designs/black/Black Embroidered Lotus Tracksuit.png', label: 'BACK VIEW', alt: 'Noir Black Lotus Set - Back View' },
+      { src: 'assets/black-hoodie-front.jpg', label: 'FRONT VIEW', alt: 'Noir Black Lotus Set - Front View' },
+      { src: 'assets/black-hoodie-back.jpg', label: 'BACK VIEW', alt: 'Noir Black Lotus Set - Back View' },
       { src: 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', label: 'CLOSE-UP', alt: 'Noir Black Lotus Set - Zipper Detail' }
     ]
   },

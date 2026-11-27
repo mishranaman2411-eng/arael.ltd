@@ -139,7 +139,7 @@
       
       <!-- Main Photo Viewport: 9:16 vertical ratio ensures hoodie and pants are 100% visible without cutoffs -->
       <div id="mainImageWrap" class="w-full max-w-[460px] mx-auto aspect-[9/16] max-h-[820px] bg-[var(--surface-subtle)] border border-[var(--border-hairline)] relative overflow-hidden group cursor-crosshair flex items-center justify-center mb-4">
-        <img id="mainProductImg" src="../designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-contain transition-transform duration-200">
+        <img id="mainProductImg" src="../assets/black-hoodie-front.jpg" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-contain transition-transform duration-200">
       </div>
 
       <!-- Angle & Thumbnails Row -->
@@ -151,10 +151,10 @@
       <div class="flex gap-2.5 overflow-x-auto pb-2 no-scrollbar items-center">
         
         <button type="button" onclick="selectProductImage(0)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--ink-primary)] shadow-[0_0_0_1.5px_var(--ink-primary)] bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="0">
-          <img src="../designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-cover">
+          <img src="../assets/black-hoodie-front.jpg" alt="Noir Black Lotus Set - Front View" class="w-full h-full object-cover object-top">
         </button>
         <button type="button" onclick="selectProductImage(1)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--border-subtle)] opacity-60 hover:opacity-100 bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="1">
-          <img src="../designs/black/Black Embroidered Lotus Tracksuit.png" alt="Noir Black Lotus Set - Back View" class="w-full h-full object-cover">
+          <img src="../assets/black-hoodie-back.jpg" alt="Noir Black Lotus Set - Back View" class="w-full h-full object-cover object-top">
         </button>
         <button type="button" onclick="selectProductImage(2)" class="prod-thumb-btn w-16 h-20 sm:w-20 sm:h-24 p-0.5 border border-[var(--border-subtle)] opacity-60 hover:opacity-100 bg-white transition-all cursor-pointer flex-none overflow-hidden" data-idx="2">
           <img src="../designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png" alt="Noir Black Lotus Set - Zipper Detail" class="w-full h-full object-cover">
@@ -448,7 +448,7 @@
 </div>
 
 <script>
-  const CURRENT_PRODUCT = {'id': 'noir-black-lotus', 'slug': 'noir-black-lotus', 'name': 'Noir Black Lotus Set', 'tag': 'NOIR BLACK / LOTUS MOTIF', 'price': 2299, 'priceStr': '₹2,299', 'desc': 'An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.', 'material': '300 GSM 100% Combed Heavyweight Cotton Fleece', 'artwork': 'Sacred Lotus Flower Back & Chest High-Definition Embroidery', 'fit': 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser', 'wash': 'Cold Gentle Machine Wash / Dry in Shade', 'sizes': ['XS', 'S', 'M', 'L', 'XL'], 'heroImg': 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', 'images': [{'src': 'designs/black/Photographing_hoodie_and_trouser…_ebcda614-clean.png', 'label': 'FRONT VIEW', 'alt': 'Noir Black Lotus Set - Front View'}, {'src': 'designs/black/Black Embroidered Lotus Tracksuit.png', 'label': 'BACK VIEW', 'alt': 'Noir Black Lotus Set - Back View'}, {'src': 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', 'label': 'CLOSE-UP', 'alt': 'Noir Black Lotus Set - Zipper Detail'}]};
+  const CURRENT_PRODUCT = {'id': 'noir-black-lotus', 'slug': 'noir-black-lotus', 'name': 'Noir Black Lotus Set', 'tag': 'NOIR BLACK / LOTUS MOTIF', 'price': 2299, 'priceStr': '₹2,299', 'desc': 'An all-black colourway with lotus-inspired details. Understated from a distance, distinctive up close.', 'material': '300 GSM 100% Combed Heavyweight Cotton Fleece', 'artwork': 'Sacred Lotus Flower Back & Chest High-Definition Embroidery', 'fit': 'Heavyweight Boxy Cropped Zip + Deep-Pocket Wide Trouser', 'wash': 'Cold Gentle Machine Wash / Dry in Shade', 'sizes': ['XS', 'S', 'M', 'L', 'XL'], 'heroImg': 'assets/black-hoodie-front.jpg', 'images': [{'src': 'assets/black-hoodie-front.jpg', 'label': 'FRONT VIEW', 'alt': 'Noir Black Lotus Set - Front View'}, {'src': 'assets/black-hoodie-back.jpg', 'label': 'BACK VIEW', 'alt': 'Noir Black Lotus Set - Back View'}, {'src': 'designs/black/Macro_close-up_of_hoodie_zipper_ec2d7ab5-clean.png', 'label': 'CLOSE-UP', 'alt': 'Noir Black Lotus Set - Zipper Detail'}]};
   let selectedSize = 'M';
   let currentQty = 1;
   let activeImageIndex = 0;
@@ -505,7 +505,7 @@
       tag: CURRENT_PRODUCT.tag,
       price: CURRENT_PRODUCT.price,
       priceStr: CURRENT_PRODUCT.priceStr,
-      img: curImg.src,
+      img: CURRENT_PRODUCT.heroImg || curImg.src,
       size: selectedSize,
       qty: currentQty
     });
